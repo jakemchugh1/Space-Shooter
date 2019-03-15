@@ -56,6 +56,22 @@ public class Player implements Entity {
     }
 
     public void setPos() {
+        checkInput();
+    }
+
+    public Vector2f getPos() {
+        return pos;
+    }
+
+    public void ApplyForce(Vector2f force) {
+
+    }
+
+    public boolean isRemove() {
+        return false;
+    }
+
+    public void checkInput(){
         if(Keyboard.isKeyDown(Keyboard.KEY_A)&& pos.x > 32){
             pos.x = pos.x - speed*getFrameTimeSeconds();
             x = pos.x - width/2;
@@ -74,15 +90,10 @@ public class Player implements Entity {
         }
     }
 
-    public Vector2f getPos() {
-        return null;
-    }
-
-    public void ApplyForce(Vector2f force) {
+    public void checkColliding(Entity enemy){
 
     }
 
-    public boolean isRemove() {
-        return false;
-    }
+    public void setRemove() {remove = true;}
+
 }

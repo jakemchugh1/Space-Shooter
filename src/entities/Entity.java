@@ -9,5 +9,6 @@ public interface Entity {
     public Vector2f getPos();
     public void ApplyForce(Vector2f force);
     public boolean isRemove();
-
+    public void checkColliding(Entity entity);
+    public void setRemove();
 }

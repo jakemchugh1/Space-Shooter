@@ -38,7 +38,7 @@ public class Turret implements Entity {
         this.y = pos.y-8;
         width = 16;
         height = 16;
-        this.texture = LoadTexture("triangle");
+        this.texture = LoadTexture("square");
 
 
 
@@ -74,4 +74,10 @@ public class Turret implements Entity {
     public boolean isRemove() {
         return false;
     }
+
+    public void checkColliding(Entity none){
+
+    }
+
+    public void setRemove() {remove = true;}
 }
