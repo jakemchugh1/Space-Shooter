@@ -75,8 +75,8 @@ public class Turret implements Entity {
         return false;
     }
 
-    public void checkColliding(Entity none){
-
+    public boolean checkColliding(Entity none){
+        return false;
     }
 
     public void setRemove() {remove = true;}

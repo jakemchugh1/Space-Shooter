@@ -17,10 +17,19 @@ public class Player implements Entity {
 
     private int height;
     private int width;
+    private int frame;
 
     private int speed;
 
-    private Texture texture;
+    private Texture texture1;
+    private Texture texture2;
+    private Texture texture3;
+    private Texture texture4;
+    private Texture texture5;
+    private Texture texture6;
+    private Texture texture7;
+    private Texture texture8;
+    private Texture texture9;
 
     private Vector2f pos;
     private Vector2f vel;
@@ -30,11 +39,20 @@ public class Player implements Entity {
 
     public Player(){
         speed = 200;
-        this.x = 640;
-        this.y = 480;
+        this.x = 640-32;
+        this.y = 480-32;
         width = 64;
         height = 64;
-        this.texture = LoadTexture("ball");
+        frame = 0;
+        texture1 = LoadTexture("player1");
+        texture2 = LoadTexture("player2");
+        texture3 = LoadTexture("player3");
+        texture4 = LoadTexture("player4");
+        texture5 = LoadTexture("player5");
+        texture6 = LoadTexture("player6");
+        texture7 = LoadTexture("player7");
+        texture8 = LoadTexture("player8");
+        texture9 = LoadTexture("player9");
 
 
         //initial position vector
@@ -52,7 +70,37 @@ public class Player implements Entity {
     }
 
     public void Draw() {
-        DrawQuadTex(texture, x, y, width, height);
+        if(frame < 6) {
+            DrawQuadTex(texture1, x, y, width, height);
+            frame = frame + 1;
+        }else if(frame < 12) {
+            DrawQuadTex(texture2, x, y, width, height);
+            frame = frame + 1;
+        }else if(frame < 18) {
+            DrawQuadTex(texture3, x, y, width, height);
+            frame = frame + 1;
+        }else if(frame < 24) {
+            DrawQuadTex(texture4, x, y, width, height);
+            frame = frame + 1;
+        }else if(frame < 30) {
+            DrawQuadTex(texture5, x, y, width, height);
+            frame = frame + 1;
+        }else if(frame < 36) {
+            DrawQuadTex(texture6, x, y, width, height);
+            frame = frame + 1;
+        }else if(frame < 42) {
+            DrawQuadTex(texture7, x, y, width, height);
+            frame = frame + 1;
+        }else if(frame < 48) {
+            DrawQuadTex(texture8, x, y, width, height);
+            frame = frame + 1;
+        }else if(frame < 54) {
+            DrawQuadTex(texture9, x, y, width, height);
+            frame = frame + 1;
+        }else{
+            DrawQuadTex(texture1, x, y, width, height);
+            frame = 0;
+        }
     }
 
     public void setPos() {
@@ -90,8 +138,16 @@ public class Player implements Entity {
         }
     }
 
-    public void checkColliding(Entity enemy){
+    public boolean checkColliding(Entity enemy){
+        return false;
+    }
 
+    public void reset(){
+        x = 640-32;
+        y = 480-32;
+
+        pos.x = x + width/2;
+        pos.y = y + height/2;
     }
 
     public void setRemove() {remove = true;}

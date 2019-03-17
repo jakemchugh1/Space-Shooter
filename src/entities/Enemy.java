@@ -22,6 +22,8 @@ public class Enemy implements Entity {
 
     private int speed;
 
+    private int frame;
+
     private Texture texture;
 
     private Vector2f pos;
@@ -30,6 +32,20 @@ public class Enemy implements Entity {
 
     private boolean remove;
     private boolean valid;
+
+    private Texture texture1;
+    private Texture texture2;
+    private Texture texture3;
+    private Texture texture4;
+    private Texture texture5;
+    private Texture texture6;
+    private Texture texture7;
+    private Texture texture8;
+    private Texture texture9;
+    private Texture texture10;
+    private Texture texture11;
+    private Texture texture12;
+    private Texture texture13;
 
 
     public Enemy(Player player){
@@ -40,7 +56,21 @@ public class Enemy implements Entity {
         this.y = rand.nextInt(960);
         width = 32;
         height = 32;
-        this.texture = LoadTexture("triangle");
+        frame = 0;
+
+        texture1 = LoadTexture("enemy1");
+        texture2 = LoadTexture("enemy2");
+        texture3 = LoadTexture("enemy3");
+        texture4 = LoadTexture("enemy4");
+        texture5 = LoadTexture("enemy5");
+        texture6 = LoadTexture("enemy6");
+        texture7 = LoadTexture("enemy7");
+        texture8 = LoadTexture("enemy8");
+        texture9 = LoadTexture("enemy9");
+        texture6 = LoadTexture("enemy10");
+        texture7 = LoadTexture("enemy11");
+        texture8 = LoadTexture("enemy12");
+        texture9 = LoadTexture("enemy13");
 
 
         //initial position vector
@@ -63,7 +93,82 @@ public class Enemy implements Entity {
     }
 
     public void Draw() {
-        if(valid)DrawQuadTex(texture, x, y, width, height);
+        if(frame < 3) {
+            DrawQuadTex(texture1, x, y, width, height);
+            frame = frame + 1;
+        }else if(frame < 6) {
+            DrawQuadTex(texture2, x, y, width, height);
+            frame = frame + 1;
+        }else if(frame < 9) {
+            DrawQuadTex(texture3, x, y, width, height);
+            frame = frame + 1;
+        }else if(frame < 12) {
+            DrawQuadTex(texture4, x, y, width, height);
+            frame = frame + 1;
+        }else if(frame < 15) {
+            DrawQuadTex(texture5, x, y, width, height);
+            frame = frame + 1;
+        }else if(frame < 18) {
+            DrawQuadTex(texture6, x, y, width, height);
+            frame = frame + 1;
+        }else if(frame < 21) {
+            DrawQuadTex(texture7, x, y, width, height);
+            frame = frame + 1;
+        }else if(frame < 24) {
+            DrawQuadTex(texture8, x, y, width, height);
+            frame = frame + 1;
+        }else if(frame < 27) {
+            DrawQuadTex(texture9, x, y, width, height);
+            frame = frame + 1;
+        }else if(frame < 3) {
+            DrawQuadTex(texture10, x, y, width, height);
+            frame = frame + 1;
+        }else if(frame < 6) {
+            DrawQuadTex(texture11, x, y, width, height);
+            frame = frame + 1;
+        }else if(frame < 9) {
+            DrawQuadTex(texture12, x, y, width, height);
+            frame = frame + 1;
+        }else if(frame < 12) {
+            DrawQuadTex(texture13, x, y, width, height);
+            frame = frame + 1;
+        }else if(frame < 15) {
+            DrawQuadTex(texture12, x, y, width, height);
+            frame = frame + 1;
+        }else if(frame < 18) {
+            DrawQuadTex(texture11, x, y, width, height);
+            frame = frame + 1;
+        }else if(frame < 21) {
+            DrawQuadTex(texture10, x, y, width, height);
+            frame = frame + 1;
+        }else if(frame < 24) {
+            DrawQuadTex(texture9, x, y, width, height);
+            frame = frame + 1;
+        }else if(frame < 27) {
+            DrawQuadTex(texture8, x, y, width, height);
+            frame = frame + 1;
+        }else if(frame < 30) {
+            DrawQuadTex(texture7, x, y, width, height);
+            frame = frame + 1;
+        }else if(frame < 33) {
+            DrawQuadTex(texture6, x, y, width, height);
+            frame = frame + 1;
+        }else if(frame < 36) {
+            DrawQuadTex(texture5, x, y, width, height);
+            frame = frame + 1;
+        }else if(frame < 39) {
+            DrawQuadTex(texture4, x, y, width, height);
+            frame = frame + 1;
+        }else if(frame < 42) {
+            DrawQuadTex(texture3, x, y, width, height);
+            frame = frame + 1;
+        }else if(frame < 45) {
+            DrawQuadTex(texture2, x, y, width, height);
+            frame = frame + 1;
+        }else{
+            DrawQuadTex(texture1, x, y, width, height);
+            frame = 0;
+        }
     }
 
     public void setPos() {
@@ -87,18 +192,19 @@ public class Enemy implements Entity {
     }
 
     public Vector2f getPos() {
-        return null;
+        return pos;
     }
 
     public void ApplyForce(Vector2f force) {
 
     }
-    public void checkColliding(Entity entity){
+    public boolean checkColliding(Entity entity){
         Vector2f bullet = entity.getPos();
         if(bullet.x < pos.x + width/2 && bullet.x > pos.x - width/2 && bullet.y < pos.y + height/2 && bullet.y > pos.y - height/2 && valid){
             remove = true;
             entity.setRemove();
-        }
+            return true;
+        }return false;
 
     }
 

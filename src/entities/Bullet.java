@@ -35,17 +35,17 @@ public class Bullet implements Entity {
         initialTime = (Sys.getTime() * 1000 / Sys.getTimerResolution());
         timeLimit = 3*1000;
         speed = 400;
-        width = 16;
-        height = 16;
-        this.texture = LoadTexture("octagon");
+        width = 8;
+        height = 8;
+        this.texture = LoadTexture("bullet");
 
 
         //initial position vector
         pos = new Vector2f();
         pos.x = playerPos.x;
         pos.y = playerPos.y;
-        x = pos.x-8;
-        y = pos.y-8;
+        x = pos.x-width/2;
+        y = pos.y-height/2;
 
         //initial velocity;
         float mouseX = Mouse.getX();
@@ -72,8 +72,8 @@ public class Bullet implements Entity {
         pos.x = pos.x + vel.x*getFrameTimeSeconds() * speed;
         pos.y = pos.y + vel.y*getFrameTimeSeconds()* speed;
 
-        x = pos.x-8;
-        y = pos.y-8;
+        x = pos.x-width/2;
+        y = pos.y-height/2;
 
         if(pos.x < 0 || pos.x > 1280) vel.x = -vel.x;
         if(pos.y < 0 || pos.y > 960) vel.y = -vel.y;
@@ -99,8 +99,8 @@ public class Bullet implements Entity {
         return remove;
     }
 
-    public void checkColliding(Entity pos) {
-
+    public boolean checkColliding(Entity pos) {
+        return false;
     }
 
 
