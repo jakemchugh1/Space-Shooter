@@ -76,6 +76,9 @@ public class Artist {
     }
 
     public static void DrawQuadTex(Texture tex, float x, float y, float width, float height){
+        if(tex == null){
+            tex = LoadTexture("null");
+        }
         tex.bind();
         glTranslatef(x, y, 0);
         glBegin(GL_QUADS);

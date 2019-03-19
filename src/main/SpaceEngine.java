@@ -1,8 +1,21 @@
 package main;
 
+import audio.AudioManager;
+import audio.Source;
 import entities.*;
+import org.lwjgl.Sys;
 import org.lwjgl.util.vector.Vector2f;
+import org.newdawn.slick.Music;
 import org.newdawn.slick.TrueTypeFont;
+import org.newdawn.slick.openal.Audio;
+import org.newdawn.slick.openal.OpenALStreamPlayer;
+import org.newdawn.slick.openal.SoundStore;
+import org.newdawn.slick.openal.StreamSound;
+import org.newdawn.slick.opengl.Texture;
+import org.newdawn.slick.opengl.TextureLoader;
+import org.newdawn.slick.util.ResourceLoader;
+import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Sound;
 import particles.Particle;
 import utilities.Artist.*;
 import org.lwjgl.input.Keyboard;
@@ -10,7 +23,10 @@ import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 import physics.Gravity;
 
+import javax.sound.midi.spi.SoundbankReader;
 import java.awt.*;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashSet;
 import java.util.Random;
 
@@ -20,9 +36,25 @@ import static org.lwjgl.opengl.GL11.*;
 
 public class SpaceEngine {
 
+    public static EntityManager entityManager;
 
-    public SpaceEngine(){
+    public SpaceEngine()  {
         BeginSession();
+
+        entityManager = new EntityManager();
+
+
+
+
+        Music music = null;
+        Sound shootSound = null;
+        try {
+            music = new Music("res/audio/music1.wav");
+            shootSound = new Sound("res/audio/shotA.wav");
+        } catch (SlickException e) {
+            e.printStackTrace();
+        }
+        music.loop();
 
 
         HashSet<Enemy> enemySet = new HashSet<>();
@@ -46,27 +78,30 @@ public class SpaceEngine {
 
         boolean gameOver = false;
 
+        double shootingTimer = Sys.getTime() * 1000 / Sys.getTimerResolution();
+
         while (!Display.isCloseRequested()) {
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
             HashSet<Enemy> remove = new HashSet<>();
             HashSet<Bullet> removeB = new HashSet<>();
             HashSet<Particle> removeParticles = new HashSet<>();
             HashSet<Enemy2> removeBoss = new HashSet<>();
-
             int tentacleAlternator = 1;
 
 
             if (rand.nextInt(75) == 1 && !gameOver) {
                 enemySet.add(new Enemy(player));
-            }if (rand.nextInt(10000) == 1 && !gameOver) {
+            }if (rand.nextInt(1000) == 1 && !gameOver) {
                 bossSet.add(new Enemy2(player));
             }
             if (Mouse.isButtonDown(0)&& !gameOver) {
-                if (shootTimer >= 5) {
+                if ((Sys.getTime() * 1000 / Sys.getTimerResolution())-shootingTimer >= 100) {
+                   // bulletSounds.play(bulletSound);
                     Vector2f tempVec = player.getPos();
                     bulletSet.add(new Bullet(tempVec));
-                    shootTimer = 0;
-                } else shootTimer = shootTimer + 1;
+                    shootingTimer = Sys.getTime() * 1000 / Sys.getTimerResolution();
+                    shootSound.play(1,0.2f);
+                }
             }
             for (Particle p : particles){
                 p.Draw();
@@ -107,6 +142,12 @@ public class SpaceEngine {
             for (Enemy2 e : bossSet) {
                 e.Draw();
                 e.setPos();
+                /*if(rand.nextInt(75) == 23){
+                    Vector2f tempPos = new Vector2f();
+                    tempPos.x = e.getPos().x;
+                    tempPos.y = e.getPos().y;
+                    enemySet.add(new Enemy(player, tempPos));
+                }*/
                 for (Bullet b : bulletSet) {
                     e.checkColliding(b);
                 }
@@ -159,7 +200,7 @@ public class SpaceEngine {
                 enemySet.clear();
                 particles.clear();
                 bulletSet.clear();
-
+                music.stop();
                 font.drawString(WIDTH / 2 - 96, HEIGHT / 2, "GAME OVER");
                 font.drawString(WIDTH / 2 - 78, HEIGHT / 2+100, "Try Again?");
                 if(Mouse.getX() > WIDTH / 2 - 78 && Mouse.getX() < WIDTH / 2 + 10 && HEIGHT-Mouse.getY() > HEIGHT / 2+100 && HEIGHT-Mouse.getY() < HEIGHT / 2+140){
@@ -168,18 +209,21 @@ public class SpaceEngine {
                         lives = 10;
                         player.reset();
                         gameOver = false;
-
+                        music.loop();
                     }
                 }
             }
             updateDisplay();
 
+
             }
+        AudioManager.cleanUp();
 
 
     }
 
     public static void main(String[] Args){
+
         SpaceEngine game = new SpaceEngine();
     }
 }

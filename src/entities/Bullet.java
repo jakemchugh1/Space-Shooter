@@ -6,6 +6,7 @@ import org.lwjgl.input.Mouse;
 import org.lwjgl.util.vector.Vector2f;
 import org.newdawn.slick.opengl.Texture;
 
+import static entities.EntityManager.getTexture;
 import static org.lwjgl.opengl.GL11.*;
 import static utilities.Artist.DrawQuadTex;
 import static utilities.Artist.LoadTexture;
@@ -16,8 +17,8 @@ public class Bullet implements Entity {
     private float x;
     private float y;
 
-    private int height;
-    private int width;
+    private float height;
+    private float width;
 
     private int speed;
 
@@ -33,7 +34,7 @@ public class Bullet implements Entity {
 
     public Bullet(Vector2f playerPos){
         initialTime = (Sys.getTime() * 1000 / Sys.getTimerResolution());
-        timeLimit = 3*1000;
+        timeLimit = 1*1000;
         speed = 400;
         width = 8;
         height = 8;
@@ -65,7 +66,7 @@ public class Bullet implements Entity {
     }
 
     public void Draw() {
-        DrawQuadTex(texture, x, y, width, height);
+        DrawQuadTex(getTexture("bullet"), x, y, width, height);
     }
 
     public void setPos() {

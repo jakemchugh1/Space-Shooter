@@ -6,13 +6,13 @@ import org.newdawn.slick.opengl.Texture;
 
 import java.util.Random;
 
+import static entities.EntityManager.getTexture;
 import static utilities.Artist.DrawQuadTex;
 import static utilities.Artist.LoadTexture;
 import static utilities.Artist.getFrameTimeSeconds;
 
 public class Particle {
 
-    private Texture texture;
     private int speed;
     private double endTime;
     private float x;
@@ -22,9 +22,10 @@ public class Particle {
     private boolean remove;
     private float width;
     private float height;
+    private String textureName;
 
     public Particle(float x, float y, float velX, float velY, double timeLimit, String textureName){
-        texture = LoadTexture(textureName);
+        this.textureName = textureName;
         this.x = x;
         this.y = y;
         remove = false;
@@ -38,7 +39,7 @@ public class Particle {
 
     }
     public Particle(float x, float y, float velX, float velY, double timeLimit, float width, float height,  String textureName){
-        texture = LoadTexture(textureName);
+        this.textureName = textureName;
         this.x = x;
         this.y = y;
         remove = false;
@@ -61,7 +62,7 @@ public class Particle {
     }
 
     public void Draw(){
-        DrawQuadTex(texture, x-width/2, y-height/2, width, height);
+        DrawQuadTex(getTexture(textureName), x-width/2, y-height/2, width, height);
     }
 
     public boolean isRemove(){

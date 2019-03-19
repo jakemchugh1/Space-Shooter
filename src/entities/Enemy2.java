@@ -7,6 +7,7 @@ import org.newdawn.slick.opengl.Texture;
 
 import java.util.Random;
 
+import static entities.EntityManager.getTexture;
 import static org.lwjgl.opengl.GL11.*;
 import static utilities.Artist.DrawQuadTex;
 import static utilities.Artist.LoadTexture;
@@ -35,9 +36,6 @@ public class Enemy2 implements Entity {
     private boolean remove;
     private boolean valid;
 
-    private Texture texture1;
-    private Texture texture2;
-
 
     public Enemy2(Player player){
         target = player;
@@ -49,10 +47,7 @@ public class Enemy2 implements Entity {
         height = 64;
         frame = 0;
 
-        health = 20;
-
-        texture1 = LoadTexture("squid1");
-        texture2 = LoadTexture("squid2");
+        health = 100;
 
 
         //initial position vector
@@ -76,13 +71,13 @@ public class Enemy2 implements Entity {
 
     public void Draw() {
         if(frame < 3) {
-            DrawQuadTex(texture1, x, y, width, height);
+            DrawQuadTex(getTexture("squid1"), x, y, width, height);
             frame = frame + 1;
         }else if(frame < 6) {
-            DrawQuadTex(texture2, x, y, width, height);
+            DrawQuadTex(getTexture("squid2"), x, y, width, height);
             frame = frame + 1;
         }else{
-            DrawQuadTex(texture1, x, y, width, height);
+            DrawQuadTex(getTexture("squid1"), x, y, width, height);
             frame = 0;
         }
     }

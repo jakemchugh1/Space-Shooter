@@ -5,6 +5,7 @@ import org.lwjgl.input.Mouse;
 import org.lwjgl.util.vector.Vector2f;
 import org.newdawn.slick.opengl.Texture;
 
+import static entities.EntityManager.getTexture;
 import static org.lwjgl.opengl.GL11.*;
 import static utilities.Artist.DrawQuadTex;
 import static utilities.Artist.LoadTexture;
@@ -70,37 +71,8 @@ public class Player implements Entity {
     }
 
     public void Draw() {
-        if(frame < 6) {
-            DrawQuadTex(texture1, x, y, width, height);
-            frame = frame + 1;
-        }else if(frame < 12) {
-            DrawQuadTex(texture2, x, y, width, height);
-            frame = frame + 1;
-        }else if(frame < 18) {
-            DrawQuadTex(texture3, x, y, width, height);
-            frame = frame + 1;
-        }else if(frame < 24) {
-            DrawQuadTex(texture4, x, y, width, height);
-            frame = frame + 1;
-        }else if(frame < 30) {
-            DrawQuadTex(texture5, x, y, width, height);
-            frame = frame + 1;
-        }else if(frame < 36) {
-            DrawQuadTex(texture6, x, y, width, height);
-            frame = frame + 1;
-        }else if(frame < 42) {
-            DrawQuadTex(texture7, x, y, width, height);
-            frame = frame + 1;
-        }else if(frame < 48) {
-            DrawQuadTex(texture8, x, y, width, height);
-            frame = frame + 1;
-        }else if(frame < 54) {
-            DrawQuadTex(texture9, x, y, width, height);
-            frame = frame + 1;
-        }else{
-            DrawQuadTex(texture1, x, y, width, height);
-            frame = 0;
-        }
+        DrawQuadTex(getTexture("player9"), x, y, width, height);
+        frame = frame + 1;
     }
 
     public void setPos() {

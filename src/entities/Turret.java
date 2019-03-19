@@ -5,6 +5,7 @@ import org.lwjgl.input.Mouse;
 import org.lwjgl.util.vector.Vector2f;
 import org.newdawn.slick.opengl.Texture;
 
+import static entities.EntityManager.getTexture;
 import static org.lwjgl.opengl.GL11.*;
 import static utilities.Artist.DrawQuadTex;
 import static utilities.Artist.LoadTexture;
@@ -19,8 +20,6 @@ public class Turret implements Entity {
     private int width;
 
     private int speed;
-
-    private Texture texture;
 
     private Vector2f pos;
     private Vector2f vel;
@@ -38,7 +37,6 @@ public class Turret implements Entity {
         this.y = pos.y-8;
         width = 16;
         height = 16;
-        this.texture = LoadTexture("square");
 
 
 
@@ -52,7 +50,7 @@ public class Turret implements Entity {
     }
 
     public void Draw() {
-        DrawQuadTex(texture, x, y, width, height);
+        DrawQuadTex(getTexture("square"), x, y, width, height);
     }
 
     public void setPos() {
