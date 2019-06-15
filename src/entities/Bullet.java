@@ -5,8 +5,13 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.util.vector.Vector2f;
 import org.newdawn.slick.opengl.Texture;
+import particles.Particle;
+
+import java.util.HashSet;
+import java.util.Random;
 
 import static entities.EntityManager.getTexture;
+import static main.SpaceEngine.mainParticles;
 import static org.lwjgl.opengl.GL11.*;
 import static utilities.Artist.DrawQuadTex;
 import static utilities.Artist.LoadTexture;
@@ -31,6 +36,11 @@ public class Bullet implements Entity {
     private double initialTime;
     private double timeLimit;
 
+    private HashSet<Particle> particles;
+    private HashSet<Particle> removeParticles;
+
+    private Random rand;
+
 
     public Bullet(Vector2f playerPos){
         initialTime = (Sys.getTime() * 1000 / Sys.getTimerResolution());
@@ -39,6 +49,9 @@ public class Bullet implements Entity {
         width = 8;
         height = 8;
         this.texture = LoadTexture("bullet");
+        rand = new Random();
+        particles = new HashSet<>();
+        removeParticles = new HashSet<>();
 
 
         //initial position vector
@@ -66,7 +79,23 @@ public class Bullet implements Entity {
     }
 
     public void Draw() {
+
+        for(Particle p : particles){
+            p.Draw();
+            p.Update();
+            if(p.isRemove()) removeParticles.add(p);
+        }for(Particle p : removeParticles){
+            particles.remove(p);
+        }removeParticles.clear();
+
         DrawQuadTex(getTexture("bullet"), x, y, width, height);
+
+
+        if(rand.nextInt(4)== 0)mainParticles.add(new Particle(pos.x,pos.y,0.5f, 0.5f ,0.25, "bullet"));
+        if(rand.nextInt(4)== 1) mainParticles.add(new Particle(pos.x,pos.y,-0.5f, 0.5f ,0.25, "bullet"));
+        if(rand.nextInt(4)== 2)mainParticles.add(new Particle(pos.x,pos.y,0.5f, -0.5f ,0.25, "bullet"));
+        if(rand.nextInt(4)== 3)mainParticles.add(new Particle(pos.x,pos.y,-0.5f, -0.5f ,0.25, "bullet"));
+
     }
 
     public void setPos() {

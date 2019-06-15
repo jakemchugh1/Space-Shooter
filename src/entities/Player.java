@@ -4,12 +4,13 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.util.vector.Vector2f;
 import org.newdawn.slick.opengl.Texture;
+import particles.Particle;
+
+import java.util.HashSet;
 
 import static entities.EntityManager.getTexture;
 import static org.lwjgl.opengl.GL11.*;
-import static utilities.Artist.DrawQuadTex;
-import static utilities.Artist.LoadTexture;
-import static utilities.Artist.getFrameTimeSeconds;
+import static utilities.Artist.*;
 
 public class Player implements Entity {
 
@@ -36,9 +37,14 @@ public class Player implements Entity {
     private Vector2f vel;
 
     private boolean remove;
+    private boolean flip;
+
+    private HashSet<Particle> particles;
+    private HashSet<Particle> removeParticles;
 
 
     public Player(){
+        flip = false;
         speed = 200;
         this.x = 640-32;
         this.y = 480-32;
@@ -54,6 +60,9 @@ public class Player implements Entity {
         texture7 = LoadTexture("player7");
         texture8 = LoadTexture("player8");
         texture9 = LoadTexture("player9");
+
+        particles = new HashSet<>();
+        removeParticles = new HashSet<>();
 
 
         //initial position vector
@@ -71,8 +80,47 @@ public class Player implements Entity {
     }
 
     public void Draw() {
-        DrawQuadTex(getTexture("player9"), x, y, width, height);
-        frame = frame + 1;
+        if(flip){
+            if(frame < 3) {
+                DrawQuadTexFlip(getTexture("submarine1"), x, y, width, height);
+                frame = frame + 1;
+            }else if(frame < 6) {
+                DrawQuadTexFlip(getTexture("submarine2"), x, y, width, height);
+                frame = frame + 1;
+            }else if(frame < 9) {
+                DrawQuadTexFlip(getTexture("submarine3"), x, y, width, height);
+                frame = frame + 1;
+            }else if(frame < 12) {
+                DrawQuadTexFlip(getTexture("submarine4"), x, y, width, height);
+                frame = frame + 1;
+            }else if(frame < 15) {
+                DrawQuadTexFlip(getTexture("submarine5"), x, y, width, height);
+                frame = frame + 1;
+            }else{
+                DrawQuadTexFlip(getTexture("submarine1"), x, y, width, height);
+                frame = 0;
+            }
+        }else{
+            if(frame < 3) {
+                DrawQuadTex(getTexture("submarine1"), x, y, width, height);
+                frame = frame + 1;
+            }else if(frame < 6) {
+                DrawQuadTex(getTexture("submarine2"), x, y, width, height);
+                frame = frame + 1;
+            }else if(frame < 9) {
+                DrawQuadTex(getTexture("submarine3"), x, y, width, height);
+                frame = frame + 1;
+            }else if(frame < 12) {
+                DrawQuadTex(getTexture("submarine4"), x, y, width, height);
+                frame = frame + 1;
+            }else if(frame < 15) {
+                DrawQuadTex(getTexture("submarine5"), x, y, width, height);
+                frame = frame + 1;
+            }else{
+                DrawQuadTex(getTexture("submarine1"), x, y, width, height);
+                frame = 0;
+            }
+        }
     }
 
     public void setPos() {
@@ -95,10 +143,12 @@ public class Player implements Entity {
         if(Keyboard.isKeyDown(Keyboard.KEY_A)&& pos.x > 32){
             pos.x = pos.x - speed*getFrameTimeSeconds();
             x = pos.x - width/2;
+            flip = true;
         }
         if(Keyboard.isKeyDown(Keyboard.KEY_D)&& pos.x < 1248){
             pos.x = pos.x + speed*getFrameTimeSeconds();
             x = pos.x - width/2;
+            flip = false;
         }
         if(Keyboard.isKeyDown(Keyboard.KEY_W)&& pos.y > 32){
             pos.y = pos.y - speed*getFrameTimeSeconds();
@@ -123,5 +173,4 @@ public class Player implements Entity {
     }
 
     public void setRemove() {remove = true;}
-
 }

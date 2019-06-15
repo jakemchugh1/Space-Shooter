@@ -4,7 +4,9 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.util.vector.Vector2f;
 import org.newdawn.slick.opengl.Texture;
+import particles.Particle;
 
+import java.util.HashSet;
 import java.util.Random;
 
 import static entities.EntityManager.getTexture;
@@ -34,6 +36,9 @@ public class Enemy implements Entity {
     private boolean remove;
     private boolean valid;
 
+    private HashSet<Particle> particles;
+    private HashSet<Particle> removeParticles;
+
 
 
     public Enemy(Player player){
@@ -45,6 +50,9 @@ public class Enemy implements Entity {
         width = 32;
         height = 32;
         frame = 0;
+
+        particles = new HashSet<>();
+        removeParticles = new HashSet<>();
 
 
 
@@ -92,6 +100,14 @@ public class Enemy implements Entity {
     }
 
     public void Draw() {
+        for(Particle p : particles){
+            p.Draw();
+            p.Update();
+            if(p.isRemove()) removeParticles.add(p);
+        }for(Particle p : removeParticles){
+            particles.remove(p);
+        }removeParticles.clear();
+
         if(frame < 3) {
             DrawQuadTex(getTexture("enemy1"), x, y, width, height);
             frame = frame + 1;
@@ -168,6 +184,8 @@ public class Enemy implements Entity {
     }
 
     public void setPos() {
+
+
         float mouseX = target.getPos().x;
         float mouseY = target.getPos().y;
 

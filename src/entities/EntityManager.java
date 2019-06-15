@@ -44,6 +44,32 @@ public class EntityManager {
 
         load("tentacle");
 
+        load("background");
+
+        load("seaweed_short1");
+        load("seaweed_short2");
+        load("seaweed_short3");
+
+        load("starfish1");
+        load("starfish2");
+        load("starfish3");
+
+        load("chest1");
+        load("chest2");
+
+        load("bubble");
+
+        load("submarine1");
+        load("submarine2");
+        load("submarine3");
+        load("submarine4");
+        load("submarine5");
+
+        load("clam1");
+        load("clam2");
+
+
+
 
 
         System.out.println("here");

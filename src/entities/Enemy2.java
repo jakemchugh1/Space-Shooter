@@ -4,7 +4,9 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.util.vector.Vector2f;
 import org.newdawn.slick.opengl.Texture;
+import particles.Particle;
 
+import java.util.HashSet;
 import java.util.Random;
 
 import static entities.EntityManager.getTexture;
@@ -36,6 +38,9 @@ public class Enemy2 implements Entity {
     private boolean remove;
     private boolean valid;
 
+    private HashSet<Particle> particles;
+    private HashSet<Particle> removeParticles;
+
 
     public Enemy2(Player player){
         target = player;
@@ -48,6 +53,9 @@ public class Enemy2 implements Entity {
         frame = 0;
 
         health = 100;
+
+        particles = new HashSet<>();
+        removeParticles = new HashSet<>();
 
 
         //initial position vector
@@ -70,6 +78,14 @@ public class Enemy2 implements Entity {
     }
 
     public void Draw() {
+        for(Particle p : particles){
+            p.Draw();
+            p.Update();
+            if(p.isRemove()) removeParticles.add(p);
+        }for(Particle p : removeParticles){
+            particles.remove(p);
+        }removeParticles.clear();
+
         if(frame < 3) {
             DrawQuadTex(getTexture("squid1"), x, y, width, height);
             frame = frame + 1;
@@ -80,6 +96,14 @@ public class Enemy2 implements Entity {
             DrawQuadTex(getTexture("squid1"), x, y, width, height);
             frame = 0;
         }
+        particles.add(new Particle(pos.x, pos.y + 32, 0, 0, 3, 8, 8, "tentacle"));
+        particles.add(new Particle(pos.x, pos.y - 32, 0, 0, 3, 8, 8, "tentacle"));
+        particles.add(new Particle(pos.x + 32, pos.y - 16, 0, 0, 3, 8, 8, "tentacle"));
+        particles.add(new Particle(pos.x - 32, pos.y - 16, 0, 0, 3, 8, 8, "tentacle"));
+        particles.add(new Particle(pos.x - 32, pos.y+16, 0, 0, 3, 8, 8, "tentacle"));
+        particles.add(new Particle(pos.x + 32, pos.y+16, 0, 0, 3, 8, 8, "tentacle"));
+
+
     }
 
     public void setPos() {

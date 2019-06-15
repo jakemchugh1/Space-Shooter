@@ -17,6 +17,9 @@ import org.newdawn.slick.util.ResourceLoader;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Sound;
 import particles.Particle;
+import scene.Background;
+import scene.Scene;
+import scenery.ShortSeaweed;
 import utilities.Artist.*;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
@@ -38,6 +41,11 @@ public class SpaceEngine {
 
     public static EntityManager entityManager;
 
+    public static HashSet<Enemy> enemySet = new HashSet<>();
+    public static HashSet<Enemy2> bossSet = new HashSet<>();
+    public static HashSet<Bullet> bulletSet = new HashSet<>();
+    public static HashSet<Particle> mainParticles = new HashSet<>();
+
     public SpaceEngine()  {
         BeginSession();
 
@@ -57,14 +65,10 @@ public class SpaceEngine {
         music.loop();
 
 
-        HashSet<Enemy> enemySet = new HashSet<>();
-        HashSet<Enemy2> bossSet = new HashSet<>();
-        HashSet<Bullet> bulletSet = new HashSet<>();
-        HashSet<Particle> particles = new HashSet<>();
+
         Player player = new Player();
         Turret turret = new Turret();
-
-        Gravity gravity = new Gravity(1f);
+        Background background = new Background(WIDTH, HEIGHT, "background");
 
         Random rand = new Random();
 
@@ -72,7 +76,7 @@ public class SpaceEngine {
         TrueTypeFont font = new TrueTypeFont(awtFont, true);
         int score = 0;
 
-        int shootTimer = 10;
+        int oxygen = 100;
 
         int lives = 10;
 
@@ -80,14 +84,27 @@ public class SpaceEngine {
 
         double shootingTimer = Sys.getTime() * 1000 / Sys.getTimerResolution();
 
+        double oxygenTimer = Sys.getTime() * 1000 / Sys.getTimerResolution();
+
         while (!Display.isCloseRequested()) {
+            if((Sys.getTime() * 1000 / Sys.getTimerResolution()) - oxygenTimer >= 1000){
+                oxygenTimer = Sys.getTime() * 1000 / Sys.getTimerResolution();
+                oxygen = oxygen - 1;
+            }
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
             HashSet<Enemy> remove = new HashSet<>();
             HashSet<Bullet> removeB = new HashSet<>();
-            HashSet<Particle> removeParticles = new HashSet<>();
             HashSet<Enemy2> removeBoss = new HashSet<>();
-            int tentacleAlternator = 1;
+            HashSet<Particle> removeP = new HashSet<>();
+            background.Draw();
 
+            for(Particle p : mainParticles){
+                p.Update();
+                p.Draw();
+                if(p.isRemove())removeP.add(p);
+            }for(Particle p : removeP){
+                mainParticles.remove(p);
+            }
 
             if (rand.nextInt(75) == 1 && !gameOver) {
                 enemySet.add(new Enemy(player));
@@ -103,23 +120,12 @@ public class SpaceEngine {
                     shootSound.play(1,0.2f);
                 }
             }
-            for (Particle p : particles){
-                p.Draw();
-                p.Update();
-                if(p.isRemove())removeParticles.add(p);
-            }
             for (Bullet b : bulletSet) {
                 b.Draw();
                 b.setPos();
                 if (b.isRemove()) removeB.add(b);
-                if(rand.nextInt(4)== 0)particles.add(new Particle(b.getPos().x,b.getPos().y,0.5f, 0.5f ,0.25, "bullet"));
-                if(rand.nextInt(4)== 1) particles.add(new Particle(b.getPos().x,b.getPos().y,-0.5f, 0.5f ,0.25, "bullet"));
-                if(rand.nextInt(4)== 2)particles.add(new Particle(b.getPos().x,b.getPos().y,0.5f, -0.5f ,0.25, "bullet"));
-                if(rand.nextInt(4)== 3)particles.add(new Particle(b.getPos().x,b.getPos().y,-0.5f, -0.5f ,0.25, "bullet"));
             }
-            for(Particle p : removeParticles){
-                particles.remove(p);
-            }removeParticles.clear();
+
 
             for (Enemy e : enemySet) {
                 e.Draw();
@@ -132,22 +138,12 @@ public class SpaceEngine {
                     if (lives > 0) {
                         lives--;
                     }
-                }if(!e.isRemove()) {
-                    particles.add(new Particle(e.getPos().x, e.getPos().y + 16, 0, 0, 0.5, "particle2"));
-                    particles.add(new Particle(e.getPos().x - 16, e.getPos().y - 16, 0, 0, 0.5, "particle2"));
-                    particles.add(new Particle(e.getPos().x + 16, e.getPos().y - 16, 0, 0, 0.5, "particle2"));
                 }
 
             }
             for (Enemy2 e : bossSet) {
                 e.Draw();
                 e.setPos();
-                /*if(rand.nextInt(75) == 23){
-                    Vector2f tempPos = new Vector2f();
-                    tempPos.x = e.getPos().x;
-                    tempPos.y = e.getPos().y;
-                    enemySet.add(new Enemy(player, tempPos));
-                }*/
                 for (Bullet b : bulletSet) {
                     e.checkColliding(b);
                 }
@@ -157,24 +153,12 @@ public class SpaceEngine {
                         lives--;
                     }
                 }
-                particles.add(new Particle(e.getPos().x, e.getPos().y + 32, 0, 0, 3, 8, 8, "tentacle"));
-                particles.add(new Particle(e.getPos().x, e.getPos().y - 32, 0, 0, 3, 8, 8, "tentacle"));
-                particles.add(new Particle(e.getPos().x + 32, e.getPos().y - 16, 0, 0, 3, 8, 8, "tentacle"));
-                particles.add(new Particle(e.getPos().x - 32, e.getPos().y - 16, 0, 0, 3, 8, 8, "tentacle"));
-                particles.add(new Particle(e.getPos().x - 32, e.getPos().y+16, 0, 0, 3, 8, 8, "tentacle"));
-                particles.add(new Particle(e.getPos().x + 32, e.getPos().y+16, 0, 0, 3, 8, 8, "tentacle"));
+
 
             }
             if (lives == 0) gameOver = true;
             for (Enemy e : remove) {
                 enemySet.remove(e);
-                if(rand.nextInt(2)== 0){
-                    particles.add(new Particle(e.getPos().x,e.getPos().y,1, 1 ,1, "particle"));
-                    particles.add(new Particle(e.getPos().x,e.getPos().y,-1, 1 ,1, "particle"));
-                }else {
-                    particles.add(new Particle(e.getPos().x, e.getPos().y, 1, -1, 1, "particle2"));
-                    particles.add(new Particle(e.getPos().x, e.getPos().y, -1, -1, 1, "particle2"));
-                }
                 if (!gameOver) score = score + 1;
             }remove.clear();
             for (Bullet b : removeB) {
@@ -190,15 +174,16 @@ public class SpaceEngine {
                 turret.Draw();
                 turret.setPos();
             }
+
             String scoreString = "Score: " + score;
-            String livesString = "Lives: " + lives/2;
+            String livesString = "Crew: " + lives/2;
+            String oxygenString = "Oxygen: " + oxygen;
             font.drawString(WIDTH - 200, 0, scoreString);
             font.drawString(200, 0, livesString);
+            font.drawString(200, 50, oxygenString);
             if (gameOver){
-
                 bossSet.clear();
                 enemySet.clear();
-                particles.clear();
                 bulletSet.clear();
                 music.stop();
                 font.drawString(WIDTH / 2 - 96, HEIGHT / 2, "GAME OVER");
