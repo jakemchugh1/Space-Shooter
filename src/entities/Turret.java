@@ -7,9 +7,7 @@ import org.newdawn.slick.opengl.Texture;
 
 import static entities.EntityManager.getTexture;
 import static org.lwjgl.opengl.GL11.*;
-import static utilities.Artist.DrawQuadTex;
-import static utilities.Artist.LoadTexture;
-import static utilities.Artist.getFrameTimeSeconds;
+import static utilities.Artist.*;
 
 public class Turret implements Entity {
 
@@ -20,6 +18,7 @@ public class Turret implements Entity {
     private int width;
 
     private int speed;
+    private int frame;
 
     private Vector2f pos;
     private Vector2f vel;
@@ -33,10 +32,11 @@ public class Turret implements Entity {
         pos.x = 0;
         pos.y = 0;
         speed = 200;
-        this.x = pos.x-8;
-        this.y = pos.y-8;
-        width = 16;
-        height = 16;
+        this.x = pos.x-16;
+        this.y = pos.y-16;
+        width = 32;
+        height = 32;
+        frame = 0;
 
 
 
@@ -50,14 +50,29 @@ public class Turret implements Entity {
     }
 
     public void Draw() {
-        DrawQuadTex(getTexture("square"), x, y, width, height);
+        if(frame < 6) {
+            DrawQuadTex(getTexture("reticle_1"), x, y, width, height);
+            frame = frame + 1;
+        }else if(frame < 12){
+            DrawQuadTex(getTexture("reticle_2"), x, y, width, height);
+            frame = frame + 1;
+        }else if(frame < 18){
+            DrawQuadTexFlip(getTexture("reticle_1"), x, y, width, height);
+            frame = frame + 1;
+        }else if(frame < 24){
+            DrawQuadTex(getTexture("reticle_3"), x, y, width, height);
+            frame = frame + 1;
+        }else{
+            frame = 0;
+            DrawQuadTex(getTexture("reticle_1"), x, y, width, height);
+        }
     }
 
     public void setPos() {
         pos.x = Mouse.getX();
         pos.y = 960-Mouse.getY();
-        x = pos.x - 8;
-        y = pos.y - 8;
+        x = pos.x - 16;
+        y = pos.y - 16;
 
     }
 

@@ -23,13 +23,13 @@ public class Background {
         this.height = height;
         this.fileName = fileName;
 
-        scenery.add(new ShortSeaweed(400,500,128,128));
-        scenery.add(new ShortSeaweed(420,510,128,128));
-        scenery.add(new ShortSeaweed(435,515,128,128));
+        scenery.add(new ShortSeaweed(400,500,96,96));
+        scenery.add(new ShortSeaweed(440,510,96,96));
+        scenery.add(new ShortSeaweed(490,515,96,96));
 
-        scenery.add(new ShortSeaweed(1200,490,128,128));
-        scenery.add(new ShortSeaweed(1100,485,128,128));
-        scenery.add(new ShortSeaweed(900,495,128,128));
+        scenery.add(new ShortSeaweed(1200,690,96,96));
+        scenery.add(new ShortSeaweed(1100,685,96,96));
+        scenery.add(new ShortSeaweed(900,695,96,96));
 
         scenery.add(new DancingStarfish(200,800,128,128));
         scenery.add(new DancingStarfish(1000,700,128,128));
@@ -41,6 +41,7 @@ public class Background {
     }
 
     public void Draw(){
+        
         DrawQuadTex(getTexture(fileName), 0, 0, width+764, height+84);
         for(Scenery s : scenery){
             s.Draw();

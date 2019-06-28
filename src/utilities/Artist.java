@@ -94,6 +94,27 @@ public class Artist {
         glLoadIdentity();
 
     }
+
+    public static void DrawQuadTexWave(Texture tex, float x, float y, float width, float height, float modifier){
+        if(tex == null){
+            tex = LoadTexture("null");
+        }
+        tex.bind();
+        glTranslatef(x, y, 0);
+        glBegin(GL_QUADS);
+        glTexCoord2f(0-0.05f,0);
+        glVertex2f(0 + modifier,0);
+        glTexCoord2f(1-0.05f,0);
+        glVertex2f(width + modifier,0);
+        glTexCoord2f(1-0.05f,1);
+        glVertex2f(width,height);
+        glTexCoord2f(0-0.05f,1);
+        glVertex2f(0,height);
+        glEnd();
+        glLoadIdentity();
+
+    }
+
     public static void DrawQuadTexFlip(Texture tex, float x, float y, float width, float height){
         if(tex == null){
             tex = LoadTexture("null");

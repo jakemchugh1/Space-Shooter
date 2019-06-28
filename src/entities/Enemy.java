@@ -44,11 +44,11 @@ public class Enemy implements Entity {
     public Enemy(Player player){
         target = player;
         Random rand = new Random();
-        speed = 200;
+        speed = 75;
         this.x = rand.nextInt(1280);
         this.y = rand.nextInt(960);
-        width = 32;
-        height = 32;
+        width = 96;
+        height = 96;
         frame = 0;
 
         particles = new HashSet<>();
@@ -108,77 +108,17 @@ public class Enemy implements Entity {
             particles.remove(p);
         }removeParticles.clear();
 
-        if(frame < 3) {
-            DrawQuadTex(getTexture("enemy1"), x, y, width, height);
+        if(frame < 24) {
+            DrawQuadTex(getTexture("jellyfish_1"), x, y, width, height);
             frame = frame + 1;
-        }else if(frame < 6) {
-            DrawQuadTex(getTexture("enemy2"), x, y, width, height);
+        }else if(frame < 48) {
+            DrawQuadTex(getTexture("jellyfish_2"), x, y, width, height);
             frame = frame + 1;
-        }else if(frame < 9) {
-            DrawQuadTex(getTexture("enemy3"), x, y, width, height);
-            frame = frame + 1;
-        }else if(frame < 12) {
-            DrawQuadTex(getTexture("enemy4"), x, y, width, height);
-            frame = frame + 1;
-        }else if(frame < 15) {
-            DrawQuadTex(getTexture("enemy5"), x, y, width, height);
-            frame = frame + 1;
-        }else if(frame < 18) {
-            DrawQuadTex(getTexture("enemy6"), x, y, width, height);
-            frame = frame + 1;
-        }else if(frame < 21) {
-            DrawQuadTex(getTexture("enemy7"), x, y, width, height);
-            frame = frame + 1;
-        }else if(frame < 24) {
-            DrawQuadTex(getTexture("enemy8"), x, y, width, height);
-            frame = frame + 1;
-        }else if(frame < 27) {
-            DrawQuadTex(getTexture("enemy9"), x, y, width, height);
-            frame = frame + 1;
-        }else if(frame < 3) {
-            DrawQuadTex(getTexture("enemy10"), x, y, width, height);
-            frame = frame + 1;
-        }else if(frame < 6) {
-            DrawQuadTex(getTexture("enemy11"), x, y, width, height);
-            frame = frame + 1;
-        }else if(frame < 9) {
-            DrawQuadTex(getTexture("enemy12"), x, y, width, height);
-            frame = frame + 1;
-        }else if(frame < 12) {
-            DrawQuadTex(getTexture("enemy13"), x, y, width, height);
-            frame = frame + 1;
-        }else if(frame < 15) {
-            DrawQuadTex(getTexture("enemy12"), x, y, width, height);
-            frame = frame + 1;
-        }else if(frame < 21) {
-            DrawQuadTex(getTexture("enemy10"), x, y, width, height);
-            frame = frame + 1;
-        }else if(frame < 24) {
-            DrawQuadTex(getTexture("enemy9"), x, y, width, height);
-            frame = frame + 1;
-        }else if(frame < 27) {
-            DrawQuadTex(getTexture("enemy8"), x, y, width, height);
-            frame = frame + 1;
-        }else if(frame < 30) {
-            DrawQuadTex(getTexture("enemy7"), x, y, width, height);
-            frame = frame + 1;
-        }else if(frame < 33) {
-            DrawQuadTex(getTexture("enemy6"), x, y, width, height);
-            frame = frame + 1;
-        }else if(frame < 36) {
-            DrawQuadTex(getTexture("enemy5"), x, y, width, height);
-            frame = frame + 1;
-        }else if(frame < 39) {
-            DrawQuadTex(getTexture("enemy4"), x, y, width, height);
-            frame = frame + 1;
-        }else if(frame < 42) {
-            DrawQuadTex(getTexture("enemy3"), x, y, width, height);
-            frame = frame + 1;
-        }else if(frame < 45) {
-            DrawQuadTex(getTexture("enemy2"), x, y, width, height);
+        }else if(frame < 72) {
+            DrawQuadTex(getTexture("jellyfish_3"), x, y, width, height);
             frame = frame + 1;
         }else{
-            DrawQuadTex(getTexture("enemy1"), x, y, width, height);
+            DrawQuadTex(getTexture("jellyfish_1"), x, y, width, height);
             frame = 0;
         }
     }
@@ -215,7 +155,7 @@ public class Enemy implements Entity {
     }
     public boolean checkColliding(Entity entity){
         Vector2f bullet = entity.getPos();
-        if(bullet.x < pos.x + width/2 && bullet.x > pos.x - width/2 && bullet.y < pos.y + height/2 && bullet.y > pos.y - height/2 && valid){
+        if(bullet.x < pos.x + width/3 && bullet.x > pos.x - width/3 && bullet.y < pos.y + height/3 && bullet.y > pos.y - height/3 && valid){
             remove = true;
             entity.setRemove();
             return true;

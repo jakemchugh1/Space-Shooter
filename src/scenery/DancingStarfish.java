@@ -43,23 +43,23 @@ public class DancingStarfish implements Scenery{
     }
 
     public void Draw() {
-        if(frame < 12) {
-            DrawQuadTex(getTexture("starfish1"), x, y, width, height);
+        if(frame < 24) {
+            DrawQuadTex(getTexture("red_star_1"), x, y, width, height);
             frame = frame + 1;
-        }else if(frame < 24) {
-            DrawQuadTex(getTexture("starfish2"), x, y, width, height);
+        }else if(frame < 48) {
+            DrawQuadTex(getTexture("red_star_2"), x, y, width, height);
             frame = frame + 1;
-        }else if(frame < 36){
-            DrawQuadTex(getTexture("starfish3"), x, y, width, height);
+        }else if(frame < 72){
+            DrawQuadTex(getTexture("red_star_3"), x, y, width, height);
             frame = frame + 1;
-        }else if(frame < 48){
-            DrawQuadTex(getTexture("starfish2"), x, y, width, height);
+        }else if(frame < 96){
+            DrawQuadTex(getTexture("red_star_2"), x, y, width, height);
             frame = frame + 1;
         }else{
-            DrawQuadTex(getTexture("starfish1"), x, y, width, height);
+            DrawQuadTex(getTexture("red_star_1"), x, y, width, height);
             frame = 0;
         }
-        if(move){
+        /*if(move){
             x = x+1;
             distance = distance + 1;
             if(distance>200)move = false;
@@ -67,7 +67,7 @@ public class DancingStarfish implements Scenery{
             x = x - 1;
             distance = distance - 1;
             if(distance<0)move = true;
-        }
+        }*/
     }
 
     public int getFrame(){

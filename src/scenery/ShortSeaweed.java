@@ -10,9 +10,7 @@ import java.util.Random;
 
 import static entities.EntityManager.getTexture;
 import static org.lwjgl.opengl.GL11.*;
-import static utilities.Artist.DrawQuadTex;
-import static utilities.Artist.LoadTexture;
-import static utilities.Artist.getFrameTimeSeconds;
+import static utilities.Artist.*;
 
 public class ShortSeaweed implements Scenery{
 
@@ -24,6 +22,10 @@ public class ShortSeaweed implements Scenery{
 
     private int frame;
 
+    private float modifier;
+    private float modifierChange;
+    private float skewRange;
+
 
     public ShortSeaweed(float x, float y, int width, int height){
         frame = 0;
@@ -32,24 +34,35 @@ public class ShortSeaweed implements Scenery{
         this.width = width;
         this.height = height;
 
+        modifier = 0;
+        modifierChange = 0.25f;
+        skewRange = 20;
+
     }
 
     public void Draw() {
-        if(frame < 12) {
-            DrawQuadTex(getTexture("seaweed_short1"), x, y, width, height);
+        if(frame < 24) {
+            DrawQuadTexWave(getTexture("seaweed_1"), x, y, width, height, modifier);
             frame = frame + 1;
-        }else if(frame < 24) {
-            DrawQuadTex(getTexture("seaweed_short2"), x, y, width, height);
+        }else if(frame < 48) {
+            DrawQuadTexWave(getTexture("seaweed_2"), x, y, width, height, modifier);
             frame = frame + 1;
-        }else if(frame < 36){
-            DrawQuadTex(getTexture("seaweed_short3"), x, y, width, height);
+        }else if(frame < 72){
+            DrawQuadTexWave(getTexture("seaweed_3"), x, y, width, height, modifier);
             frame = frame + 1;
-        }else if(frame < 48){
-            DrawQuadTex(getTexture("seaweed_short2"), x, y, width, height);
+        }else if(frame < 96) {
+            DrawQuadTexWave(getTexture("seaweed_2"), x, y, width, height, modifier);
             frame = frame + 1;
         }else{
-            DrawQuadTex(getTexture("seaweed_short1"), x, y, width, height);
+            DrawQuadTexWave(getTexture("seaweed_1"), x, y, width, height, modifier);
             frame = 0;
+        }
+        modifier = modifier + modifierChange;
+
+        if(modifier >= skewRange){
+            modifierChange = -modifierChange;
+        }if(modifier <= -skewRange){
+            modifierChange = -modifierChange;
         }
     }
 

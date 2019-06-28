@@ -48,18 +48,9 @@ public class Player implements Entity {
         speed = 200;
         this.x = 640-32;
         this.y = 480-32;
-        width = 64;
-        height = 64;
+        width = 96;
+        height = 48;
         frame = 0;
-        texture1 = LoadTexture("player1");
-        texture2 = LoadTexture("player2");
-        texture3 = LoadTexture("player3");
-        texture4 = LoadTexture("player4");
-        texture5 = LoadTexture("player5");
-        texture6 = LoadTexture("player6");
-        texture7 = LoadTexture("player7");
-        texture8 = LoadTexture("player8");
-        texture9 = LoadTexture("player9");
 
         particles = new HashSet<>();
         removeParticles = new HashSet<>();
@@ -82,42 +73,30 @@ public class Player implements Entity {
     public void Draw() {
         if(flip){
             if(frame < 3) {
-                DrawQuadTexFlip(getTexture("submarine1"), x, y, width, height);
+                DrawQuadTexFlip(getTexture("sub_1"), x, y, width, height);
                 frame = frame + 1;
             }else if(frame < 6) {
-                DrawQuadTexFlip(getTexture("submarine2"), x, y, width, height);
+                DrawQuadTexFlip(getTexture("sub_2"), x, y, width, height);
                 frame = frame + 1;
             }else if(frame < 9) {
-                DrawQuadTexFlip(getTexture("submarine3"), x, y, width, height);
-                frame = frame + 1;
-            }else if(frame < 12) {
-                DrawQuadTexFlip(getTexture("submarine4"), x, y, width, height);
-                frame = frame + 1;
-            }else if(frame < 15) {
-                DrawQuadTexFlip(getTexture("submarine5"), x, y, width, height);
+                DrawQuadTexFlip(getTexture("sub_3"), x, y, width, height);
                 frame = frame + 1;
             }else{
-                DrawQuadTexFlip(getTexture("submarine1"), x, y, width, height);
+                DrawQuadTexFlip(getTexture("sub_1"), x, y, width, height);
                 frame = 0;
             }
         }else{
             if(frame < 3) {
-                DrawQuadTex(getTexture("submarine1"), x, y, width, height);
+                DrawQuadTex(getTexture("sub_1"), x, y, width, height);
                 frame = frame + 1;
             }else if(frame < 6) {
-                DrawQuadTex(getTexture("submarine2"), x, y, width, height);
+                DrawQuadTex(getTexture("sub_2"), x, y, width, height);
                 frame = frame + 1;
             }else if(frame < 9) {
-                DrawQuadTex(getTexture("submarine3"), x, y, width, height);
-                frame = frame + 1;
-            }else if(frame < 12) {
-                DrawQuadTex(getTexture("submarine4"), x, y, width, height);
-                frame = frame + 1;
-            }else if(frame < 15) {
-                DrawQuadTex(getTexture("submarine5"), x, y, width, height);
+                DrawQuadTex(getTexture("sub_3"), x, y, width, height);
                 frame = frame + 1;
             }else{
-                DrawQuadTex(getTexture("submarine1"), x, y, width, height);
+                DrawQuadTex(getTexture("sub_1"), x, y, width, height);
                 frame = 0;
             }
         }

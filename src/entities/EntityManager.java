@@ -68,7 +68,31 @@ public class EntityManager {
         load("clam1");
         load("clam2");
 
+        load("red_star_1");
+        load("red_star_2");
+        load("red_star_3");
 
+        load("seaweed_1");
+        load("seaweed_2");
+        load("seaweed_3");
+
+        load("jellyfish_1");
+        load("jellyfish_2");
+        load("jellyfish_3");
+
+        load("squid_1");
+        load("squid_2");
+        load("squid_3");
+        load("squid_4");
+        load("squid_5");
+
+        load("reticle_1");
+        load("reticle_2");
+        load("reticle_3");
+
+        load("sub_1");
+        load("sub_2");
+        load("sub_3");
 
 
 

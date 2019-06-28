@@ -80,6 +80,8 @@ public class SpaceEngine {
 
         int lives = 10;
 
+        int spawnChance1 = 300;
+
         boolean gameOver = false;
 
         double shootingTimer = Sys.getTime() * 1000 / Sys.getTimerResolution();
@@ -90,6 +92,9 @@ public class SpaceEngine {
             if((Sys.getTime() * 1000 / Sys.getTimerResolution()) - oxygenTimer >= 1000){
                 oxygenTimer = Sys.getTime() * 1000 / Sys.getTimerResolution();
                 oxygen = oxygen - 1;
+                if(spawnChance1 > 10){
+                    spawnChance1 = spawnChance1 - 1;
+                }
             }
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
             HashSet<Enemy> remove = new HashSet<>();
@@ -106,7 +111,7 @@ public class SpaceEngine {
                 mainParticles.remove(p);
             }
 
-            if (rand.nextInt(75) == 1 && !gameOver) {
+            if (rand.nextInt(spawnChance1) == 1 && !gameOver) {
                 enemySet.add(new Enemy(player));
             }if (rand.nextInt(1000) == 1 && !gameOver) {
                 bossSet.add(new Enemy2(player));
