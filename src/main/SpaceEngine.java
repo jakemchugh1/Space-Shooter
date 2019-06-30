@@ -33,6 +33,7 @@ import java.io.InputStream;
 import java.util.HashSet;
 import java.util.Random;
 
+import static entities.EntityManager.getTexture;
 import static utilities.Artist.*;
 import static org.lwjgl.opengl.GL11.*;
 
@@ -88,6 +89,10 @@ public class SpaceEngine {
 
         double oxygenTimer = Sys.getTime() * 1000 / Sys.getTimerResolution();
 
+        float testRotation = 0;
+
+        bossSet.add(new Enemy2(player));
+
         while (!Display.isCloseRequested()) {
             if((Sys.getTime() * 1000 / Sys.getTimerResolution()) - oxygenTimer >= 1000){
                 oxygenTimer = Sys.getTime() * 1000 / Sys.getTimerResolution();
@@ -113,9 +118,9 @@ public class SpaceEngine {
 
             if (rand.nextInt(spawnChance1) == 1 && !gameOver) {
                 enemySet.add(new Enemy(player));
-            }if (rand.nextInt(1000) == 1 && !gameOver) {
-                bossSet.add(new Enemy2(player));
-            }
+            }//if (rand.nextInt(1000) == 1 && !gameOver) {
+                //bossSet.add(new Enemy2(player));
+           // }
             if (Mouse.isButtonDown(0)&& !gameOver) {
                 if ((Sys.getTime() * 1000 / Sys.getTimerResolution())-shootingTimer >= 100) {
                    // bulletSounds.play(bulletSound);

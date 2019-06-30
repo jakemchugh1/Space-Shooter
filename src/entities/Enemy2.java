@@ -19,6 +19,7 @@ public class Enemy2 implements Entity {
     private float y;
 
     private float tentacleModifier;
+    private float rotation;
 
     private int height;
     private int width;
@@ -48,9 +49,11 @@ public class Enemy2 implements Entity {
         speed = 50;
         this.x = rand.nextInt(1280);
         this.y = rand.nextInt(960);
-        width = 192;
-        height = 96;
+        width = 96;
+        height = 48;
         frame = 0;
+
+        rotation = 0;
 
         health = 100;
 
@@ -88,71 +91,42 @@ public class Enemy2 implements Entity {
             particles.remove(p);
         }removeParticles.clear();
 
-        if(vel.x < 0){
-            if(frame < 48) {
-                DrawQuadTex(getTexture("squid_1"), x, y, width, height);
-                frame = frame + 1;
-            }else if(frame < 72) {
-                DrawQuadTex(getTexture("squid_2"), x, y, width, height);
-                frame = frame + 1;
-            }else if(frame < 96) {
-                DrawQuadTex(getTexture("squid_3"), x, y, width, height);
-                frame = frame + 1;
-            }else if(frame < 120) {
-                DrawQuadTex(getTexture("squid_4"), x, y, width, height);
-                frame = frame + 1;
-            }else if(frame < 144) {
-                DrawQuadTex(getTexture("squid_5"), x, y, width, height);
-                frame = frame + 1;
-            }else if(frame < 168) {
-                DrawQuadTex(getTexture("squid_4"), x, y, width, height);
-                frame = frame + 1;
-            }else if(frame < 192) {
-                DrawQuadTex(getTexture("squid_3"), x, y, width, height);
-                frame = frame + 1;
-            }else if(frame < 216) {
-                DrawQuadTex(getTexture("squid_2"), x, y, width, height);
-                frame = frame + 1;
-            }else{
-                DrawQuadTex(getTexture("squid_1"), x, y, width, height);
-                frame = 0;
-            }
+
+        if(frame < 48) {
+            DrawQuadTexRot(getTexture("squid_1"), x, y, width, height, rotation);
+            frame = frame + 1;
+        }else if(frame < 72) {
+            DrawQuadTexRot(getTexture("squid_2"), x, y, width, height, rotation);
+            frame = frame + 1;
+        }else if(frame < 96) {
+            DrawQuadTexRot(getTexture("squid_3"), x, y, width, height, rotation);
+            frame = frame + 1;
+        }else if(frame < 120) {
+            DrawQuadTexRot(getTexture("squid_4"), x, y, width, height, rotation);
+            frame = frame + 1;
+        }else if(frame < 144) {
+            DrawQuadTexRot(getTexture("squid_5"), x, y, width, height, rotation);
+            frame = frame + 1;
+        }else if(frame < 168) {
+            DrawQuadTexRot(getTexture("squid_4"), x, y, width, height, rotation);
+            frame = frame + 1;
+        }else if(frame < 192) {
+            DrawQuadTexRot(getTexture("squid_3"), x, y, width, height, rotation);
+            frame = frame + 1;
+        }else if(frame < 216) {
+            DrawQuadTexRot(getTexture("squid_2"), x, y, width, height, rotation);
+            frame = frame + 1;
         }else{
-            if(frame < 48) {
-                DrawQuadTexFlip(getTexture("squid_1"), x, y, width, height);
-                frame = frame + 1;
-            }else if(frame < 72) {
-                DrawQuadTexFlip(getTexture("squid_2"), x, y, width, height);
-                frame = frame + 1;
-            }else if(frame < 96) {
-                DrawQuadTexFlip(getTexture("squid_3"), x, y, width, height);
-                frame = frame + 1;
-            }else if(frame < 120) {
-                DrawQuadTexFlip(getTexture("squid_4"), x, y, width, height);
-                frame = frame + 1;
-            }else if(frame < 144) {
-                DrawQuadTexFlip(getTexture("squid_5"), x, y, width, height);
-                frame = frame + 1;
-            }else if(frame < 168) {
-                DrawQuadTexFlip(getTexture("squid_4"), x, y, width, height);
-                frame = frame + 1;
-            }else if(frame < 192) {
-                DrawQuadTexFlip(getTexture("squid_3"), x, y, width, height);
-                frame = frame + 1;
-            }else if(frame < 216) {
-                DrawQuadTexFlip(getTexture("squid_2"), x, y, width, height);
-                frame = frame + 1;
-            }else{
-                DrawQuadTexFlip(getTexture("squid_1"), x, y, width, height);
-                frame = 0;
+            DrawQuadTexRot(getTexture("squid_1"), x, y, width, height, rotation);
+            frame = 0;
             }
-        }
-        particles.add(new Particle(pos.x + tentacleModifier, pos.y + 32 + tentacleModifier, 0, 0, 3, 8, 8, "tentacle"));
-        particles.add(new Particle(pos.x + tentacleModifier, pos.y - 32 - tentacleModifier, 0, 0, 3, 8, 8, "tentacle"));
-        particles.add(new Particle(pos.x + 32 + tentacleModifier, pos.y - 16 - tentacleModifier, 0, 0, 3, 8, 8, "tentacle"));
-        particles.add(new Particle(pos.x - 32 - tentacleModifier, pos.y - 16 - tentacleModifier, 0, 0, 3, 8, 8, "tentacle"));
-        particles.add(new Particle(pos.x - 32 - tentacleModifier, pos.y+16 + tentacleModifier, 0, 0, 3, 8, 8, "tentacle"));
-        particles.add(new Particle(pos.x + 32 + tentacleModifier, pos.y+16 + tentacleModifier, 0, 0, 3, 8, 8, "tentacle"));
+
+        particles.add(new Particle(pos.x + tentacleModifier, pos.y + 16 + tentacleModifier, 0, 0, 3, 8, 8, "tentacle"));
+        particles.add(new Particle(pos.x + tentacleModifier, pos.y - 16 - tentacleModifier, 0, 0, 3, 8, 8, "tentacle"));
+        particles.add(new Particle(pos.x + 16 + tentacleModifier, pos.y - 8 - tentacleModifier, 0, 0, 3, 8, 8, "tentacle"));
+        particles.add(new Particle(pos.x - 16 - tentacleModifier, pos.y - 8 - tentacleModifier, 0, 0, 3, 8, 8, "tentacle"));
+        particles.add(new Particle(pos.x - 16 - tentacleModifier, pos.y+8 + tentacleModifier, 0, 0, 3, 8, 8, "tentacle"));
+        particles.add(new Particle(pos.x + 16 + tentacleModifier, pos.y+8 + tentacleModifier, 0, 0, 3, 8, 8, "tentacle"));
 
 
         if(speed < 0){
@@ -186,6 +160,20 @@ public class Enemy2 implements Entity {
 
         pos.x = pos.x + vel.x*speed*getFrameTimeSeconds();
         pos.y = pos.y + vel.y*speed*getFrameTimeSeconds();
+
+        if(vel.x < 0) {
+            rotation = (float) (-Math.toDegrees(Math.atan(((vel.y) / vel.x))));
+        }else{
+            rotation = (float) (Math.toDegrees(Math.atan(((vel.y) / vel.x))));
+        }
+
+        if(vel.x < 0) {
+            System.out.println(-Math.toDegrees(Math.atan(((vel.y) / vel.x))));
+            System.out.println(">0");
+        }else{
+            System.out.println((Math.toDegrees(Math.atan(((vel.y) / vel.x)))));
+        }
+
 
         x = pos.x - width/2;
         y = pos.y - height/2;

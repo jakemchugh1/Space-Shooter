@@ -41,7 +41,7 @@ public class Background {
     }
 
     public void Draw(){
-        
+
         DrawQuadTex(getTexture(fileName), 0, 0, width+764, height+84);
         for(Scenery s : scenery){
             s.Draw();

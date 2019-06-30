@@ -4,6 +4,7 @@ import org.lwjgl.LWJGLException;
 import org.lwjgl.Sys;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
+import org.lwjgl.opengl.GL11;
 import org.newdawn.slick.opengl.Texture;
 import org.newdawn.slick.opengl.TextureLoader;
 import org.newdawn.slick.util.ResourceLoader;
@@ -90,6 +91,31 @@ public class Artist {
         glVertex2f(width,height);
         glTexCoord2f(0,1);
         glVertex2f(0,height);
+        glEnd();
+        glLoadIdentity();
+
+    }
+
+    public static void DrawQuadTexRot(Texture tex, float x, float y, float width, float height, float rotation){
+        if(tex == null){
+            tex = LoadTexture("null");
+        }
+        tex.bind();
+        glTranslatef(x, y, 0);
+        GL11.glRotatef(rotation, 0.0f, 0.0f, -1.0f);
+        GL11.glTranslatef(width/4, height/4, 0);
+        glBegin(GL_QUADS);
+        glTexCoord2f(0,0);
+        glVertex2f(-width,-height);
+        glTexCoord2f(1,0);
+        glVertex2f(width,-height);
+        glTexCoord2f(1,1);
+        glVertex2f(width,height);
+        glTexCoord2f(0,1);
+        glVertex2f(-width,height);
+
+
+
         glEnd();
         glLoadIdentity();
 

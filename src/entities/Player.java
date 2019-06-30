@@ -48,8 +48,8 @@ public class Player implements Entity {
         speed = 200;
         this.x = 640-32;
         this.y = 480-32;
-        width = 96;
-        height = 48;
+        width = 128;
+        height = 64;
         frame = 0;
 
         particles = new HashSet<>();
