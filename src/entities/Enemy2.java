@@ -161,18 +161,13 @@ public class Enemy2 implements Entity {
         pos.x = pos.x + vel.x*speed*getFrameTimeSeconds();
         pos.y = pos.y + vel.y*speed*getFrameTimeSeconds();
 
-        if(vel.x < 0) {
-            rotation = (float) (-Math.toDegrees(Math.atan(((vel.y) / vel.x))));
+        if(vel.y > 0) {
+            rotation = (float) (180-Math.toDegrees(Math.atan(((vel.y) / vel.x))));
         }else{
-            rotation = (float) (Math.toDegrees(Math.atan(((vel.y) / vel.x))));
+            rotation = (float) (180-(Math.toDegrees(Math.atan(((vel.y) / vel.x)))));
+            
         }
-
-        if(vel.x < 0) {
-            System.out.println(-Math.toDegrees(Math.atan(((vel.y) / vel.x))));
-            System.out.println(">0");
-        }else{
-            System.out.println((Math.toDegrees(Math.atan(((vel.y) / vel.x)))));
-        }
+        System.out.println(rotation);
 
 
         x = pos.x - width/2;
