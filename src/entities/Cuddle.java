@@ -13,7 +13,7 @@ import static entities.EntityManager.getTexture;
 import static org.lwjgl.opengl.GL11.*;
 import static utilities.Artist.*;
 
-public class Enemy2 implements Entity {
+public class Cuddle implements Entity {
 
     private float x;
     private float y;
@@ -42,20 +42,22 @@ public class Enemy2 implements Entity {
     private HashSet<Particle> particles;
     private HashSet<Particle> removeParticles;
 
+    private Random rand;
 
-    public Enemy2(Player player){
+
+    public Cuddle(Player player){
         target = player;
-        Random rand = new Random();
+        rand = new Random();
         speed = 50;
         this.x = 1400;
         this.y = rand.nextInt(960);
-        width = 96;
-        height = 48;
+        width = 32;
+        height = 32;
         frame = 0;
 
         rotation = 0;
 
-        health = 100;
+        health = 1;
 
         particles = new HashSet<>();
         removeParticles = new HashSet<>();
@@ -92,53 +94,47 @@ public class Enemy2 implements Entity {
         }removeParticles.clear();
 
 
-        if(frame < 48) {
-            DrawQuadTexRot(getTexture("squid_1"), x, y, width, height, rotation);
+        if(frame < 8) {
+            DrawQuadTexRot(getTexture("ink_squid_1"), x, y, width, height, rotation);
             frame = frame + 1;
-        }else if(frame < 72) {
-            DrawQuadTexRot(getTexture("squid_2"), x, y, width, height, rotation);
+        }else if(frame < 16) {
+            DrawQuadTexRot(getTexture("ink_squid_2"), x, y, width, height, rotation);
             frame = frame + 1;
-        }else if(frame < 96) {
-            DrawQuadTexRot(getTexture("squid_3"), x, y, width, height, rotation);
+        }else if(frame < 24) {
+            DrawQuadTexRot(getTexture("ink_squid_3"), x, y, width, height, rotation);
             frame = frame + 1;
-        }else if(frame < 120) {
-            DrawQuadTexRot(getTexture("squid_4"), x, y, width, height, rotation);
+        }else if(frame < 32) {
+            DrawQuadTexRot(getTexture("ink_squid_4"), x, y, width, height, rotation);
             frame = frame + 1;
-        }else if(frame < 144) {
-            DrawQuadTexRot(getTexture("squid_5"), x, y, width, height, rotation);
+        }else if(frame < 40) {
+            DrawQuadTexRot(getTexture("ink_squid_5"), x, y, width, height, rotation);
             frame = frame + 1;
-        }else if(frame < 168) {
-            DrawQuadTexRot(getTexture("squid_4"), x, y, width, height, rotation);
+        }else if(frame < 48) {
+            DrawQuadTexRot(getTexture("ink_squid_6"), x, y, width, height, rotation);
             frame = frame + 1;
-        }else if(frame < 192) {
-            DrawQuadTexRot(getTexture("squid_3"), x, y, width, height, rotation);
-            frame = frame + 1;
-        }else if(frame < 216) {
-            DrawQuadTexRot(getTexture("squid_2"), x, y, width, height, rotation);
+        }else if(frame < 56) {
+            DrawQuadTexRot(getTexture("ink_squid_7"), x, y, width, height, rotation);
             frame = frame + 1;
         }else{
-            DrawQuadTexRot(getTexture("squid_1"), x, y, width, height, rotation);
+            DrawQuadTexRot(getTexture("ink_squid_8"), x, y, width, height, rotation);
             frame = 0;
-            }
+        }
 
-        particles.add(new Particle(pos.x-vel.x*64-46, pos.y-vel.y*64-32, 0, 0, 3, 6, 6, "tentacle"));
-        particles.add(new Particle(pos.x-vel.x*64-36, pos.y-vel.y*64-32, 0, 0, 3, 6, 6, "tentacle"));
-        particles.add(new Particle(pos.x-vel.x*64-38, pos.y-vel.y*64-36, 0, 0, 3, 6, 6, "tentacle"));
-        particles.add(new Particle(pos.x-vel.x*64-38, pos.y-vel.y*64-28, 0, 0, 3, 6, 6, "tentacle"));
-
-
-        if(speed < 0){
-            speed = speed + 1;
+        if(frame < 15){
+            speed = speed + 3;
 
         }
-        else if(speed < 200){
-            speed = speed + 5;
-        }else if(speed < 300){
-            speed = speed + 1;
+        else if(frame < 30){
+            speed = 10;
+        }else if(frame < 56){
+            speed = speed + 3;
         }else{
-            speed = -50;
+            speed = 10;
         }
-        tentacleModifier = (-speed) / 100 * 3;
+
+        //if(rand.nextInt(10) == 1){
+           // particles.add(new Particle(pos.x, pos.y, -vel.x, -vel.y, 1, 6, 6, "bubble"));
+        //}
 
 
 
@@ -161,19 +157,16 @@ public class Enemy2 implements Entity {
         pos.y = pos.y + vel.y*speed*getFrameTimeSeconds();
 
         if(vel.x > 0) {
-            rotation = (float) -(Math.toDegrees(Math.atan(((vel.y) / vel.x))))+90+90;
+            rotation = (float) -(Math.toDegrees(Math.atan(((vel.y) / vel.x))))+90+180;
 
         }else{
             rotation = (float) -(Math.toDegrees(Math.atan(((vel.y) / vel.x))))+90;
-            rotation = 180+rotation+90;
-            
+            rotation = 180+rotation+180;
+
         }
-
-
-        x = pos.x - width/2;
         y = pos.y - height/2;
-
         if(x < 0 - width) remove = true;
+
     }
 
     public Vector2f getPos() {

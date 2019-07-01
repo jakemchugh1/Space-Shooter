@@ -45,7 +45,7 @@ public class Enemy implements Entity {
         target = player;
         Random rand = new Random();
         speed = 75;
-        this.x = rand.nextInt(1280);
+        this.x = 1400;
         this.y = rand.nextInt(960);
         width = 96;
         height = 96;
@@ -138,12 +138,13 @@ public class Enemy implements Entity {
         vel.x = deltaX/magnitude;
         vel.y = deltaY/magnitude;
 
-        pos.x = pos.x + vel.x*speed*getFrameTimeSeconds();
+        pos.x = pos.x + vel.x*speed*getFrameTimeSeconds()-50*getFrameTimeSeconds();
         pos.y = pos.y + vel.y*speed*getFrameTimeSeconds();
 
         x = pos.x - width/2;
         y = pos.y - height/2;
-        speed = speed + 0.1f;
+
+        if(x < 0 - width) remove = true;
     }
 
     public Vector2f getPos() {

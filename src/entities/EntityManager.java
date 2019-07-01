@@ -94,6 +94,14 @@ public class EntityManager {
         load("sub_2");
         load("sub_3");
 
+        load("ink_squid_1");
+        load("ink_squid_2");
+        load("ink_squid_3");
+        load("ink_squid_4");
+        load("ink_squid_5");
+        load("ink_squid_6");
+        load("ink_squid_7");
+        load("ink_squid_8");
 
 
         System.out.println("here");

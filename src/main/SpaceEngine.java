@@ -44,6 +44,7 @@ public class SpaceEngine {
 
     public static HashSet<Enemy> enemySet = new HashSet<>();
     public static HashSet<Enemy2> bossSet = new HashSet<>();
+    public static HashSet<Cuddle> cuddleSet = new HashSet<>();
     public static HashSet<Bullet> bulletSet = new HashSet<>();
     public static HashSet<Particle> mainParticles = new HashSet<>();
 
@@ -91,7 +92,6 @@ public class SpaceEngine {
 
         float testRotation = 0;
 
-        bossSet.add(new Enemy2(player));
 
         while (!Display.isCloseRequested()) {
             if((Sys.getTime() * 1000 / Sys.getTimerResolution()) - oxygenTimer >= 1000){
@@ -106,6 +106,7 @@ public class SpaceEngine {
             HashSet<Bullet> removeB = new HashSet<>();
             HashSet<Enemy2> removeBoss = new HashSet<>();
             HashSet<Particle> removeP = new HashSet<>();
+            HashSet<Cuddle> removeC = new HashSet<>();
             background.Draw();
 
             for(Particle p : mainParticles){
@@ -116,11 +117,13 @@ public class SpaceEngine {
                 mainParticles.remove(p);
             }
 
-            if (rand.nextInt(spawnChance1) == 1 && !gameOver) {
-                enemySet.add(new Enemy(player));
-            }//if (rand.nextInt(1000) == 1 && !gameOver) {
-                //bossSet.add(new Enemy2(player));
-           // }
+            if (rand.nextInt(spawnChance1/3) == 1 && !gameOver) {enemySet.add(new Enemy(player));
+            }if (rand.nextInt(spawnChance1*3) == 1 && !gameOver) {
+                bossSet.add(new Enemy2(player));
+            }if (rand.nextInt(spawnChance1*2) == 1 && !gameOver) {
+                cuddleSet.add(new Cuddle(player));
+            }
+
             if (Mouse.isButtonDown(0)&& !gameOver) {
                 if ((Sys.getTime() * 1000 / Sys.getTimerResolution())-shootingTimer >= 100) {
                    // bulletSounds.play(bulletSound);
@@ -165,6 +168,20 @@ public class SpaceEngine {
                 }
 
 
+            }for (Cuddle e : cuddleSet) {
+                e.Draw();
+                e.setPos();
+                for (Bullet b : bulletSet) {
+                    e.checkColliding(b);
+                }
+                if (e.isRemove() || gameOver) removeC.add(e);
+                if (e.checkColliding(player)) {
+                    if (lives > 0) {
+                        lives--;
+                    }
+                }
+
+
             }
             if (lives == 0) gameOver = true;
             for (Enemy e : remove) {
@@ -183,6 +200,9 @@ public class SpaceEngine {
                 player.setPos();
                 turret.Draw();
                 turret.setPos();
+            }for (Cuddle e : removeC) {
+                cuddleSet.remove(e);
+                if(!gameOver)score = score + 2;
             }
 
             String scoreString = "Score: " + score;
