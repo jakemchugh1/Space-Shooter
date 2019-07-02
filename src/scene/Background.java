@@ -17,6 +17,11 @@ public class Background {
 
     private HashSet<Scenery> scenery;
 
+   //
+    //
+    //
+    // int[] backgroundValues =
+
     public Background(int width, int height, String fileName){
         scenery = new HashSet<>();
         this.width = width;

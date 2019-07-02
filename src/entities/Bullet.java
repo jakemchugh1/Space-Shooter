@@ -48,7 +48,7 @@ public class Bullet implements Entity {
         speed = 400;
         width = 8;
         height = 8;
-        this.texture = LoadTexture("bullet");
+        this.texture = LoadTexture("bubble_1");
         rand = new Random();
         particles = new HashSet<>();
         removeParticles = new HashSet<>();

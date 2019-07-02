@@ -45,6 +45,7 @@ public class SpaceEngine {
     public static HashSet<Enemy> enemySet = new HashSet<>();
     public static HashSet<Enemy2> bossSet = new HashSet<>();
     public static HashSet<Cuddle> cuddleSet = new HashSet<>();
+    public static HashSet<BigJelly> jellySet = new HashSet<>();
     public static HashSet<Bullet> bulletSet = new HashSet<>();
     public static HashSet<Particle> mainParticles = new HashSet<>();
 
@@ -90,8 +91,6 @@ public class SpaceEngine {
 
         double oxygenTimer = Sys.getTime() * 1000 / Sys.getTimerResolution();
 
-        float testRotation = 0;
-
 
         while (!Display.isCloseRequested()) {
             if((Sys.getTime() * 1000 / Sys.getTimerResolution()) - oxygenTimer >= 1000){
@@ -107,7 +106,9 @@ public class SpaceEngine {
             HashSet<Enemy2> removeBoss = new HashSet<>();
             HashSet<Particle> removeP = new HashSet<>();
             HashSet<Cuddle> removeC = new HashSet<>();
+            HashSet<BigJelly> removeJ = new HashSet<>();
             background.Draw();
+
 
             for(Particle p : mainParticles){
                 p.Update();
@@ -117,11 +118,16 @@ public class SpaceEngine {
                 mainParticles.remove(p);
             }
 
-            if (rand.nextInt(spawnChance1/3) == 1 && !gameOver) {enemySet.add(new Enemy(player));
-            }if (rand.nextInt(spawnChance1*3) == 1 && !gameOver) {
+            if (rand.nextInt(spawnChance1) == 1 && !gameOver) {enemySet.add(new Enemy(player));
+            }
+            if (rand.nextInt(spawnChance1*5) == 1 && !gameOver) {
                 bossSet.add(new Enemy2(player));
-            }if (rand.nextInt(spawnChance1*2) == 1 && !gameOver) {
+            }
+            if (rand.nextInt(spawnChance1*3) == 1 && !gameOver) {
                 cuddleSet.add(new Cuddle(player));
+            }
+            if (rand.nextInt(spawnChance1*5) == 1 && !gameOver) {
+                jellySet.add(new BigJelly(player));
             }
 
             if (Mouse.isButtonDown(0)&& !gameOver) {
@@ -168,7 +174,8 @@ public class SpaceEngine {
                 }
 
 
-            }for (Cuddle e : cuddleSet) {
+            }
+            for (Cuddle e : cuddleSet) {
                 e.Draw();
                 e.setPos();
                 for (Bullet b : bulletSet) {
@@ -180,8 +187,33 @@ public class SpaceEngine {
                         lives--;
                     }
                 }
+            }
+            for (BigJelly e : jellySet) {
+                e.Draw();
+                e.setPos();
+                for (Bullet b : bulletSet) {
+                    e.checkColliding(b);
+                }
+                if (e.isRemove() || gameOver) {
 
+                    Vector2f tempPos = e.getPos();
+                    enemySet.add(new Enemy(player, tempPos.x, tempPos.y));
+                    enemySet.add(new Enemy(player, tempPos.x-40, tempPos.y));
+                    enemySet.add(new Enemy(player, tempPos.x+40, tempPos.y));
+                    enemySet.add(new Enemy(player, tempPos.x, tempPos.y+40));
+                    enemySet.add(new Enemy(player, tempPos.x, tempPos.y-40));
+                    enemySet.add(new Enemy(player, tempPos.x-32, tempPos.y-32));
+                    enemySet.add(new Enemy(player, tempPos.x+32, tempPos.y+32));
+                    enemySet.add(new Enemy(player, tempPos.x-40, tempPos.y+32));
+                    enemySet.add(new Enemy(player, tempPos.x+40, tempPos.y-32));
 
+                    removeJ.add(e);
+                }
+                if (e.checkColliding(player)) {
+                    if (lives > 0) {
+                        lives--;
+                    }
+                }
             }
             if (lives == 0) gameOver = true;
             for (Enemy e : remove) {
@@ -195,14 +227,21 @@ public class SpaceEngine {
                 bossSet.remove(e);
                 if(!gameOver)score = score + 5;
             }removeBoss.clear();
+            for (Cuddle e : removeC) {
+                cuddleSet.remove(e);
+                if(!gameOver)score = score + 2;
+            }removeC.clear();
+            for (BigJelly e : removeJ) {
+
+                jellySet.remove(e);
+
+                if(!gameOver)score = score + 5;
+            }removeJ.clear();
             if (!gameOver) {
                 player.Draw();
                 player.setPos();
                 turret.Draw();
                 turret.setPos();
-            }for (Cuddle e : removeC) {
-                cuddleSet.remove(e);
-                if(!gameOver)score = score + 2;
             }
 
             String scoreString = "Score: " + score;
@@ -215,6 +254,8 @@ public class SpaceEngine {
                 bossSet.clear();
                 enemySet.clear();
                 bulletSet.clear();
+                jellySet.clear();
+                cuddleSet.clear();
                 music.stop();
                 font.drawString(WIDTH / 2 - 96, HEIGHT / 2, "GAME OVER");
                 font.drawString(WIDTH / 2 - 78, HEIGHT / 2+100, "Try Again?");

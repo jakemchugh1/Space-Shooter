@@ -27,6 +27,8 @@ public class Enemy implements Entity {
 
     private int frame;
 
+    private int health;
+
     private Texture texture;
 
     private Vector2f pos;
@@ -42,6 +44,7 @@ public class Enemy implements Entity {
 
 
     public Enemy(Player player){
+        health = 3;
         target = player;
         Random rand = new Random();
         speed = 75;
@@ -74,13 +77,19 @@ public class Enemy implements Entity {
         }else valid = true;
 
     }
-    public Enemy(Player player, Vector2f pos){
+    public Enemy(Player player, float x, float y){
+        health = 3;
         target = player;
-        speed = 50;
-        this.pos = pos;
-        width = 24;
-        height = 24;
+        Random rand = new Random();
+        speed = 75;
+        this.x = x;
+        this.y = y;
+        width = 96;
+        height = 96;
         frame = 0;
+
+        particles = new HashSet<>();
+        removeParticles = new HashSet<>();
 
 
 
@@ -96,6 +105,10 @@ public class Enemy implements Entity {
 
         remove = false;
 
+        if(pos.x > player.getPos().x - 128 && pos.x < player.getPos().x + 128 && pos.y > player.getPos().y - 128 && pos.y < player.getPos().y + 128){
+            valid = false;
+            remove = true;
+        }else valid = true;
 
     }
 
@@ -157,8 +170,11 @@ public class Enemy implements Entity {
     public boolean checkColliding(Entity entity){
         Vector2f bullet = entity.getPos();
         if(bullet.x < pos.x + width/3 && bullet.x > pos.x - width/3 && bullet.y < pos.y + height/3 && bullet.y > pos.y - height/3 && valid){
-            remove = true;
-            entity.setRemove();
+            if(health <= 0)remove = true;
+            else if(!entity.isRemove()) {
+                health = health - 1;
+                if(entity instanceof Bullet) entity.setRemove();
+            }
             return true;
         }return false;
 

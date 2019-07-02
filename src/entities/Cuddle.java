@@ -42,12 +42,11 @@ public class Cuddle implements Entity {
     private HashSet<Particle> particles;
     private HashSet<Particle> removeParticles;
 
-    private Random rand;
 
 
     public Cuddle(Player player){
         target = player;
-        rand = new Random();
+        Random rand = new Random();
         speed = 50;
         this.x = 1400;
         this.y = rand.nextInt(960);
@@ -57,7 +56,7 @@ public class Cuddle implements Entity {
 
         rotation = 0;
 
-        health = 1;
+        health = 5;
 
         particles = new HashSet<>();
         removeParticles = new HashSet<>();
@@ -81,6 +80,7 @@ public class Cuddle implements Entity {
             valid = false;
             remove = true;
         }else valid = true;
+
 
     }
 
@@ -115,8 +115,10 @@ public class Cuddle implements Entity {
         }else if(frame < 56) {
             DrawQuadTexRot(getTexture("ink_squid_7"), x, y, width, height, rotation);
             frame = frame + 1;
-        }else{
+        }else if(frame < 54){
             DrawQuadTexRot(getTexture("ink_squid_8"), x, y, width, height, rotation);
+        }else{
+            DrawQuadTexRot(getTexture("ink_squid_1"), x, y, width, height, rotation);
             frame = 0;
         }
 
@@ -132,9 +134,15 @@ public class Cuddle implements Entity {
             speed = 10;
         }
 
-        //if(rand.nextInt(10) == 1){
-           // particles.add(new Particle(pos.x, pos.y, -vel.x, -vel.y, 1, 6, 6, "bubble"));
-        //}
+        if(frame == 1){
+            particles.add(new Particle(pos.x, pos.y, -vel.x, -vel.y, 1, 6, 6, "bubble_1"));
+        }if(frame == 3){
+            particles.add(new Particle(pos.x, pos.y, -vel.x*2, -vel.y/2, 1, 6, 6, "bubble_1"));
+        }if(frame == 5){
+            particles.add(new Particle(pos.x, pos.y, -vel.x/2, -vel.y*2, 1, 6, 6, "bubble_1"));
+        }if(frame == 7){
+            particles.add(new Particle(pos.x, pos.y, -vel.x*2, -vel.y*2, 1, 6, 6, "bubble_1"));
+        }
 
 
 
@@ -164,6 +172,7 @@ public class Cuddle implements Entity {
             rotation = 180+rotation+180;
 
         }
+        x = pos.x - width/2;
         y = pos.y - height/2;
         if(x < 0 - width) remove = true;
 
@@ -178,11 +187,11 @@ public class Cuddle implements Entity {
     }
     public boolean checkColliding(Entity entity){
         Vector2f bullet = entity.getPos();
-        if(bullet.x < pos.x + width/2 && bullet.x > pos.x - width/2 && bullet.y < pos.y + height/2 && bullet.y > pos.y - height/2 && valid){
-            health = health - 1;
-            if(health<=0){
-                entity.setRemove();
-                remove = true;
+        if(bullet.x < pos.x + width/3 && bullet.x > pos.x - width/3 && bullet.y < pos.y + height/3 && bullet.y > pos.y - height/3 && valid){
+            if(health <= 0)remove = true;
+            else if(!entity.isRemove()) {
+                health = health - 1;
+                if(entity instanceof Bullet) entity.setRemove();
             }
             return true;
         }return false;

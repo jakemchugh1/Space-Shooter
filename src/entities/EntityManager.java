@@ -46,6 +46,8 @@ public class EntityManager {
 
         load("background");
 
+       // load("bubble_1");
+
         load("seaweed_short1");
         load("seaweed_short2");
         load("seaweed_short3");
@@ -58,6 +60,7 @@ public class EntityManager {
         load("chest2");
 
         load("bubble");
+        load("bubble_1");
 
         load("submarine1");
         load("submarine2");
@@ -102,6 +105,30 @@ public class EntityManager {
         load("ink_squid_6");
         load("ink_squid_7");
         load("ink_squid_8");
+
+        load("big_jelly_1");
+        load("big_jelly_2");
+        load("big_jelly_3");
+        load("big_jelly_4");
+        load("big_jelly_5");
+        load("big_jelly_6");
+        load("big_jelly_7");
+        load("big_jelly_8");
+        load("big_jelly_9");
+        load("big_jelly_10");
+        load("big_jelly_11");
+        load("big_jelly_12");
+
+        load("water");
+
+        load("sand_1");
+        load("sand_2");
+
+        load("hill_1");
+        load("hill_2");
+
+
+
 
 
         System.out.println("here");

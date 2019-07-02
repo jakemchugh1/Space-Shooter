@@ -55,7 +55,7 @@ public class Enemy2 implements Entity {
 
         rotation = 0;
 
-        health = 100;
+        health = 50;
 
         particles = new HashSet<>();
         removeParticles = new HashSet<>();
@@ -185,11 +185,11 @@ public class Enemy2 implements Entity {
     }
     public boolean checkColliding(Entity entity){
         Vector2f bullet = entity.getPos();
-        if(bullet.x < pos.x + width/2 && bullet.x > pos.x - width/2 && bullet.y < pos.y + height/2 && bullet.y > pos.y - height/2 && valid){
-            health = health - 1;
-            if(health<=0){
-                entity.setRemove();
-                remove = true;
+        if(bullet.x < pos.x + width/3 && bullet.x > pos.x - width/3 && bullet.y < pos.y + height/3 && bullet.y > pos.y - height/3 && valid){
+            if(health <= 0)remove = true;
+            else if(!entity.isRemove()) {
+                health = health - 1;
+                if(entity instanceof Bullet) entity.setRemove();
             }
             return true;
         }return false;
