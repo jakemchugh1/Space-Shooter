@@ -79,11 +79,10 @@ public class SpaceEngine {
         TrueTypeFont font = new TrueTypeFont(awtFont, true);
         int score = 0;
 
-        int oxygen = 100;
 
         int lives = 10;
 
-        int spawnChance1 = 300;
+        int spawnChance1 = 1000;
 
         boolean gameOver = false;
 
@@ -95,7 +94,7 @@ public class SpaceEngine {
         while (!Display.isCloseRequested()) {
             if((Sys.getTime() * 1000 / Sys.getTimerResolution()) - oxygenTimer >= 1000){
                 oxygenTimer = Sys.getTime() * 1000 / Sys.getTimerResolution();
-                oxygen = oxygen - 1;
+                score = score + 1;
                 if(spawnChance1 > 10){
                     spawnChance1 = spawnChance1 - 1;
                 }
@@ -120,13 +119,13 @@ public class SpaceEngine {
 
             if (rand.nextInt(spawnChance1) == 1 && !gameOver) {enemySet.add(new Enemy(player));
             }
-            if (rand.nextInt(spawnChance1*5) == 1 && !gameOver) {
+            if (rand.nextInt(spawnChance1*7) == 4 && !gameOver) {
                 bossSet.add(new Enemy2(player));
             }
-            if (rand.nextInt(spawnChance1*3) == 1 && !gameOver) {
+            if (rand.nextInt(spawnChance1*2) == 2 && !gameOver) {
                 cuddleSet.add(new Cuddle(player));
             }
-            if (rand.nextInt(spawnChance1*5) == 1 && !gameOver) {
+            if (rand.nextInt(spawnChance1*3) == 3 && !gameOver) {
                 jellySet.add(new BigJelly(player));
             }
 
@@ -246,10 +245,8 @@ public class SpaceEngine {
 
             String scoreString = "Score: " + score;
             String livesString = "Crew: " + lives/2;
-            String oxygenString = "Oxygen: " + oxygen;
             font.drawString(WIDTH - 200, 0, scoreString);
             font.drawString(200, 0, livesString);
-            font.drawString(200, 50, oxygenString);
             if (gameOver){
                 bossSet.clear();
                 enemySet.clear();

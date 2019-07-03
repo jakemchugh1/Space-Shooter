@@ -54,8 +54,7 @@ public class Particle {
     }
 
     public void Update(){
-        if(x < 0 || x > 1280) velX = -velX;
-        if(y < 0 || y > 960) velY = -velY;
+        if(y > 960) velY = -velY;
         x = x + velX*getFrameTimeSeconds()*speed;
         y = y + velY*getFrameTimeSeconds()*speed;
         if(Sys.getTime() * 1000 / Sys.getTimerResolution()> endTime) remove = true;

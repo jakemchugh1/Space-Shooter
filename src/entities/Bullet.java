@@ -105,8 +105,7 @@ public class Bullet implements Entity {
         x = pos.x-width/2;
         y = pos.y-height/2;
 
-        if(pos.x < 0 || pos.x > 1280) vel.x = -vel.x;
-        if(pos.y < 0 || pos.y > 960) vel.y = -vel.y;
+        if(pos.y > 960) vel.y = -vel.y;
 
         if ((Sys.getTime() * 1000 / Sys.getTimerResolution())> initialTime+timeLimit){
             remove = true;
