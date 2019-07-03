@@ -64,9 +64,14 @@ public class ShortSeaweed implements Scenery{
         }if(modifier <= -skewRange){
             modifierChange = -modifierChange;
         }
+        x = x-4;
     }
 
     public int getFrame(){
         return frame;
+    }
+
+    public float getX(){
+        return x;
     }
 }

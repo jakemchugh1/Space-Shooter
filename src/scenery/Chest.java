@@ -61,7 +61,7 @@ public class Chest implements Scenery{
         }
         if(frame == 40 && rand.nextInt(10) == 1){
             open = true;
-            particles.add(new Particle(x+84,y+30,0,-1,7,64,64,"bubble"));
+            particles.add(new Particle(x+84,y+30,-2,-1,7,32,32,"bubble"));
         }
         for(Particle p : particles){
             if(p.isRemove()) particlesRemove.add(p);
@@ -73,9 +73,15 @@ public class Chest implements Scenery{
         for(Particle p : particlesRemove){
             particles.remove(p);
         }
+        x = x - 4;
+
     }
 
     public int getFrame(){
         return frame;
+    }
+
+    public float getX(){
+        return x;
     }
 }

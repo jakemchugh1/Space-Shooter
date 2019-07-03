@@ -59,6 +59,7 @@ public class DancingStarfish implements Scenery{
             DrawQuadTex(getTexture("red_star_1"), x, y, width, height);
             frame = 0;
         }
+        x = x - 4;
         /*if(move){
             x = x+1;
             distance = distance + 1;
@@ -72,5 +73,8 @@ public class DancingStarfish implements Scenery{
 
     public int getFrame(){
         return frame;
+    }
+    public float getX(){
+        return x;
     }
 }
