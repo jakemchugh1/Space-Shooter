@@ -97,12 +97,30 @@ public class Background {
         Random rand = new Random();
 
         //new terrain (hill_1)
-        background[319][1] = background[318][1] + (rand.nextInt(10) - 4) ;
-        background[319][2] = background[318][2] + (rand.nextInt(30) - 14) ;
+        int tempInt = (rand.nextInt(10) - 4);
+        background[319][1] = background[318][1] + tempInt;
+        if(background[319][1] <= 0){
+            background[319][1] = 0;
+        }else if(background[319][1] > 960){
+            background[319][1] = 960;
+        }
+        tempInt = (rand.nextInt(30) - 14);
+        background[319][2] = background[318][2] + tempInt;
+        if(background[319][2] <= 0){
+            background[319][2] = 0;
+        }else if(background[319][1] > 960){
+            background[319][2] = 960;
+        }
 
 
         //new terrain (sand)
-        background[319][0] = background[318][0] + (rand.nextInt(5) - 2) ;
+        tempInt = (rand.nextInt(5) - 2);
+        background[319][0] = background[318][0] + tempInt;
+        if(background[319][0] <= 0){
+            background[319][0] = 0;
+        }else if(background[319][0] > 960){
+            background[319][0] = 960;
+        }
 
         if(background[319][1] < background[319][0]) background[319][1] = background[319][0];
         if(background[319][1] > background[319][0] + 320) background[319][1] = background[319][1] - 5;

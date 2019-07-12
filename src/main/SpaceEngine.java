@@ -82,7 +82,7 @@ public class SpaceEngine {
 
         int lives = 10;
 
-        int spawnChance1 = 1000;
+        int spawnChance1 = 500;
 
         boolean gameOver = false;
 
@@ -248,6 +248,7 @@ public class SpaceEngine {
             font.drawString(WIDTH - 200, 0, scoreString);
             font.drawString(200, 0, livesString);
             if (gameOver){
+                spawnChance1 = 500;
                 bossSet.clear();
                 enemySet.clear();
                 bulletSet.clear();
