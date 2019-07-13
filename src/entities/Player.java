@@ -122,12 +122,10 @@ public class Player implements Entity {
         if(Keyboard.isKeyDown(Keyboard.KEY_A)&& pos.x > 32){
             pos.x = pos.x - speed*getFrameTimeSeconds();
             x = pos.x - width/2;
-            flip = true;
         }
         if(Keyboard.isKeyDown(Keyboard.KEY_D)&& pos.x < 1248){
             pos.x = pos.x + speed*getFrameTimeSeconds();
             x = pos.x - width/2;
-            flip = false;
         }
         if(Keyboard.isKeyDown(Keyboard.KEY_W)&& pos.y > 32){
             pos.y = pos.y - speed*getFrameTimeSeconds();

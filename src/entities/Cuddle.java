@@ -203,4 +203,8 @@ public class Cuddle implements Entity {
     }
 
     public void setRemove() {remove = true;}
+
+    public int getFrame(){
+        return frame;
+    }
 }

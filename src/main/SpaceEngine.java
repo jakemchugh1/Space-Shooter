@@ -54,18 +54,34 @@ public class SpaceEngine {
 
         entityManager = new EntityManager();
 
+        String testBuild = "TEST BUILD";
+
 
 
 
         Music music = null;
         Sound shootSound = null;
+        Sound ambience = null;
+        Sound splash = null;
+        Sound pop = null;
+        Sound bubbles = null;
+        Sound electric = null;
+
         try {
-            music = new Music("res/audio/music1.wav");
+            music = new Music("res/audio/music2.wav");
             shootSound = new Sound("res/audio/shotA.wav");
+            ambience = new Sound("res/audio/underwater_ambience_flowing.wav");
+            splash = new Sound("res/audio/splash.wav");
+            pop = new Sound("res/audio/pop.wav");
+            bubbles = new Sound("res/audio/bubbles_blown.wav");
+            electric = new Sound("res/audio/zap.wav");
         } catch (SlickException e) {
             e.printStackTrace();
         }
-        music.loop();
+
+        float musicSpeed = 1.0f;
+        music.play(musicSpeed,1);
+
 
 
 
@@ -75,7 +91,7 @@ public class SpaceEngine {
 
         Random rand = new Random();
 
-        Font awtFont = new Font("Times New Roman", Font.BOLD, 24);
+        Font awtFont = new Font("times new roman", Font.BOLD, 24);
         TrueTypeFont font = new TrueTypeFont(awtFont, true);
         int score = 0;
 
@@ -92,13 +108,24 @@ public class SpaceEngine {
 
 
         while (!Display.isCloseRequested()) {
+            //ambient music playing
+            if(!ambience.playing()) {
+                ambience.play(1, 1);
+            }
+            ///////////////////////
             if((Sys.getTime() * 1000 / Sys.getTimerResolution()) - oxygenTimer >= 1000){
                 oxygenTimer = Sys.getTime() * 1000 / Sys.getTimerResolution();
                 score = score + 1;
                 if(spawnChance1 > 10){
                     spawnChance1 = spawnChance1 - 1;
                 }
+                if(music.getPosition() == 0.0f){
+                    musicSpeed = musicSpeed + 0.05f;
+                    music.play(musicSpeed, 1);
+                }
             }
+
+
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
             HashSet<Enemy> remove = new HashSet<>();
             HashSet<Bullet> removeB = new HashSet<>();
@@ -107,6 +134,8 @@ public class SpaceEngine {
             HashSet<Cuddle> removeC = new HashSet<>();
             HashSet<BigJelly> removeJ = new HashSet<>();
             background.Draw();
+
+
 
 
             for(Particle p : mainParticles){
@@ -149,7 +178,9 @@ public class SpaceEngine {
                 e.Draw();
                 e.setPos();
                 for (Bullet b : bulletSet) {
-                    e.checkColliding(b);
+                    if(e.checkColliding(b)){
+                        splash.play(1.5f,0.2f);
+                    }
                 }
                 if (e.isRemove() || gameOver) remove.add(e);
                 if (e.checkColliding(player)) {
@@ -163,7 +194,9 @@ public class SpaceEngine {
                 e.Draw();
                 e.setPos();
                 for (Bullet b : bulletSet) {
-                    e.checkColliding(b);
+                    if(e.checkColliding(b)){
+                        splash.play(1.5f,0.2f);
+                    }
                 }
                 if (e.isRemove() || gameOver) removeBoss.add(e);
                 if (e.checkColliding(player)) {
@@ -175,10 +208,15 @@ public class SpaceEngine {
 
             }
             for (Cuddle e : cuddleSet) {
+                if(e.getFrame() == 13){
+                    bubbles.play(1.5f,1);
+                }
                 e.Draw();
                 e.setPos();
                 for (Bullet b : bulletSet) {
-                    e.checkColliding(b);
+                    if(e.checkColliding(b)){
+                        splash.play(1.5f,0.2f);
+                    }
                 }
                 if (e.isRemove() || gameOver) removeC.add(e);
                 if (e.checkColliding(player)) {
@@ -191,7 +229,9 @@ public class SpaceEngine {
                 e.Draw();
                 e.setPos();
                 for (Bullet b : bulletSet) {
-                    e.checkColliding(b);
+                    if(e.checkColliding(b)){
+                        splash.play(1.5f,0.2f);
+                    }
                 }
                 if (e.isRemove() || gameOver) {
 
@@ -213,11 +253,15 @@ public class SpaceEngine {
                         lives--;
                     }
                 }
+                if(e.getFrame() == 10 || e.getFrame() == 40){
+                    electric.play(0.5f,0.7f);
+                }
             }
             if (lives == 0) gameOver = true;
             for (Enemy e : remove) {
                 enemySet.remove(e);
                 if (!gameOver) score = score + 1;
+                pop.play(1.5f,1);
             }remove.clear();
             for (Bullet b : removeB) {
                 bulletSet.remove(b);
@@ -225,16 +269,19 @@ public class SpaceEngine {
             for (Enemy2 e : removeBoss) {
                 bossSet.remove(e);
                 if(!gameOver)score = score + 5;
+                pop.play(0.5f,1);
             }removeBoss.clear();
             for (Cuddle e : removeC) {
                 cuddleSet.remove(e);
                 if(!gameOver)score = score + 2;
+                pop.play(1,1);
             }removeC.clear();
             for (BigJelly e : removeJ) {
 
                 jellySet.remove(e);
 
                 if(!gameOver)score = score + 5;
+                pop.play(0.5f,1);
             }removeJ.clear();
             if (!gameOver) {
                 player.Draw();
@@ -249,6 +296,7 @@ public class SpaceEngine {
             font.drawString(200, 0, livesString);
             if (gameOver){
                 spawnChance1 = 500;
+                musicSpeed = 1;
                 bossSet.clear();
                 enemySet.clear();
                 bulletSet.clear();
@@ -267,6 +315,19 @@ public class SpaceEngine {
                     }
                 }
             }
+            //Drawstring test build
+            font.drawString(0, 100, testBuild);
+            font.drawString(0, 300, testBuild);
+            font.drawString(0, 500, testBuild);
+
+            //Credits
+            font.drawString(900, 100, "Artwork and concepts by:");
+            font.drawString(900, 120, "Christopher Rogers");
+            font.drawString(900, 500, "Programmed by:");
+            font.drawString(900, 520, "Jacob McHugh");
+
+
+
             updateDisplay();
 
 

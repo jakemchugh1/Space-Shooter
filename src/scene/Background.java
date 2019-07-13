@@ -129,16 +129,24 @@ public class Background {
         if(background[319][2] > background[319][1] + 160) background[319][2] = background[319][2] - 15;
 
         if(rand.nextInt(60)==1){
-            scenery.add(new ShortSeaweed(1376,960-(rand.nextInt(background[319][0])),96,96));
+            int tempInt1 = rand.nextInt(background[319][0]);
+            if(tempInt < 1) tempInt1 = 1;
+            scenery.add(new ShortSeaweed(1376,960-tempInt1,96,96));
         }
         if(rand.nextInt(120)==2){
-            scenery.add(new DancingStarfish(1376,960-(rand.nextInt(background[319][0])),96,96));
+            int tempInt1 = rand.nextInt(background[319][0]);
+            if(tempInt < 1) tempInt1 = 1;
+            scenery.add(new DancingStarfish(1376,960-tempInt1,96,96));
         }
         if(rand.nextInt(360)==3){
-            scenery.add(new Chest(1376,960-(rand.nextInt(background[319][0])),128,128));
+            int tempInt1 = rand.nextInt(background[319][0]);
+            if(tempInt < 1) tempInt1 = 1;
+            scenery.add(new Chest(1376,960-tempInt1,128,128));
         }
         if(rand.nextInt(360)==4){
-            scenery.add(new Clam(1376,960-(rand.nextInt(background[319][0])),96,96));
+            int tempInt1 = rand.nextInt(background[319][0]);
+            if(tempInt < 1) tempInt1 = 1;
+            scenery.add(new Clam(1376,960-tempInt1,96,96));
         }
 
 
