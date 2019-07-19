@@ -115,7 +115,7 @@ public class SpaceEngine {
             ///////////////////////
             if((Sys.getTime() * 1000 / Sys.getTimerResolution()) - oxygenTimer >= 1000){
                 oxygenTimer = Sys.getTime() * 1000 / Sys.getTimerResolution();
-                score = score + 1;
+                if(!gameOver) score = score + 1;
                 if(spawnChance1 > 10){
                     spawnChance1 = spawnChance1 - 1;
                 }

@@ -3,16 +3,8 @@
     <output-path>$PROJECT_DIR$/out/artifacts/Space_Shooter_jar</output-path>
     <root id="archive" name="Space Shooter.jar">
       <element id="module-output" name="Space Shooter" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/lib/jars/ibxm.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/lib/jars/jnlp.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/lib/jars/lwjgl.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/lib/jars/slick.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/lib/jars/jinput.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/lib/jars/jogg-0.0.7.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/lib/jars/lwjgl_util.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/lib/jars/slick-util.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/lib/jars/jorbis-0.0.15.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/lib/jars/natives-windows.jar" path-in-jar="/" />
+      <element id="library" level="project" name="natives" />
+      <element id="library" level="project" name="jars" />
     </root>
   </artifact>
 </component>

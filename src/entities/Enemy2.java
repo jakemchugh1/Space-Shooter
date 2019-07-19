@@ -185,7 +185,7 @@ public class Enemy2 implements Entity {
     }
     public boolean checkColliding(Entity entity){
         Vector2f bullet = entity.getPos();
-        if(bullet.x < pos.x + width/3 && bullet.x > pos.x - width/3 && bullet.y < pos.y + height/3 && bullet.y > pos.y - height/3 && valid){
+        if(bullet.x < pos.x + height/2 && bullet.x > pos.x - height/2 && bullet.y < pos.y + height/2 && bullet.y > pos.y - height/2 && valid){
             if(health <= 0)remove = true;
             else if(!entity.isRemove()) {
                 health = health - 1;
