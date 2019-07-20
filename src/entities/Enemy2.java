@@ -9,6 +9,7 @@ import particles.Particle;
 import java.util.HashSet;
 import java.util.Random;
 
+import static engine.SpaceEngine.mainParticles;
 import static entities.EntityManager.getTexture;
 import static org.lwjgl.opengl.GL11.*;
 import static utilities.Artist.*;
@@ -121,10 +122,10 @@ public class Enemy2 implements Entity {
             frame = 0;
             }
 
-        particles.add(new Particle(pos.x-vel.x*64-46, pos.y-vel.y*64-32, 0, 0, 3, 6, 6, "tentacle"));
-        particles.add(new Particle(pos.x-vel.x*64-36, pos.y-vel.y*64-32, 0, 0, 3, 6, 6, "tentacle"));
-        particles.add(new Particle(pos.x-vel.x*64-38, pos.y-vel.y*64-36, 0, 0, 3, 6, 6, "tentacle"));
-        particles.add(new Particle(pos.x-vel.x*64-38, pos.y-vel.y*64-28, 0, 0, 3, 6, 6, "tentacle"));
+        mainParticles.add(new Particle(pos.x-vel.x*64-46, pos.y-vel.y*64-32, 0, 0, 3, 6, 6, "tentacle"));
+        mainParticles.add(new Particle(pos.x-vel.x*64-36, pos.y-vel.y*64-32, 0, 0, 3, 6, 6, "tentacle"));
+        mainParticles.add(new Particle(pos.x-vel.x*64-38, pos.y-vel.y*64-36, 0, 0, 3, 6, 6, "tentacle"));
+        mainParticles.add(new Particle(pos.x-vel.x*64-38, pos.y-vel.y*64-28, 0, 0, 3, 6, 6, "tentacle"));
 
 
         if(speed < 0){

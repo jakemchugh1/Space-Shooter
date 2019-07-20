@@ -128,6 +128,7 @@ public class Background {
         if(background[319][2] < background[319][1]) background[319][2] = background[319][1];
         if(background[319][2] > background[319][1] + 160) background[319][2] = background[319][2] - 15;
 
+        if(background[319][0] < 0) background[319][0] = 0;
         if(rand.nextInt(60)==1){
             int tempInt1 = rand.nextInt(background[319][0]);
             if(tempInt < 1) tempInt1 = 1;
