@@ -295,6 +295,18 @@ public class SpaceEngine {
             font.drawString(WIDTH - 200, 0, scoreString);
             font.drawString(200, 0, livesString);
             if (gameOver){
+                //Credits
+                font.drawString(900, 680, "Artwork by:");
+                font.drawString(900, 700, "Christopher Rogers");
+                font.drawString(900, 740, "Programmed by:");
+                font.drawString(900, 760, "Jacob McHugh");
+                font.drawString(900, 800, "Game Music by:");
+                font.drawString(900, 820, "Jacob McHugh");
+                font.drawString(900, 860, "Game sound effects from:");
+                font.drawString(900, 880, "zapsplat.com");
+                //
+
+
                 spawnChance1 = 500;
                 musicSpeed = 1;
                 bossSet.clear();
@@ -319,12 +331,10 @@ public class SpaceEngine {
             font.drawString(0, 100, testBuild);
             font.drawString(0, 300, testBuild);
             font.drawString(0, 500, testBuild);
+            font.drawString(0, 700, testBuild);
+            font.drawString(0, 900, testBuild);
 
-            //Credits
-            font.drawString(900, 100, "Artwork and concepts by:");
-            font.drawString(900, 120, "Christopher Rogers");
-            font.drawString(900, 500, "Programmed by:");
-            font.drawString(900, 520, "Jacob McHugh");
+
 
 
 

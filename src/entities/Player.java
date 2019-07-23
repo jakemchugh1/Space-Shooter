@@ -23,15 +23,6 @@ public class Player implements Entity {
 
     private int speed;
 
-    private Texture texture1;
-    private Texture texture2;
-    private Texture texture3;
-    private Texture texture4;
-    private Texture texture5;
-    private Texture texture6;
-    private Texture texture7;
-    private Texture texture8;
-    private Texture texture9;
 
     private Vector2f pos;
     private Vector2f vel;
@@ -39,8 +30,6 @@ public class Player implements Entity {
     private boolean remove;
     private boolean flip;
 
-    private HashSet<Particle> particles;
-    private HashSet<Particle> removeParticles;
 
 
     public Player(){
@@ -51,9 +40,6 @@ public class Player implements Entity {
         width = 128;
         height = 64;
         frame = 0;
-
-        particles = new HashSet<>();
-        removeParticles = new HashSet<>();
 
 
         //initial position vector
@@ -66,7 +52,6 @@ public class Player implements Entity {
         vel.x = 0f;
         vel.y = 0f;
 
-        remove = false;
 
     }
 
