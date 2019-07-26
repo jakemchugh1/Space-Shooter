@@ -84,4 +84,5 @@ public class Chest implements Scenery{
     public float getX(){
         return x;
     }
+    public float getY() {return y-32;}
 }

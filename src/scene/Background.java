@@ -3,6 +3,8 @@ package scene;
 import particles.Particle;
 import scenery.*;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Random;
 
@@ -16,7 +18,7 @@ public class Background {
 
     private String fileName;
 
-    private HashSet<Scenery> scenery;
+    private ArrayList<Scenery> scenery;
     private HashSet<Scenery> removeScenery;
 
 
@@ -24,7 +26,7 @@ public class Background {
     int[][] background;
 
     public Background(int width, int height, String fileName){
-        scenery = new HashSet<>();
+        scenery = new ArrayList<>();
         removeScenery = new HashSet<>();
         this.width = width;
         this.height = height;
@@ -130,24 +132,44 @@ public class Background {
 
         if(background[319][0] < 0) background[319][0] = 0;
         if(rand.nextInt(60)==1){
-            int tempInt1 = rand.nextInt(background[319][0]);
-            if(tempInt < 1) tempInt1 = 1;
+            int tempInt1;
+            if(background[319][0] >= 1) {
+                tempInt1 = rand.nextInt(background[319][0]);
+            }else{
+                tempInt1 = 0;
+            }
             scenery.add(new ShortSeaweed(1376,960-tempInt1,96,96));
+            scenery.sort(comparator);
         }
         if(rand.nextInt(120)==2){
-            int tempInt1 = rand.nextInt(background[319][0]);
-            if(tempInt < 1) tempInt1 = 1;
+            int tempInt1;
+            if(background[319][0] >= 1) {
+                tempInt1 = rand.nextInt(background[319][0]);
+            }else{
+                tempInt1 = 0;
+            }
             scenery.add(new DancingStarfish(1376,960-tempInt1,96,96));
+            scenery.sort(comparator);
         }
         if(rand.nextInt(360)==3){
-            int tempInt1 = rand.nextInt(background[319][0]);
-            if(tempInt < 1) tempInt1 = 1;
+            int tempInt1;
+            if(background[319][0] >= 1) {
+                tempInt1 = rand.nextInt(background[319][0]);
+            }else{
+                tempInt1 = 0;
+            }
             scenery.add(new Chest(1376,960-tempInt1,128,128));
+            scenery.sort(comparator);
         }
         if(rand.nextInt(360)==4){
-            int tempInt1 = rand.nextInt(background[319][0]);
-            if(tempInt < 1) tempInt1 = 1;
+            int tempInt1;
+            if(background[319][0] >= 1) {
+                tempInt1 = rand.nextInt(background[319][0]);
+            }else{
+                tempInt1 = 0;
+            }
             scenery.add(new Clam(1376,960-tempInt1,96,96));
+            scenery.sort(comparator);
         }
 
 
@@ -160,4 +182,11 @@ public class Background {
             scenery.remove(s);
         }removeScenery.clear();
     }
+    private Comparator<Scenery> comparator= new Comparator<Scenery>(){
+        public int compare(Scenery sc1, Scenery sc2){
+            if(sc1.getY() > sc2.getY()) return 1;
+            if(sc1.getY() < sc2.getY()) return -1;
+            else return 0;
+        }
+    };
 }

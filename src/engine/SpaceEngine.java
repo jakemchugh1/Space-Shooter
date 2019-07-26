@@ -191,6 +191,9 @@ public class SpaceEngine {
 
             }
             for (Enemy2 e : bossSet) {
+                if(e.getFrame() == 72){
+                    bubbles.play(0.8f,1);
+                }
                 e.Draw();
                 e.setPos();
                 for (Bullet b : bulletSet) {

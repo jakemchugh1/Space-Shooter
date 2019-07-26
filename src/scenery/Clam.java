@@ -83,4 +83,6 @@ public class Clam implements Scenery{
     public float getX(){
         return x;
     }
+
+    public float getY() {return y-10;}
 }

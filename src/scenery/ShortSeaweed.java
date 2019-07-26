@@ -74,4 +74,5 @@ public class ShortSeaweed implements Scenery{
     public float getX(){
         return x;
     }
+    public float getY() {return y;}
 }

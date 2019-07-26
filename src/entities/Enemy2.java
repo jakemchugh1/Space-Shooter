@@ -122,19 +122,19 @@ public class Enemy2 implements Entity {
             frame = 0;
             }
 
-        mainParticles.add(new Particle(pos.x-vel.x*64-46, pos.y-vel.y*64-32, 0, 0, 3, 6, 6, "tentacle"));
-        mainParticles.add(new Particle(pos.x-vel.x*64-36, pos.y-vel.y*64-32, 0, 0, 3, 6, 6, "tentacle"));
-        mainParticles.add(new Particle(pos.x-vel.x*64-38, pos.y-vel.y*64-36, 0, 0, 3, 6, 6, "tentacle"));
-        mainParticles.add(new Particle(pos.x-vel.x*64-38, pos.y-vel.y*64-28, 0, 0, 3, 6, 6, "tentacle"));
+        mainParticles.add(new Particle(pos.x-vel.x*64-50, pos.y-vel.y*64-36, 0, 0, 3, 6, 6, "tentacle"));
+        mainParticles.add(new Particle(pos.x-vel.x*64-40, pos.y-vel.y*64-36, 0, 0, 3, 6, 6, "tentacle"));
+        mainParticles.add(new Particle(pos.x-vel.x*64-42, pos.y-vel.y*64-40, 0, 0, 3, 6, 6, "tentacle"));
+        mainParticles.add(new Particle(pos.x-vel.x*64-42, pos.y-vel.y*64-32, 0, 0, 3, 6, 6, "tentacle"));
 
 
-        if(speed < 0){
+        if(frame < 72){
             speed = speed + 1;
 
         }
-        else if(speed < 200){
+        else if(frame < 120){
             speed = speed + 5;
-        }else if(speed < 300){
+        }else if(speed < 168){
             speed = speed + 1;
         }else{
             speed = -50;
@@ -202,4 +202,8 @@ public class Enemy2 implements Entity {
     }
 
     public void setRemove() {remove = true;}
+
+    public int getFrame(){
+        return frame;
+    }
 }

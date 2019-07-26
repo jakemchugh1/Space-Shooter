@@ -77,4 +77,5 @@ public class DancingStarfish implements Scenery{
     public float getX(){
         return x;
     }
+    public float getY() {return y-10;}
 }
