@@ -15,6 +15,7 @@ public class Background {
 
     private int width;
     private int height;
+    private int frame;
 
     private String fileName;
 
@@ -25,12 +26,11 @@ public class Background {
 
     int[][] background;
 
-    public Background(int width, int height, String fileName){
+    public Background(int width, int height){
         scenery = new ArrayList<>();
         removeScenery = new HashSet<>();
         this.width = width;
         this.height = height;
-        this.fileName = fileName;
 
         background = new int[320][3];
         Random rand = new Random();
@@ -39,10 +39,7 @@ public class Background {
         background[0][1] = 200 + background[0][0];
         background[0][2] = 150 + background[0][1];
 
-
-
-
-
+        frame = 0;
 
         //initial generation of sand
         for(int i = 1 ; i < 320 ; i++){
@@ -53,13 +50,13 @@ public class Background {
             background[i][1] = background[i-1][1] + (rand.nextInt(10) - 4) ;
         }
         for(int i = 1 ; i < 320 ; i++){
-            background[i][1] = background[i-1][1] + (rand.nextInt(30) - 14) ;
+            background[i][2] = background[i-1][2] + (rand.nextInt(30) - 14) ;
         }
 
 
     }
 
-    public void Draw(){
+    public void draw(){
 
         //procedural hills
 
@@ -88,14 +85,21 @@ public class Background {
             int tempInt = background[i][0];
             background[i-1][0] = tempInt;
         }
-        for(int i = 1 ; i < 320 ; i++){
-            int tempInt = background[i][1];
-            background[i-1][1] = tempInt;
+        if(frame == 2) {
+            for (int i = 1; i < 320; i++) {
+                int tempInt = background[i][2];
+                background[i - 1][2] = tempInt;
+            }
         }
-        for(int i = 1 ; i < 320 ; i++){
-            int tempInt = background[i][2];
-            background[i-1][2] = tempInt;
+        if(frame == 1 || frame == 3) {
+            for (int i = 1; i < 320; i++) {
+                int tempInt = background[i][1];
+                background[i - 1][1] = tempInt;
+            }
         }
+        if(frame == 3)frame = 0;
+        else frame = frame + 1;
+
         Random rand = new Random();
 
         //new terrain (hill_1)
@@ -117,6 +121,13 @@ public class Background {
 
         //new terrain (sand)
         tempInt = (rand.nextInt(5) - 2);
+        background[318][0] = background[317][0] + tempInt;
+        if(background[318][0] <= 0){
+            background[318][0] = 0;
+        }else if(background[318][0] > 960){
+            background[318][0] = 960;
+        }
+        tempInt = (rand.nextInt(5) - 2);
         background[319][0] = background[318][0] + tempInt;
         if(background[319][0] <= 0){
             background[319][0] = 0;
@@ -131,6 +142,8 @@ public class Background {
         if(background[319][2] > background[319][1] + 160) background[319][2] = background[319][2] - 15;
 
         if(background[319][0] < 0) background[319][0] = 0;
+
+        ///generating random scenery
         if(rand.nextInt(60)==1){
             int tempInt1;
             if(background[319][0] >= 1) {

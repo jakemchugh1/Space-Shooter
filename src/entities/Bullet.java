@@ -11,8 +11,7 @@ import java.util.HashSet;
 import java.util.Random;
 
 import static entities.EntityManager.getTexture;
-import static engine.SpaceEngine.mainParticles;
-import static org.lwjgl.opengl.GL11.*;
+import static game.Game.mainParticles;
 import static utilities.Artist.DrawQuadTex;
 import static utilities.Artist.LoadTexture;
 import static utilities.Artist.getFrameTimeSeconds;

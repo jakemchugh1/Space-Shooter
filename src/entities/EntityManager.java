@@ -128,18 +128,11 @@ public class EntityManager {
         load("hill_2");
 
 
-
-
-
-        System.out.println("here");
-
-
     }
 
     public void load(String name) {
-        System.out.println("loaded");
         textureBank.put(name, LoadTexture(name));
-        System.out.println(textureBank.get(name));
+        System.out.println(name + " loaded");
     }
 
     public static Texture getTexture(String key){

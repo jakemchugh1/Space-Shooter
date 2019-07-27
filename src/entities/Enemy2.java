@@ -9,9 +9,8 @@ import particles.Particle;
 import java.util.HashSet;
 import java.util.Random;
 
-import static engine.SpaceEngine.mainParticles;
 import static entities.EntityManager.getTexture;
-import static org.lwjgl.opengl.GL11.*;
+import static game.Game.mainParticles;
 import static utilities.Artist.*;
 
 public class Enemy2 implements Entity {
