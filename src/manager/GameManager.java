@@ -17,7 +17,6 @@ public class GameManager {
             level1 = new Game();
             ui.newGame();
         }
-        level1.play();
-        ui.Draw(level1);
+        ui.run(level1);
     }
 }

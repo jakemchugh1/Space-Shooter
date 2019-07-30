@@ -127,6 +127,18 @@ public class EntityManager {
         load("hill_1");
         load("hill_2");
 
+        load("outline_yellow");
+        load("outline_green");
+        load("outline_red");
+        load("outline_blue");
+        load("outline_teal");
+
+        load("fill_yellow");
+        load("fill_green");
+        load("fill_red");
+        load("fill_blue");
+        load("fill_teal");
+
 
     }
 

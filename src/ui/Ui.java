@@ -14,13 +14,50 @@ public class Ui {
     private Font awtFont;
     private TrueTypeFont font;
     private boolean resetGame;
+    private int menuSelect;
+
+
+    //main menu buttons
+    Button newGame;
+
+    //game over menu buttons
+    Button tryAgain;
+    Button returnToMain;
+
 
     public Ui(){
         awtFont = new Font("times new roman", Font.BOLD, 24);
         font = new TrueTypeFont(awtFont, true);
         resetGame = false;
+        menuSelect = 0;
+        //main menu buttons
+        newGame = new Button("New Game", 256, 32, 480, 500);
+
+        //game over menu buttons
+        tryAgain = new Button("Try Again",256,32,480, 500);
+        returnToMain = new Button("Return to Main Menu",256,32,480, 550);
+
     }
-    public void Draw(Game game){
+    public void run(Game game){
+        if(menuSelect == 0){
+            mainMenu();
+        }else if(menuSelect == 1){
+            inGame(game);
+        }
+    }
+
+    public void mainMenu(){
+        newGame.draw();
+        if(newGame.hovering() && Mouse.isButtonDown(0)){
+            menuSelect = 1;
+            System.out.println("New Game Selected");
+        }
+
+    }
+
+
+    public void inGame(Game game){
+        game.play();
         font.drawString(WIDTH - 200, 0, "Score: " + game.getScore());
         font.drawString(200, 0, "Crew:" + game.getLives()/2);
 
@@ -33,7 +70,9 @@ public class Ui {
 
         if(game.getGameOver()){
             font.drawString(WIDTH / 2 - 96, HEIGHT / 2, "GAME OVER");
-            font.drawString(WIDTH / 2 - 78, HEIGHT / 2+100, "Try Again?");
+            tryAgain.draw();
+            returnToMain.draw();
+
 
             //Credits
             font.drawString(900, 680, "Artwork by:");
@@ -45,22 +84,23 @@ public class Ui {
             font.drawString(900, 860, "Game sound effects from:");
             font.drawString(900, 880, "zapsplat.com");
 
-            if(Mouse.getX() > WIDTH / 2 - 78 && Mouse.getX() < WIDTH / 2 + 10 && HEIGHT-Mouse.getY() > HEIGHT / 2+100 && HEIGHT-Mouse.getY() < HEIGHT / 2+140){
-                if(Mouse.isButtonDown(0)){
-                    resetGame = true;
-                }
+            if(tryAgain.hovering() && Mouse.isButtonDown(0)){
+                resetGame = true;
+            }
+            else if(returnToMain.hovering() && Mouse.isButtonDown(0)){
+                menuSelect = 0;
             }
 
 
         }
-    }
-    public void Draw(){
-
     }
     public boolean getReset(){
         return resetGame;
     }
     public void newGame(){
         resetGame = false;
+    }
+    public int getMenuSelect(){
+        return menuSelect;
     }
 }

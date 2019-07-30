@@ -13,11 +13,7 @@ import static utilities.Artist.DrawQuadTex;
 
 public class Background {
 
-    private int width;
-    private int height;
     private int frame;
-
-    private String fileName;
 
     private ArrayList<Scenery> scenery;
     private HashSet<Scenery> removeScenery;
@@ -26,11 +22,9 @@ public class Background {
 
     int[][] background;
 
-    public Background(int width, int height){
+    public Background(){
         scenery = new ArrayList<>();
         removeScenery = new HashSet<>();
-        this.width = width;
-        this.height = height;
 
         background = new int[320][3];
         Random rand = new Random();
@@ -120,13 +114,6 @@ public class Background {
 
 
         //new terrain (sand)
-        tempInt = (rand.nextInt(5) - 2);
-        background[318][0] = background[317][0] + tempInt;
-        if(background[318][0] <= 0){
-            background[318][0] = 0;
-        }else if(background[318][0] > 960){
-            background[318][0] = 960;
-        }
         tempInt = (rand.nextInt(5) - 2);
         background[319][0] = background[318][0] + tempInt;
         if(background[319][0] <= 0){

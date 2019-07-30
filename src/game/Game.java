@@ -57,8 +57,8 @@ public class Game {
     HashSet<Cuddle> removeC;
     HashSet<BigJelly> removeJ;
 
-    Player player = new Player();
-    Turret turret = new Turret();
+    Player player;
+    Turret turret;
 
     Background background;
 
@@ -66,7 +66,7 @@ public class Game {
     public Game(){
         entityManager = new EntityManager();
 
-        background = new Background(getWIDTH(), getHEIGHT());
+        background = new Background();
 
         music = null;
         shootSound = null;
@@ -89,7 +89,7 @@ public class Game {
         }
 
         musicSpeed = 1.0f;
-        music.play(musicSpeed,1);
+
 
         player = new Player();
         turret = new Turret();
@@ -125,16 +125,16 @@ public class Game {
         if(!ambience.playing()) {
             ambience.play(1, 1);
         }
+        if(!music.playing()){
+            music.play(musicSpeed,1);
+            musicSpeed = musicSpeed + 0.05f;
+        }
         ///////////////////////
         if((Sys.getTime() * 1000 / Sys.getTimerResolution()) - oxygenTimer >= 1000){
             oxygenTimer = Sys.getTime() * 1000 / Sys.getTimerResolution();
             if(!gameOver) score = score + 1;
             if(spawnChance1 > 10){
                 spawnChance1 = spawnChance1 - 1;
-            }
-            if(music.getPosition() == 0.0f){
-                musicSpeed = musicSpeed + 0.05f;
-                music.play(musicSpeed, 1);
             }
         }
 
