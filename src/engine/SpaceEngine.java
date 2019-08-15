@@ -9,14 +9,18 @@ import static org.lwjgl.opengl.GL11.*;
 
 public class SpaceEngine {
 
+    public static boolean exitGame;
+
 
 
     public SpaceEngine()  {
         BeginSession();
 
+        exitGame = false;
+
         GameManager manager = new GameManager();
 
-        while (!Display.isCloseRequested()) {
+        while (!Display.isCloseRequested() && !exitGame) {
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
             manager.run();
             updateDisplay();

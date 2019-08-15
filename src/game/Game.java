@@ -40,7 +40,7 @@ public class Game {
 
     private Music music;
     private Sound shootSound;
-    private Sound ambience;
+    public Sound ambience;
     private Sound splash;
     private Sound pop;
     private Sound bubbles;
@@ -64,57 +64,7 @@ public class Game {
 
 
     public Game(){
-        entityManager = new EntityManager();
-
-        background = new Background();
-
-        music = null;
-        shootSound = null;
-        ambience = null;
-        splash = null;
-        pop = null;
-        bubbles = null;
-        electric = null;
-
-        try {
-            music = new Music("res/audio/music2.wav");
-            shootSound = new Sound("res/audio/shotA.wav");
-            ambience = new Sound("res/audio/underwater_ambience_flowing.wav");
-            splash = new Sound("res/audio/splash.wav");
-            pop = new Sound("res/audio/pop.wav");
-            bubbles = new Sound("res/audio/bubbles_blown.wav");
-            electric = new Sound("res/audio/zap.wav");
-        } catch (SlickException e) {
-            e.printStackTrace();
-        }
-
-        musicSpeed = 1.0f;
-
-
-        player = new Player();
-        turret = new Turret();
-
-        rand = new Random();
-
-        score = 0;
-
-        lives = 10;
-
-        spawnChance1 = 500;
-
-        gameOver = false;
-
-        shootingTimer = Sys.getTime() * 1000 / Sys.getTimerResolution();
-
-        oxygenTimer = Sys.getTime() * 1000 / Sys.getTimerResolution();
-
-        remove = new HashSet<>();
-        removeB = new HashSet<>();
-        removeBoss = new HashSet<>();
-        removeP = new HashSet<>();
-        removeC = new HashSet<>();
-        removeJ = new HashSet<>();
-
+        resetGame();
     }
 
     public void play(){
@@ -298,6 +248,61 @@ public class Game {
             cuddleSet.clear();
             music.stop();
         }
+
+    }
+
+    public void resetGame(){
+
+        entityManager = new EntityManager();
+
+        background = new Background();
+
+        music = null;
+        shootSound = null;
+        ambience = null;
+        splash = null;
+        pop = null;
+        bubbles = null;
+        electric = null;
+
+        try {
+            music = new Music("res/audio/music2.wav");
+            shootSound = new Sound("res/audio/shotA.wav");
+            ambience = new Sound("res/audio/underwater_ambience_flowing.wav");
+            splash = new Sound("res/audio/splash.wav");
+            pop = new Sound("res/audio/pop.wav");
+            bubbles = new Sound("res/audio/bubbles_blown.wav");
+            electric = new Sound("res/audio/zap.wav");
+        } catch (SlickException e) {
+            e.printStackTrace();
+        }
+
+        musicSpeed = 1.0f;
+
+
+        player = new Player();
+        turret = new Turret();
+
+        rand = new Random();
+
+        score = 0;
+
+        lives = 10;
+
+        spawnChance1 = 500;
+
+        gameOver = false;
+
+        shootingTimer = Sys.getTime() * 1000 / Sys.getTimerResolution();
+
+        oxygenTimer = Sys.getTime() * 1000 / Sys.getTimerResolution();
+
+        remove = new HashSet<>();
+        removeB = new HashSet<>();
+        removeBoss = new HashSet<>();
+        removeP = new HashSet<>();
+        removeC = new HashSet<>();
+        removeJ = new HashSet<>();
 
     }
 

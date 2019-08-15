@@ -16,6 +16,8 @@ public class Player implements Entity {
 
     private float x;
     private float y;
+    private float rotation;
+    private float rotationLimit;
 
     private int height;
     private int width;
@@ -37,9 +39,11 @@ public class Player implements Entity {
         speed = 200;
         this.x = 640-32;
         this.y = 480-32;
-        width = 128;
-        height = 64;
+        width = 64;
+        height = 32;
         frame = 0;
+        rotation = 0;
+        rotationLimit = 30;
 
 
         //initial position vector
@@ -56,35 +60,19 @@ public class Player implements Entity {
     }
 
     public void Draw() {
-        if(flip){
             if(frame < 3) {
-                DrawQuadTexFlip(getTexture("sub_1"), x, y, width, height);
+                DrawQuadTexRot(getTexture("sub_1"), x, y, width, height, rotation);
                 frame = frame + 1;
             }else if(frame < 6) {
-                DrawQuadTexFlip(getTexture("sub_2"), x, y, width, height);
+                DrawQuadTexRot(getTexture("sub_2"), x, y, width, height, rotation);
                 frame = frame + 1;
             }else if(frame < 9) {
-                DrawQuadTexFlip(getTexture("sub_3"), x, y, width, height);
+                DrawQuadTexRot(getTexture("sub_3"), x, y, width, height, rotation);
                 frame = frame + 1;
             }else{
-                DrawQuadTexFlip(getTexture("sub_1"), x, y, width, height);
+                DrawQuadTexRot(getTexture("sub_1"), x, y, width, height, rotation);
                 frame = 0;
             }
-        }else{
-            if(frame < 3) {
-                DrawQuadTex(getTexture("sub_1"), x, y, width, height);
-                frame = frame + 1;
-            }else if(frame < 6) {
-                DrawQuadTex(getTexture("sub_2"), x, y, width, height);
-                frame = frame + 1;
-            }else if(frame < 9) {
-                DrawQuadTex(getTexture("sub_3"), x, y, width, height);
-                frame = frame + 1;
-            }else{
-                DrawQuadTex(getTexture("sub_1"), x, y, width, height);
-                frame = 0;
-            }
-        }
     }
 
     public void setPos() {
@@ -107,19 +95,32 @@ public class Player implements Entity {
         if(Keyboard.isKeyDown(Keyboard.KEY_A)&& pos.x > 32){
             pos.x = pos.x - speed*getFrameTimeSeconds();
             x = pos.x - width/2;
+            rotationLimit = 6;
         }
-        if(Keyboard.isKeyDown(Keyboard.KEY_D)&& pos.x < 1248){
+        else if(Keyboard.isKeyDown(Keyboard.KEY_D)&& pos.x < 1248){
             pos.x = pos.x + speed*getFrameTimeSeconds();
             x = pos.x - width/2;
+            rotationLimit = 6;
+        }else{
+            rotationLimit = 20;
         }
+
+
         if(Keyboard.isKeyDown(Keyboard.KEY_W)&& pos.y > 32){
             pos.y = pos.y - speed*getFrameTimeSeconds();
             y = pos.y - height/2;
+            if(rotation < rotationLimit)rotation = rotation + 5;
         }
-        if(Keyboard.isKeyDown(Keyboard.KEY_S) && pos.y < 928){
+        else if(Keyboard.isKeyDown(Keyboard.KEY_S) && pos.y < 928){
             pos.y = pos.y + speed*getFrameTimeSeconds();
             y = pos.y - height/2;
+            if(rotation > -rotationLimit)rotation = rotation - 5;
         }
+        if(rotation > 0) rotation = rotation - 2;
+        else if(rotation < 0) rotation = rotation + 2;
+
+
+
     }
 
     public boolean checkColliding(Entity enemy){

@@ -16,7 +16,10 @@ public class GameManager {
         if(ui.getReset()){
             level1 = new Game();
             ui.newGame();
+        }else if(ui.getMenuSelect() == 0){
+
         }
+
         ui.run(level1);
     }
 }

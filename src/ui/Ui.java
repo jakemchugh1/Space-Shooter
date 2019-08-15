@@ -6,6 +6,8 @@ import org.newdawn.slick.TrueTypeFont;
 
 import java.awt.*;
 
+import static engine.SpaceEngine.exitGame;
+import static org.lwjgl.opengl.Display.isCloseRequested;
 import static utilities.Artist.HEIGHT;
 import static utilities.Artist.WIDTH;
 
@@ -19,6 +21,9 @@ public class Ui {
 
     //main menu buttons
     Button newGame;
+    Button mod;
+    Button exit;
+    Button credits;
 
     //game over menu buttons
     Button tryAgain;
@@ -31,11 +36,17 @@ public class Ui {
         resetGame = false;
         menuSelect = 0;
         //main menu buttons
-        newGame = new Button("New Game", 256, 32, 480, 500);
+        newGame = new Button("New Game", 256, 32, 100, 600);
+        mod = new Button("Mods", 256, 32, 100, 632);
+        credits = new Button("Credits", 256, 32, 100, 664);
+        exit = new Button("Exit Game", 256, 32, 100, 698);
+
+        //credits buttons
+        returnToMain = new Button("Return to Main Menu",256,32,480, 550);
 
         //game over menu buttons
         tryAgain = new Button("Try Again",256,32,480, 500);
-        returnToMain = new Button("Return to Main Menu",256,32,480, 550);
+        returnToMain = new Button("Return to Main Menu",256,32,100, 550);
 
     }
     public void run(Game game){
@@ -43,15 +54,59 @@ public class Ui {
             mainMenu();
         }else if(menuSelect == 1){
             inGame(game);
+        }else if(menuSelect == 2){
+            credits();
+        }else if(menuSelect == 3){
+            mods();
+        }
+    }
+
+    public void mods(){
+        returnToMain.draw();
+        if(returnToMain.hovering() && Mouse.isButtonDown(0)){
+            menuSelect = 0;
+            System.out.println("Returned to main menu");
         }
     }
 
     public void mainMenu(){
         newGame.draw();
+        mod.draw();
+        credits.draw();
+        exit.draw();
+
         if(newGame.hovering() && Mouse.isButtonDown(0)){
             menuSelect = 1;
-            System.out.println("New Game Selected");
+            System.out.println("New game selected");
+        }if(exit.hovering() && Mouse.isButtonDown(0)){
+            System.out.println("Exit game selected");
+            exitGame = true;
+        }if(credits.hovering() && Mouse.isButtonDown(0)){
+            System.out.println("Credits selected");
+            menuSelect = 2;
+        }if(mod.hovering() && Mouse.isButtonDown(0)){
+            System.out.println("Credits selected");
+            menuSelect = 3;
         }
+
+    }
+
+    public void credits(){
+        returnToMain.draw();
+        if(returnToMain.hovering() && Mouse.isButtonDown(0)){
+            menuSelect = 0;
+            System.out.println("Returned to main menu");
+        }
+
+        //Credits
+        font.drawString(400, 680, "Artwork by:");
+        font.drawString(400, 700, "Christopher Rogers");
+        font.drawString(400, 740, "Programmed by:");
+        font.drawString(400, 760, "Jacob McHugh");
+        font.drawString(400, 800, "Game Music by:");
+        font.drawString(400, 820, "Jacob McHugh");
+        font.drawString(400, 860, "Game sound effects from:");
+        font.drawString(400, 880, "zapsplat.com");
 
     }
 
@@ -73,22 +128,13 @@ public class Ui {
             tryAgain.draw();
             returnToMain.draw();
 
-
-            //Credits
-            font.drawString(900, 680, "Artwork by:");
-            font.drawString(900, 700, "Christopher Rogers");
-            font.drawString(900, 740, "Programmed by:");
-            font.drawString(900, 760, "Jacob McHugh");
-            font.drawString(900, 800, "Game Music by:");
-            font.drawString(900, 820, "Jacob McHugh");
-            font.drawString(900, 860, "Game sound effects from:");
-            font.drawString(900, 880, "zapsplat.com");
-
             if(tryAgain.hovering() && Mouse.isButtonDown(0)){
                 resetGame = true;
             }
             else if(returnToMain.hovering() && Mouse.isButtonDown(0)){
                 menuSelect = 0;
+                game.ambience.stop();
+                game.resetGame();
             }
 
 
