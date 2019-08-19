@@ -11,9 +11,7 @@ import java.util.Random;
 
 import static entities.EntityManager.getTexture;
 import static org.lwjgl.opengl.GL11.*;
-import static utilities.Artist.DrawQuadTex;
-import static utilities.Artist.LoadTexture;
-import static utilities.Artist.getFrameTimeSeconds;
+import static utilities.Artist.*;
 
 public class Enemy implements Entity {
 
@@ -28,6 +26,8 @@ public class Enemy implements Entity {
     private int frame;
 
     private int health;
+    private float offset_1;
+    private float offset_2;
 
     private Texture texture;
 
@@ -37,6 +37,7 @@ public class Enemy implements Entity {
 
     private boolean remove;
     private boolean valid;
+    boolean expand;
 
     private HashSet<Particle> particles;
     private HashSet<Particle> removeParticles;
@@ -53,6 +54,9 @@ public class Enemy implements Entity {
         width = 96;
         height = 96;
         frame = 0;
+        offset_1 = 0;
+        offset_2 = 0;
+        expand = true;
 
         particles = new HashSet<>();
         removeParticles = new HashSet<>();
@@ -87,6 +91,8 @@ public class Enemy implements Entity {
         width = 96;
         height = 96;
         frame = 0;
+        offset_1 = 0;
+        offset_2 = 0;
 
         particles = new HashSet<>();
         removeParticles = new HashSet<>();
@@ -113,6 +119,20 @@ public class Enemy implements Entity {
     }
 
     public void Draw() {
+        if(expand){
+            if(offset_1 != 5){
+                offset_1 = offset_1 + 1;
+            }else if(offset_2 != 5){
+                offset_2 = offset_2 + 1;
+            }else expand = false;
+        }else{
+            if(offset_1 != 0){
+                offset_1 = offset_1 - 1;
+            }else if(offset_2 != 0){
+                offset_2 = offset_2 - 1;
+            }else expand = true;
+        }
+
         for(Particle p : particles){
             p.Draw();
             p.Update();
@@ -122,16 +142,16 @@ public class Enemy implements Entity {
         }removeParticles.clear();
 
         if(frame < 24) {
-            DrawQuadTex(getTexture("jellyfish_1"), x, y, width, height);
+            DrawQuadTexVertSkew(getTexture("jellyfish_1"), x, y, width, height, offset_1, offset_2);
             frame = frame + 1;
         }else if(frame < 48) {
-            DrawQuadTex(getTexture("jellyfish_2"), x, y, width, height);
+            DrawQuadTexVertSkew(getTexture("jellyfish_2"), x, y, width, height, offset_1, offset_2);
             frame = frame + 1;
         }else if(frame < 72) {
-            DrawQuadTex(getTexture("jellyfish_3"), x, y, width, height);
+            DrawQuadTexVertSkew(getTexture("jellyfish_3"), x, y, width, height, offset_1, offset_2);
             frame = frame + 1;
         }else{
-            DrawQuadTex(getTexture("jellyfish_1"), x, y, width, height);
+            DrawQuadTexVertSkew(getTexture("jellyfish_1"), x, y, width, height, offset_1, offset_2);
             frame = 0;
         }
     }

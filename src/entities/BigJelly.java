@@ -22,6 +22,8 @@ public class BigJelly implements Entity {
     private int width;
 
     private float speed;
+    private float offset1;
+    private float offset2;
 
     private int frame;
 
@@ -35,6 +37,7 @@ public class BigJelly implements Entity {
 
     private boolean remove;
     private boolean valid;
+    private boolean expand;
 
     private HashSet<Particle> particles;
     private HashSet<Particle> removeParticles;
@@ -52,8 +55,13 @@ public class BigJelly implements Entity {
         height = 144;
         frame = 0;
 
+        offset1 = 0;
+        offset2 = 0;
+
         particles = new HashSet<>();
         removeParticles = new HashSet<>();
+
+        expand = true;
 
 
 
@@ -101,6 +109,21 @@ public class BigJelly implements Entity {
     }
 
     public void Draw() {
+
+        if(expand){
+            if(offset1 != 5){
+                offset1 = offset1 + 0.5f;
+            }else if(offset2 != 5){
+                offset2 = offset2 + 0.5f;
+            }else expand = false;
+        }else{
+            if(offset1 != 0){
+                offset1 = offset1 - 0.5f;
+            }else if(offset2 != 0){
+                offset2 = offset2 - 0.5f;
+            }else expand = true;
+        }
+
         for(Particle p : particles){
             p.Draw();
             p.Update();
@@ -111,84 +134,84 @@ public class BigJelly implements Entity {
 
         if(vel.x<=0){
             if(frame < 8) {
-                DrawQuadTex(getTexture("big_jelly_1"), x, y, width, height);
+                DrawQuadTexVertSkew(getTexture("big_jelly_1"), x, y, width, height, offset1, offset2);
                 frame = frame + 1;
             }else if(frame < 16) {
-                DrawQuadTex(getTexture("big_jelly_2"), x, y, width, height);
+                DrawQuadTexVertSkew(getTexture("big_jelly_2"), x, y, width, height, offset1, offset2);
                 frame = frame + 1;
             }else if(frame < 24) {
-                DrawQuadTex(getTexture("big_jelly_3"), x, y, width, height);
+                DrawQuadTexVertSkew(getTexture("big_jelly_3"), x, y, width, height, offset1, offset2);
                 frame = frame + 1;
             }else if(frame < 32) {
-                DrawQuadTex(getTexture("big_jelly_4"), x, y, width, height);
+                DrawQuadTexVertSkew(getTexture("big_jelly_4"), x, y, width, height, offset1, offset2);
                 frame = frame + 1;
             }else if(frame < 40) {
-                DrawQuadTex(getTexture("big_jelly_5"), x, y, width, height);
+                DrawQuadTexVertSkew(getTexture("big_jelly_5"), x, y, width, height, offset1, offset2);
                 frame = frame + 1;
             }else if(frame < 48) {
-                DrawQuadTex(getTexture("big_jelly_6"), x, y, width, height);
+                DrawQuadTexVertSkew(getTexture("big_jelly_6"), x, y, width, height, offset1, offset2);
                 frame = frame + 1;
             }else if(frame < 56) {
-                DrawQuadTex(getTexture("big_jelly_7"), x, y, width, height);
+                DrawQuadTexVertSkew(getTexture("big_jelly_7"), x, y, width, height, offset1, offset2);
                 frame = frame + 1;
             }else if(frame < 64) {
-                DrawQuadTex(getTexture("big_jelly_8"), x, y, width, height);
+                DrawQuadTexVertSkew(getTexture("big_jelly_8"), x, y, width, height, offset1, offset2);
                 frame = frame + 1;
             }else if(frame < 72) {
-                DrawQuadTex(getTexture("big_jelly_9"), x, y, width, height);
+                DrawQuadTexVertSkew(getTexture("big_jelly_9"), x, y, width, height, offset1, offset2);
                 frame = frame + 1;
             }else if(frame < 80) {
-                DrawQuadTex(getTexture("big_jelly_10"), x, y, width, height);
+                DrawQuadTexVertSkew(getTexture("big_jelly_10"), x, y, width, height, offset1, offset2);
                 frame = frame + 1;
             }else if(frame < 88) {
-                DrawQuadTex(getTexture("big_jelly_11"), x, y, width, height);
+                DrawQuadTexVertSkew(getTexture("big_jelly_11"), x, y, width, height, offset1, offset2);
                 frame = frame + 1;
             }else if(frame < 96) {
-                DrawQuadTex(getTexture("big_jelly_12"), x, y, width, height);
+                DrawQuadTexVertSkew(getTexture("big_jelly_12"), x, y, width, height, offset1, offset2);
                 frame = frame + 1;
             }else{
-                DrawQuadTex(getTexture("big_jelly_1"), x, y, width, height);
+                DrawQuadTexVertSkew(getTexture("big_jelly_1"), x, y, width, height, offset1, offset2);
                 frame = 0;
             }
         }else{
             if(frame < 8) {
-                DrawQuadTexFlip(getTexture("big_jelly_1"), x, y, width, height);
+                DrawQuadTexFlipVertSkew(getTexture("big_jelly_1"), x, y, width, height, offset1, offset2);
                 frame = frame + 1;
             }else if(frame < 16) {
-                DrawQuadTexFlip(getTexture("big_jelly_2"), x, y, width, height);
+                DrawQuadTexFlipVertSkew(getTexture("big_jelly_2"), x, y, width, height, offset1, offset2);
                 frame = frame + 1;
             }else if(frame < 24) {
-                DrawQuadTexFlip(getTexture("big_jelly_3"), x, y, width, height);
+                DrawQuadTexFlipVertSkew(getTexture("big_jelly_3"), x, y, width, height, offset1, offset2);
                 frame = frame + 1;
             }else if(frame < 32) {
-                DrawQuadTexFlip(getTexture("big_jelly_4"), x, y, width, height);
+                DrawQuadTexFlipVertSkew(getTexture("big_jelly_4"), x, y, width, height, offset1, offset2);
                 frame = frame + 1;
             }else if(frame < 40) {
-                DrawQuadTexFlip(getTexture("big_jelly_5"), x, y, width, height);
+                DrawQuadTexFlipVertSkew(getTexture("big_jelly_5"), x, y, width, height, offset1, offset2);
                 frame = frame + 1;
             }else if(frame < 48) {
-                DrawQuadTexFlip(getTexture("big_jelly_6"), x, y, width, height);
+                DrawQuadTexFlipVertSkew(getTexture("big_jelly_6"), x, y, width, height, offset1, offset2);
                 frame = frame + 1;
             }else if(frame < 56) {
-                DrawQuadTexFlip(getTexture("big_jelly_7"), x, y, width, height);
+                DrawQuadTexFlipVertSkew(getTexture("big_jelly_7"), x, y, width, height, offset1, offset2);
                 frame = frame + 1;
             }else if(frame < 64) {
-                DrawQuadTexFlip(getTexture("big_jelly_8"), x, y, width, height);
+                DrawQuadTexFlipVertSkew(getTexture("big_jelly_8"), x, y, width, height, offset1, offset2);
                 frame = frame + 1;
             }else if(frame < 72) {
-                DrawQuadTexFlip(getTexture("big_jelly_9"), x, y, width, height);
+                DrawQuadTexFlipVertSkew(getTexture("big_jelly_9"), x, y, width, height, offset1, offset2);
                 frame = frame + 1;
             }else if(frame < 80) {
-                DrawQuadTexFlip(getTexture("big_jelly_10"), x, y, width, height);
+                DrawQuadTexFlipVertSkew(getTexture("big_jelly_10"), x, y, width, height, offset1, offset2);
                 frame = frame + 1;
             }else if(frame < 88) {
-                DrawQuadTexFlip(getTexture("big_jelly_11"), x, y, width, height);
+                DrawQuadTexFlipVertSkew(getTexture("big_jelly_11"), x, y, width, height, offset1, offset2);
                 frame = frame + 1;
             }else if(frame < 96) {
-                DrawQuadTexFlip(getTexture("big_jelly_12"), x, y, width, height);
+                DrawQuadTexFlipVertSkew(getTexture("big_jelly_12"), x, y, width, height, offset1, offset2);
                 frame = frame + 1;
             }else{
-                DrawQuadTexFlip(getTexture("big_jelly_1"), x, y, width, height);
+                DrawQuadTexFlipVertSkew(getTexture("big_jelly_1"), x, y, width, height, offset1, offset2);
                 frame = 0;
             }
         }

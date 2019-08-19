@@ -48,4 +48,7 @@ public class Button {
             return false;
         }
     }
+    public void reset(){
+        offset = 0;
+    }
 }

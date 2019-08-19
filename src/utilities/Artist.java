@@ -95,6 +95,25 @@ public class Artist {
         glLoadIdentity();
 
     }
+    public static void DrawQuadTexVertSkew(Texture tex, float x, float y, float width, float height, float offset1, float offset2){
+        if(tex == null){
+            tex = LoadTexture("null");
+        }
+        tex.bind();
+        glTranslatef(x, y, 0);
+        glBegin(GL_QUADS);
+        glTexCoord2f(0,0);
+        glVertex2f(0,0-offset1);
+        glTexCoord2f(1,0);
+        glVertex2f(width,0-offset2);
+        glTexCoord2f(1,1);
+        glVertex2f(width,height+offset2);
+        glTexCoord2f(0,1);
+        glVertex2f(0,height+offset1);
+        glEnd();
+        glLoadIdentity();
+
+    }
 
     public static void DrawQuadTexRot(Texture tex, float x, float y, float width, float height, float rotation){
         if(tex == null){
@@ -156,6 +175,25 @@ public class Artist {
         glVertex2f(-width,height);
         glTexCoord2f(0,1);
         glVertex2f(0,height);
+        glEnd();
+        glLoadIdentity();
+
+    }
+    public static void DrawQuadTexFlipVertSkew(Texture tex, float x, float y, float width, float height, float offset1, float offset2){
+        if(tex == null){
+            tex = LoadTexture("null");
+        }
+        tex.bind();
+        glTranslatef(x+ width, y, 0);
+        glBegin(GL_QUADS);
+        glTexCoord2f(0,0);
+        glVertex2f(0,0 - offset1);
+        glTexCoord2f(1,0);
+        glVertex2f(-width,0 - offset2);
+        glTexCoord2f(1,1);
+        glVertex2f(-width,height + offset2);
+        glTexCoord2f(0,1);
+        glVertex2f(0,height + offset1);
         glEnd();
         glLoadIdentity();
 

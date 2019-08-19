@@ -7,7 +7,6 @@ import org.newdawn.slick.TrueTypeFont;
 import java.awt.*;
 
 import static engine.SpaceEngine.exitGame;
-import static org.lwjgl.opengl.Display.isCloseRequested;
 import static utilities.Artist.HEIGHT;
 import static utilities.Artist.WIDTH;
 
@@ -78,15 +77,19 @@ public class Ui {
         if(newGame.hovering() && Mouse.isButtonDown(0)){
             menuSelect = 1;
             System.out.println("New game selected");
+            newGame.reset();
         }if(exit.hovering() && Mouse.isButtonDown(0)){
             System.out.println("Exit game selected");
             exitGame = true;
+            exit.reset();
         }if(credits.hovering() && Mouse.isButtonDown(0)){
             System.out.println("Credits selected");
             menuSelect = 2;
+            credits.reset();
         }if(mod.hovering() && Mouse.isButtonDown(0)){
             System.out.println("Credits selected");
             menuSelect = 3;
+            mod.reset();
         }
 
     }
@@ -130,11 +133,13 @@ public class Ui {
 
             if(tryAgain.hovering() && Mouse.isButtonDown(0)){
                 resetGame = true;
+                tryAgain.reset();
             }
             else if(returnToMain.hovering() && Mouse.isButtonDown(0)){
                 menuSelect = 0;
                 game.ambience.stop();
                 game.resetGame();
+                returnToMain.reset();
             }
 
 
