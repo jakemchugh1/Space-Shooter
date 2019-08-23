@@ -10,6 +10,7 @@ import java.util.HashSet;
 import java.util.Random;
 
 import static entities.EntityManager.getTexture;
+import static game.Game.mainParticles;
 import static org.lwjgl.opengl.GL11.*;
 import static utilities.Artist.*;
 
@@ -29,6 +30,8 @@ public class Cuddle implements Entity {
     private int frame;
 
     private int health;
+
+    private float expand;
 
     private Texture texture;
 
@@ -53,6 +56,8 @@ public class Cuddle implements Entity {
         width = 32;
         height = 32;
         frame = 0;
+
+        expand = 0;
 
         rotation = 0;
 
@@ -95,30 +100,32 @@ public class Cuddle implements Entity {
 
 
         if(frame < 8) {
-            DrawQuadTexRot(getTexture("ink_squid_1"), x, y, width, height, rotation);
+            DrawQuadTexRotExpand(getTexture("ink_squid_1"), x, y, width, height, expand, 0,rotation);
             frame = frame + 1;
+            expand = expand + 1;
         }else if(frame < 16) {
-            DrawQuadTexRot(getTexture("ink_squid_2"), x, y, width, height, rotation);
+            DrawQuadTexRotExpand(getTexture("ink_squid_2"), x, y, width, height, expand, 0,rotation);
             frame = frame + 1;
         }else if(frame < 24) {
-            DrawQuadTexRot(getTexture("ink_squid_3"), x, y, width, height, rotation);
+            DrawQuadTexRotExpand(getTexture("ink_squid_3"), x, y, width, height, expand, 0, rotation);
             frame = frame + 1;
         }else if(frame < 32) {
-            DrawQuadTexRot(getTexture("ink_squid_4"), x, y, width, height, rotation);
+            DrawQuadTexRotExpand(getTexture("ink_squid_4"), x, y, width, height, expand, 0,rotation);
             frame = frame + 1;
         }else if(frame < 40) {
-            DrawQuadTexRot(getTexture("ink_squid_5"), x, y, width, height, rotation);
+            DrawQuadTexRotExpand(getTexture("ink_squid_5"), x, y, width, height, expand, 0,rotation);
             frame = frame + 1;
         }else if(frame < 48) {
-            DrawQuadTexRot(getTexture("ink_squid_6"), x, y, width, height, rotation);
+            DrawQuadTexRotExpand(getTexture("ink_squid_6"), x, y, width, height, expand, 0,rotation);
             frame = frame + 1;
         }else if(frame < 56) {
-            DrawQuadTexRot(getTexture("ink_squid_7"), x, y, width, height, rotation);
+            DrawQuadTexRotExpand(getTexture("ink_squid_7"), x, y, width, height, expand, 0,rotation);
             frame = frame + 1;
+            expand = expand -1;
         }else if(frame < 54){
-            DrawQuadTexRot(getTexture("ink_squid_8"), x, y, width, height, rotation);
+            DrawQuadTexRotExpand(getTexture("ink_squid_8"), x, y, width, height, expand, 0,rotation);
         }else{
-            DrawQuadTexRot(getTexture("ink_squid_1"), x, y, width, height, rotation);
+            DrawQuadTexRotExpand(getTexture("ink_squid_1"), x, y, width, height, expand, 0,rotation);
             frame = 0;
         }
 
@@ -188,8 +195,17 @@ public class Cuddle implements Entity {
     public boolean checkColliding(Entity entity){
         Vector2f bullet = entity.getPos();
         if(bullet.x < pos.x + width && bullet.x > pos.x - width && bullet.y < pos.y + height && bullet.y > pos.y - height && valid){
-            if(health <= 0)remove = true;
-            else if(!entity.isRemove()) {
+            if(health <= 0){
+                Random rand = new Random();
+                mainParticles.add(new Particle(pos.x, pos.y, rand.nextInt(3)-1.5f, rand.nextInt(3)-1.5f, 6 , 12, 12, "fill_teal",1));
+                mainParticles.add(new Particle(pos.x, pos.y, rand.nextInt(3)-1.5f, rand.nextInt(3)-1.5f, 6 , 12, 12, "fill_teal",1));
+                mainParticles.add(new Particle(pos.x, pos.y, rand.nextInt(3)-1.5f, rand.nextInt(3)-1.5f, 6 , 12, 12, "fill_teal",1));
+
+                remove = true;
+            }            else if(!entity.isRemove()) {
+                Random rand = new Random();
+                mainParticles.add(new Particle(pos.x, pos.y, rand.nextInt(5)-2.5f, rand.nextInt(5)-2.5f, 6 , 6, 6, "fill_teal",1));
+
                 health = health - 1;
                 if(entity instanceof Bullet) entity.setRemove();
             }

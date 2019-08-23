@@ -10,6 +10,7 @@ import java.util.HashSet;
 import java.util.Random;
 
 import static entities.EntityManager.getTexture;
+import static game.Game.mainParticles;
 import static org.lwjgl.opengl.GL11.*;
 import static utilities.Artist.*;
 
@@ -255,8 +256,17 @@ public class BigJelly implements Entity {
     public boolean checkColliding(Entity entity){
         Vector2f bullet = entity.getPos();
         if(bullet.x < pos.x + width/3 && bullet.x > pos.x - width/3 && bullet.y < pos.y + height/3 && bullet.y > pos.y - height/3 && valid){
-            if(health <= 0)remove = true;
-            else if(!entity.isRemove()) {
+            if(health <= 0){
+                Random rand = new Random();
+                mainParticles.add(new Particle(pos.x, pos.y, rand.nextInt(3)-1.5f, rand.nextInt(3)-1.5f, 6 , 12, 12, "fill_blue",1));
+                mainParticles.add(new Particle(pos.x, pos.y, rand.nextInt(3)-1.5f, rand.nextInt(3)-1.5f, 6 , 12, 12, "fill_blue",1));
+                mainParticles.add(new Particle(pos.x, pos.y, rand.nextInt(3)-1.5f, rand.nextInt(3)-1.5f, 6 , 12, 12, "fill_blue",1));
+
+                remove = true;
+            }            else if(!entity.isRemove()) {
+                Random rand = new Random();
+                mainParticles.add(new Particle(pos.x, pos.y, rand.nextInt(5)-2.5f, rand.nextInt(5)-2.5f, 6 , 6, 6, "fill_blue",1));
+
                 health = health - 1;
                 if(entity instanceof Bullet) entity.setRemove();
             }

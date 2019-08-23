@@ -30,6 +30,11 @@ public class Enemy2 implements Entity {
 
     private int health;
 
+    private int tCounter;
+
+    private float offset1;
+    private float offset2;
+
     private Texture texture;
 
     private Vector2f pos;
@@ -37,10 +42,9 @@ public class Enemy2 implements Entity {
     private Player target;
 
     private boolean remove;
-    private boolean valid;
 
-    private HashSet<Particle> particles;
-    private HashSet<Particle> removeParticles;
+
+    private Tentacle tentacle1;
 
 
     public Enemy2(Player player){
@@ -53,12 +57,15 @@ public class Enemy2 implements Entity {
         height = 48;
         frame = 0;
 
+        tCounter = 0;
+
+        offset1 = 0;
+        offset2 = 0;
+
         rotation = 0;
 
         health = 50;
 
-        particles = new HashSet<>();
-        removeParticles = new HashSet<>();
 
         tentacleModifier = 0;
 
@@ -75,68 +82,71 @@ public class Enemy2 implements Entity {
 
         remove = false;
 
-        if(pos.x > player.getPos().x - 128 && pos.x < player.getPos().x + 128 && pos.y > player.getPos().y - 128 && pos.y < player.getPos().y + 128){
-            valid = false;
-            remove = true;
-        }else valid = true;
+        tentacle1 = new Tentacle(1,pos.x,pos.y);
 
     }
 
     public void Draw() {
-        for(Particle p : particles){
-            p.Draw();
-            p.Update();
-            if(p.isRemove()) removeParticles.add(p);
-        }for(Particle p : removeParticles){
-            particles.remove(p);
-        }removeParticles.clear();
+
+        float tRotation;
+
+        if(vel.x > 0) {
+            tRotation = rotation;
+
+        }else{
+            tRotation = -rotation;
+
+        }
+
+        tentacle1.move((float) (pos.x - 32 + (Math.cos(tRotation))), (float)(pos.y - 16 + (Math.sin(tRotation))));
+        tentacle1.draw();
 
 
         if(frame < 48) {
-            DrawQuadTexRot(getTexture("squid_1"), x, y, width, height, rotation);
+            DrawQuadTexRotExpand(getTexture("squid_1"), x, y, width, height,offset1,offset2, rotation);
             frame = frame + 1;
         }else if(frame < 72) {
-            DrawQuadTexRot(getTexture("squid_2"), x, y, width, height, rotation);
+            DrawQuadTexRotExpand(getTexture("squid_2"), x, y, width, height,offset1,offset2, rotation);
             frame = frame + 1;
         }else if(frame < 96) {
-            DrawQuadTexRot(getTexture("squid_3"), x, y, width, height, rotation);
+            DrawQuadTexRotExpand(getTexture("squid_3"), x, y, width, height,offset1,offset2, rotation);
             frame = frame + 1;
         }else if(frame < 120) {
-            DrawQuadTexRot(getTexture("squid_4"), x, y, width, height, rotation);
+            DrawQuadTexRotExpand(getTexture("squid_4"), x, y, width, height,offset1,offset2, rotation);
             frame = frame + 1;
         }else if(frame < 144) {
-            DrawQuadTexRot(getTexture("squid_5"), x, y, width, height, rotation);
+            DrawQuadTexRotExpand(getTexture("squid_5"), x, y, width, height,offset1,offset2, rotation);
             frame = frame + 1;
         }else if(frame < 168) {
-            DrawQuadTexRot(getTexture("squid_4"), x, y, width, height, rotation);
+            DrawQuadTexRotExpand(getTexture("squid_4"), x, y, width, height,offset1,offset2, rotation);
             frame = frame + 1;
         }else if(frame < 192) {
-            DrawQuadTexRot(getTexture("squid_3"), x, y, width, height, rotation);
+            DrawQuadTexRotExpand(getTexture("squid_3"), x, y, width, height,offset1,offset2, rotation);
             frame = frame + 1;
         }else if(frame < 216) {
-            DrawQuadTexRot(getTexture("squid_2"), x, y, width, height, rotation);
+            DrawQuadTexRotExpand(getTexture("squid_2"), x, y, width, height,offset1,offset2, rotation);
             frame = frame + 1;
         }else{
-            DrawQuadTexRot(getTexture("squid_1"), x, y, width, height, rotation);
+            DrawQuadTexRotExpand(getTexture("squid_1"), x, y, width, height,offset1,offset2, rotation);
             frame = 0;
             }
 
-        mainParticles.add(new Particle(pos.x-vel.x*64-50, pos.y-vel.y*64-36, 0, 0, 3, 6, 6, "tentacle"));
-        mainParticles.add(new Particle(pos.x-vel.x*64-40, pos.y-vel.y*64-36, 0, 0, 3, 6, 6, "tentacle"));
-        mainParticles.add(new Particle(pos.x-vel.x*64-42, pos.y-vel.y*64-40, 0, 0, 3, 6, 6, "tentacle"));
-        mainParticles.add(new Particle(pos.x-vel.x*64-42, pos.y-vel.y*64-32, 0, 0, 3, 6, 6, "tentacle"));
+
 
 
         if(frame < 72){
-            speed = speed + 1;
-
+            speed = speed + 2;
+            if(offset2 > -20) offset2 = offset2 - 0.5f;
         }
         else if(frame < 120){
             speed = speed + 5;
+            if(offset2 > -20) offset2 = offset2 - 0.25f;
         }else if(speed < 168){
             speed = speed + 1;
+            if(offset2 < 10) offset2 = offset2 + 1f;
         }else{
             speed = -50;
+            if(offset2 < 10) offset2 = offset2 + 5f;
         }
         tentacleModifier = (-speed) / 100 * 3;
 
@@ -185,10 +195,19 @@ public class Enemy2 implements Entity {
     }
     public boolean checkColliding(Entity entity){
         Vector2f bullet = entity.getPos();
-        if(bullet.x < pos.x + height/2 && bullet.x > pos.x - height/2 && bullet.y < pos.y + height/2 && bullet.y > pos.y - height/2 && valid){
-            if(health <= 0)remove = true;
+        if(bullet.x < pos.x + height/2 && bullet.x > pos.x - height/2 && bullet.y < pos.y + height/2 && bullet.y > pos.y - height/2 ){
+            if(health <= 0){
+                Random rand = new Random();
+                mainParticles.add(new Particle(pos.x, pos.y, rand.nextInt(3)-1.5f, rand.nextInt(3)-1.5f, 6 , 12, 12, "tentacle",1));
+                mainParticles.add(new Particle(pos.x, pos.y, rand.nextInt(3)-1.5f, rand.nextInt(3)-1.5f, 6 , 12, 12, "tentacle",1));
+                mainParticles.add(new Particle(pos.x, pos.y, rand.nextInt(3)-1.5f, rand.nextInt(3)-1.5f, 6 , 12, 12, "tentacle",1));
+
+                remove = true;
+            }
             else if(!entity.isRemove()) {
+                Random rand = new Random();
                 health = health - 1;
+                mainParticles.add(new Particle(pos.x, pos.y, rand.nextInt(5)-2.5f, rand.nextInt(5)-2.5f, 6 , 6, 6, "tentacle",1));
                 if(entity instanceof Bullet) entity.setRemove();
             }
             return true;

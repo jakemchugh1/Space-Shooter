@@ -140,6 +140,33 @@ public class Artist {
 
     }
 
+    public static void DrawQuadTexRotExpand(Texture tex, float x, float y, float widthIn, float heightIn, float offset1, float offset2, float rotation){
+        if(tex == null){
+            tex = LoadTexture("null");
+        }
+        float width = widthIn + offset1;
+        float height = heightIn + offset2;
+        tex.bind();
+        glTranslatef(x, y, 0);
+        GL11.glRotatef(rotation, 0.0f, 0.0f, -1.0f);
+        GL11.glTranslatef(width/4, height/4, 0);
+        glBegin(GL_QUADS);
+        glTexCoord2f(0,0);
+        glVertex2f(-width,-height);
+        glTexCoord2f(1,0);
+        glVertex2f(width,-height);
+        glTexCoord2f(1,1);
+        glVertex2f(width,height);
+        glTexCoord2f(0,1);
+        glVertex2f(-width,height);
+
+
+
+        glEnd();
+        glLoadIdentity();
+
+    }
+
     public static void DrawQuadTexWave(Texture tex, float x, float y, float width, float height, float modifier){
         if(tex == null){
             tex = LoadTexture("null");

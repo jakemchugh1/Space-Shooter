@@ -90,10 +90,8 @@ public class Bullet implements Entity {
         DrawQuadTex(getTexture("bullet"), x, y, width, height);
 
 
-        if(rand.nextInt(4)== 0)mainParticles.add(new Particle(pos.x,pos.y,0.5f, 0.5f ,0.25, "bullet"));
-        if(rand.nextInt(4)== 1) mainParticles.add(new Particle(pos.x,pos.y,-0.5f, 0.5f ,0.25, "bullet"));
-        if(rand.nextInt(4)== 2)mainParticles.add(new Particle(pos.x,pos.y,0.5f, -0.5f ,0.25, "bullet"));
-        if(rand.nextInt(4)== 3)mainParticles.add(new Particle(pos.x,pos.y,-0.5f, -0.5f ,0.25, "bullet"));
+        mainParticles.add(new Particle(pos.x, pos.y, rand.nextInt(3)-1.5f, rand.nextInt(3)-1.5f, 0.25f , 4, 4, "bubble_1",1));
+
 
     }
 

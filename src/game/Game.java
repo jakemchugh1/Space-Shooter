@@ -65,6 +65,7 @@ public class Game {
 
     public Game(){
         resetGame();
+        bossSet.add(new Enemy2(player));
     }
 
     public void play(){

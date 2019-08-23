@@ -9,6 +9,7 @@ import particles.Particle;
 import java.util.HashSet;
 
 import static entities.EntityManager.getTexture;
+import static game.Game.mainParticles;
 import static org.lwjgl.opengl.GL11.*;
 import static utilities.Artist.*;
 
@@ -72,6 +73,8 @@ public class Player implements Entity {
             }else{
                 DrawQuadTexRot(getTexture("sub_1"), x, y, width, height, rotation);
                 frame = 0;
+                mainParticles.add(new Particle(pos.x-64, pos.y, -4, 0, 4f , 12, 12, "bubble_1"));
+
             }
     }
 

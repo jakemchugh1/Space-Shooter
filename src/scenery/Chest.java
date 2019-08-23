@@ -11,6 +11,7 @@ import java.util.HashSet;
 import java.util.Random;
 
 import static entities.EntityManager.getTexture;
+import static game.Game.mainParticles;
 import static org.lwjgl.opengl.GL11.*;
 import static utilities.Artist.DrawQuadTex;
 import static utilities.Artist.LoadTexture;
@@ -26,8 +27,6 @@ public class Chest implements Scenery{
 
     private int frame;
 
-    private HashSet<Particle> particles;
-    private HashSet<Particle> particlesRemove;
 
     private Random rand;
 
@@ -40,8 +39,6 @@ public class Chest implements Scenery{
         this.y = y;
         this.width = width;
         this.height = height;
-        particles = new HashSet<>();
-        particlesRemove = new HashSet<>();
         rand = new Random();
         open = false;
 
@@ -61,17 +58,7 @@ public class Chest implements Scenery{
         }
         if(frame == 40 && rand.nextInt(10) == 1){
             open = true;
-            particles.add(new Particle(x+84,y+30,-2,-1,7,32,32,"bubble"));
-        }
-        for(Particle p : particles){
-            if(p.isRemove()) particlesRemove.add(p);
-            else{
-                p.Draw();
-                p.Update();
-            }
-        }
-        for(Particle p : particlesRemove){
-            particles.remove(p);
+            mainParticles.add(new Particle(x+84,y+30,0,-1,7,32,32,"bubble_1", 2));
         }
         x = x - 4;
 
