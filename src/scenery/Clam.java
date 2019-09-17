@@ -62,7 +62,7 @@ public class Clam implements Scenery{
         }
         if(frame == 40 && rand.nextInt(10) == 1){
             open = true;
-            mainParticles.add(new Particle(x+84,y+30,0,-1,7,32,32,"bubble_1", 2));
+            mainParticles.add(new Particle(x+68,y+30,0,-1,7,32,32,"bubble_1", 2));
         }
         x = x - 4;
     }

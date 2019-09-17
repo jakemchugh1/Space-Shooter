@@ -13,60 +13,19 @@ public class EntityManager {
     public EntityManager(){
         textureBank = new HashMap<>();
 
-        load("enemy1");
-        load("enemy2");
-        load("enemy3");
-        load("enemy4");
-        load("enemy5");
-        load("enemy6");
-        load("enemy7");
-        load("enemy8");
-        load("enemy9");
-        load("enemy10");
-        load("enemy11");
-        load("enemy12");
-        load("enemy13");
-
-        load("squid1");
-        load("squid2");
-
         load("bullet");
 
         load("square");
 
-        load("player9");
-
-        load("particle");
-
-        load("particle2");
-
-        load("spark");
-
         load("tentacle");
 
         load("background");
-
-       // load("bubble_1");
-
-        load("seaweed_short1");
-        load("seaweed_short2");
-        load("seaweed_short3");
-
-        load("starfish1");
-        load("starfish2");
-        load("starfish3");
 
         load("chest1");
         load("chest2");
 
         load("bubble");
         load("bubble_1");
-
-        load("submarine1");
-        load("submarine2");
-        load("submarine3");
-        load("submarine4");
-        load("submarine5");
 
         load("clam1");
         load("clam2");
@@ -138,6 +97,36 @@ public class EntityManager {
         load("fill_red");
         load("fill_blue");
         load("fill_teal");
+
+        load("person");
+
+        load("person_riding");
+        load("person_riding1");
+
+        load("black");
+        load("blue1");
+        load("blue2");
+        load("blue3");
+        load("blue4");
+        load("brown");
+        load("green1");
+        load("green2");
+        load("grey1");
+        load("grey2");
+        load("orange1");
+        load("orange2");
+        load("pink");
+        load("purple1");
+        load("purple2");
+        load("red1");
+        load("red2");
+        load("yellow1");
+        load("yellow2");
+        load("white");
+
+        load("background_tile2");
+        load("background_tile3");
+
 
 
     }

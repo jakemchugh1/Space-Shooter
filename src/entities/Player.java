@@ -7,6 +7,7 @@ import org.newdawn.slick.opengl.Texture;
 import particles.Particle;
 
 import java.util.HashSet;
+import java.util.Random;
 
 import static entities.EntityManager.getTexture;
 import static game.Game.mainParticles;
@@ -23,6 +24,7 @@ public class Player implements Entity {
     private int height;
     private int width;
     private int frame;
+    private int crew;
 
     private int speed;
 
@@ -33,9 +35,19 @@ public class Player implements Entity {
     private boolean remove;
     private boolean flip;
 
+    private Crew[] crewMembers;
+
 
 
     public Player(){
+        crew = 5;
+        crewMembers = new Crew[5];
+        crewMembers[0] = new Crew("John",16,16);
+        crewMembers[1] = new Crew("Jacob",16,16);
+        crewMembers[2] = new Crew("Jingleheimer Schmidt",16,16);
+        crewMembers[3] = new Crew("Doofus",16,16);
+        crewMembers[4] = new Crew("Doofus",16,16);
+
         flip = false;
         speed = 200;
         this.x = 640-32;
@@ -63,19 +75,29 @@ public class Player implements Entity {
     public void Draw() {
             if(frame < 3) {
                 DrawQuadTexRot(getTexture("sub_1"), x, y, width, height, rotation);
+
+
                 frame = frame + 1;
             }else if(frame < 6) {
                 DrawQuadTexRot(getTexture("sub_2"), x, y, width, height, rotation);
+
                 frame = frame + 1;
             }else if(frame < 9) {
                 DrawQuadTexRot(getTexture("sub_3"), x, y, width, height, rotation);
+
                 frame = frame + 1;
             }else{
                 DrawQuadTexRot(getTexture("sub_1"), x, y, width, height, rotation);
+
                 frame = 0;
                 mainParticles.add(new Particle(pos.x-64, pos.y, -4, 0, 4f , 12, 12, "bubble_1"));
 
             }
+        if(crew >0)DrawQuadTexRot(getTexture("person_riding"), x-25, y+rotation/2 - 10, 16, 16, rotation);
+        if(crew >1)DrawQuadTexRot(getTexture("person_riding"), x-10, y+rotation/4 - 10, 16, 16, rotation);
+        if(crew >2)DrawQuadTexRot(getTexture("person_riding"), x+5, y- 10, 16, 16, rotation);
+        if(crew >3)DrawQuadTexRot(getTexture("person_riding"), x+20, y-rotation/2.5f - 10, 16, 16, rotation);
+        if(crew >4)DrawQuadTexRot(getTexture("person_riding"), x+35, y-rotation/1.5f - 10, 16, 16, rotation);
     }
 
     public void setPos() {
@@ -138,5 +160,29 @@ public class Player implements Entity {
         pos.y = y + height/2;
     }
 
+    public void loseCrew(){
+        crew = crew - 1;
+        Random rand = new Random();
+        mainParticles.add(new Particle(pos.x, pos.y, rand.nextInt(3)-1.5f, rand.nextInt(3)-1.5f, 12 , 16, 16, "person",3));
+        mainParticles.add(new Particle(pos.x, pos.y, rand.nextInt(3)-1.5f, rand.nextInt(3)-1.5f, 6 , 8, 8, "fill_yellow",1));
+        mainParticles.add(new Particle(pos.x, pos.y, rand.nextInt(3)-1.5f, rand.nextInt(3)-1.5f, 6 , 8, 8, "fill_yellow",1));
+        mainParticles.add(new Particle(pos.x, pos.y, rand.nextInt(3)-1.5f, rand.nextInt(3)-1.5f, 6 , 8, 8, "fill_yellow",1));
+        mainParticles.add(new Particle(pos.x, pos.y, rand.nextInt(3)-1.5f, rand.nextInt(3)-1.5f, 6 , 8, 8, "fill_yellow",1));
+
+    }
+    public void destroySub(){
+        Random rand = new Random();
+        mainParticles.add(new Particle(pos.x, pos.y, rand.nextInt(3)-1.5f, rand.nextInt(3)-1.5f, 6 , 16, 16, "fill_yellow",1));
+        mainParticles.add(new Particle(pos.x, pos.y, rand.nextInt(3)-1.5f, rand.nextInt(3)-1.5f, 6 , 16, 16, "fill_yellow",1));
+        mainParticles.add(new Particle(pos.x, pos.y, rand.nextInt(3)-1.5f, rand.nextInt(3)-1.5f, 6 , 16, 16, "fill_yellow",1));
+        mainParticles.add(new Particle(pos.x, pos.y, rand.nextInt(3)-1.5f, rand.nextInt(3)-1.5f, 6 , 16, 16, "fill_yellow",1));
+        mainParticles.add(new Particle(pos.x, pos.y, rand.nextInt(3)-1.5f, rand.nextInt(3)-1.5f, 6 , 16, 16, "fill_yellow",1));
+
+    }
+
     public void setRemove() {remove = true;}
+
+    public int getCrew(){
+        return crew;
+    }
 }

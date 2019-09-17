@@ -31,7 +31,7 @@ public class Artist {
     public static void BeginSession(){
         offset = 0;
 
-        Display.setTitle("Jake's Physics");
+        Display.setTitle("Project Banana Boat");
         try {
             Display.setDisplayMode(new DisplayMode(WIDTH, HEIGHT));
             Display.create();

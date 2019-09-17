@@ -1,6 +1,11 @@
 package entities;
 
+import particles.Particle;
+
+import java.util.Random;
+
 import static entities.EntityManager.getTexture;
+import static game.Game.mainParticles;
 import static utilities.Artist.DrawQuadTex;
 
 public class Tentacle {
@@ -15,8 +20,6 @@ public class Tentacle {
     private float width;
     private float height;
 
-    private float velX;
-    private float velY;
 
 
     public Tentacle(int level, float posX, float posY){
@@ -27,7 +30,7 @@ public class Tentacle {
         height = 16;
 
 
-        if(level != 20) next = new Tentacle(level + 1, x, y);
+        if(level != 30) next = new Tentacle(level + 1, x, y);
     }
 
     public void move(float posX, float posY){
@@ -43,6 +46,12 @@ public class Tentacle {
         if(next != null){
             next.draw();
         }
+    }
+
+    public void particle(){
+        Random rand = new Random();
+        mainParticles.add(new Particle(x-(width/2), y-(height/2), rand.nextInt(3)-1.5f, rand.nextInt(3)-1.5f, 6 , width, height, "tentacle",1));
+        if(next != null) next.particle();
     }
 
     private boolean checkColliding(float posX, float posY){

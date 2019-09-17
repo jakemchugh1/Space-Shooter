@@ -43,7 +43,7 @@ public class Bullet implements Entity {
 
     public Bullet(Vector2f playerPos){
         initialTime = (Sys.getTime() * 1000 / Sys.getTimerResolution());
-        timeLimit = 1*1000;
+        timeLimit = 2*1000;
         speed = 400;
         width = 8;
         height = 8;

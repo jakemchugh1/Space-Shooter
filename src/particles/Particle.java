@@ -24,6 +24,8 @@ public class Particle {
     private int type;
     private float expand;
     private boolean expanding;
+    private float rotation;
+    private float rotationChange;
 
     public Particle(float x, float y, float velX, float velY, double timeLimit, String textureName){
         this.textureName = textureName;
@@ -74,6 +76,11 @@ public class Particle {
         expand = 0;
         expanding = true;
         if(y >= 960) y = 959;
+        rotation = 0;
+        if(type == 3){
+            Random rand = new Random();
+            rotationChange = rand.nextInt(5)-2.5f;
+        }
 
 
     }
@@ -83,6 +90,11 @@ public class Particle {
         if(type == 1){
             velY = velY + (1f * getFrameTimeSeconds());
             velX = velX - (1f * getFrameTimeSeconds());
+
+        }else if(type == 3){
+            rotation = rotation + rotationChange;
+            velY = velY + (0.25f * getFrameTimeSeconds());
+            velX = velX - (0.5f * getFrameTimeSeconds());
 
         }
         x = x + velX*getFrameTimeSeconds()*speed;
@@ -103,6 +115,8 @@ public class Particle {
             }
             x = x - 4;
 
+        }else if(type == 3){
+            DrawQuadTexRot(getTexture(textureName), x-width/2, y-height/2, width, height, rotation);
         }
         else{
             DrawQuadTex(getTexture(textureName), x-width/2, y-height/2, width, height);

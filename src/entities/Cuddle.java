@@ -195,6 +195,8 @@ public class Cuddle implements Entity {
     public boolean checkColliding(Entity entity){
         Vector2f bullet = entity.getPos();
         if(bullet.x < pos.x + width && bullet.x > pos.x - width && bullet.y < pos.y + height && bullet.y > pos.y - height && valid){
+            x = x - vel.x*3;
+            y = y - vel.y*3;
             if(health <= 0){
                 Random rand = new Random();
                 mainParticles.add(new Particle(pos.x, pos.y, rand.nextInt(3)-1.5f, rand.nextInt(3)-1.5f, 6 , 12, 12, "fill_teal",1));

@@ -13,7 +13,6 @@ import scene.Background;
 import java.util.HashSet;
 import java.util.Random;
 
-import static utilities.Artist.*;
 
 public class Game {
     public static EntityManager entityManager;
@@ -29,6 +28,7 @@ public class Game {
 
 
     private int lives = 10;
+    private int oldLives;
 
     private int spawnChance1;
 
@@ -45,6 +45,9 @@ public class Game {
     private Sound pop;
     private Sound bubbles;
     private Sound electric;
+    private Sound alarm;
+    private Sound impact;
+    private Sound explosion;
 
     private float musicSpeed;
 
@@ -65,18 +68,50 @@ public class Game {
 
     public Game(){
         resetGame();
-        bossSet.add(new Enemy2(player));
     }
 
     public void play(){
+        if(oldLives == lives + 2){
+            player.loseCrew();
+            oldLives = lives;
+            alarm.play(0.75f,0.25f);
+            impact.play(0.85f,0.4f);
+        }
+        for (Enemy e : remove) {
+            enemySet.remove(e);
+            if (!gameOver) score = score + 1;
+            pop.play(1.5f,1);
+        }remove.clear();
+        for (Bullet b : removeB) {
+            bulletSet.remove(b);
+        }removeB.clear();
+        for (Enemy2 e : removeBoss) {
+            bossSet.remove(e);
+            if(!gameOver)score = score + 5;
+            pop.play(0.5f,1);
+        }removeBoss.clear();
+        for (Cuddle e : removeC) {
+            cuddleSet.remove(e);
+            if(!gameOver)score = score + 2;
+            pop.play(1,1);
+        }removeC.clear();
+        for (BigJelly e : removeJ) {
+
+            jellySet.remove(e);
+
+            if(!gameOver)score = score + 5;
+            pop.play(0.5f,1);
+        }removeJ.clear();
 
         background.draw();
+
+        particles();
 
         //ambient music playing
         if(!ambience.playing()) {
             ambience.play(1, 1);
         }
-        if(!music.playing()){
+        if(music.getPosition() == 0.0f){
             music.play(musicSpeed,1);
             musicSpeed = musicSpeed + 0.05f;
         }
@@ -87,14 +122,6 @@ public class Game {
             if(spawnChance1 > 10){
                 spawnChance1 = spawnChance1 - 1;
             }
-        }
-
-        for(Particle p : mainParticles){
-            p.Update();
-            p.Draw();
-            if(p.isRemove())removeP.add(p);
-        }for(Particle p : removeP){
-            mainParticles.remove(p);
         }
 
         if (rand.nextInt(spawnChance1) == 1 && !gameOver) {enemySet.add(new Enemy(player));
@@ -208,32 +235,12 @@ public class Game {
                 electric.play(0.5f,0.7f);
             }
         }
-        if (lives == 0) gameOver = true;
-        for (Enemy e : remove) {
-            enemySet.remove(e);
-            if (!gameOver) score = score + 1;
-            pop.play(1.5f,1);
-        }remove.clear();
-        for (Bullet b : removeB) {
-            bulletSet.remove(b);
-        }removeB.clear();
-        for (Enemy2 e : removeBoss) {
-            bossSet.remove(e);
-            if(!gameOver)score = score + 5;
-            pop.play(0.5f,1);
-        }removeBoss.clear();
-        for (Cuddle e : removeC) {
-            cuddleSet.remove(e);
-            if(!gameOver)score = score + 2;
-            pop.play(1,1);
-        }removeC.clear();
-        for (BigJelly e : removeJ) {
+        if (lives == 0 && !gameOver){
+            player.destroySub();
+            explosion.play(1,1.5f);
+            gameOver = true;
+        }
 
-            jellySet.remove(e);
-
-            if(!gameOver)score = score + 5;
-            pop.play(0.5f,1);
-        }removeJ.clear();
         if (!gameOver) {
             player.Draw();
             player.setPos();
@@ -265,6 +272,9 @@ public class Game {
         pop = null;
         bubbles = null;
         electric = null;
+        alarm = null;
+        alarm = null;
+        explosion = null;
 
         try {
             music = new Music("res/audio/music2.wav");
@@ -274,6 +284,11 @@ public class Game {
             pop = new Sound("res/audio/pop.wav");
             bubbles = new Sound("res/audio/bubbles_blown.wav");
             electric = new Sound("res/audio/zap.wav");
+            alarm = new Sound("res/audio/alarm.wav");
+            impact = new Sound("res/audio/impact.wav");
+            explosion = new Sound("res/audio/explosion.wav");
+
+
         } catch (SlickException e) {
             e.printStackTrace();
         }
@@ -289,6 +304,8 @@ public class Game {
         score = 0;
 
         lives = 10;
+
+        oldLives = 10;
 
         spawnChance1 = 500;
 
@@ -306,6 +323,15 @@ public class Game {
         removeJ = new HashSet<>();
 
     }
+    public void particles(){
+        for(Particle p : mainParticles){
+            p.Update();
+            p.Draw();
+            if(p.isRemove())removeP.add(p);
+        }for(Particle p : removeP){
+            mainParticles.remove(p);
+        }
+    }
 
     public int getScore() {
         return score;
@@ -316,6 +342,6 @@ public class Game {
     }
 
     public int getLives() {
-        return lives;
+        return player.getCrew();
     }
 }

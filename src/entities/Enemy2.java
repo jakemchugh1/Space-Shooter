@@ -45,6 +45,7 @@ public class Enemy2 implements Entity {
 
 
     private Tentacle tentacle1;
+    private Tentacle tentacle2;
 
 
     public Enemy2(Player player){
@@ -83,23 +84,18 @@ public class Enemy2 implements Entity {
         remove = false;
 
         tentacle1 = new Tentacle(1,pos.x,pos.y);
+        tentacle2 = new Tentacle(1,pos.x,pos.y);
 
     }
 
     public void Draw() {
 
-        float tRotation;
 
-        if(vel.x > 0) {
-            tRotation = rotation;
 
-        }else{
-            tRotation = -rotation;
-
-        }
-
-        tentacle1.move((float) (pos.x - 32 + (Math.cos(tRotation))), (float)(pos.y - 16 + (Math.sin(tRotation))));
+        tentacle1.move((float) (pos.x - 52*vel.x - 56 + 8*(Math.cos(rotation/8))), (float)(pos.y - 52*vel.y - 16 + 8*(Math.sin(rotation/8))));
         tentacle1.draw();
+        tentacle2.move((float) (pos.x - 64*vel.x - 56 - 8*(Math.cos(rotation/8))), (float)(pos.y - 64*vel.y - 16 - 8*(Math.sin(rotation/8))));
+        tentacle2.draw();
 
 
         if(frame < 48) {
@@ -196,12 +192,15 @@ public class Enemy2 implements Entity {
     public boolean checkColliding(Entity entity){
         Vector2f bullet = entity.getPos();
         if(bullet.x < pos.x + height/2 && bullet.x > pos.x - height/2 && bullet.y < pos.y + height/2 && bullet.y > pos.y - height/2 ){
+            x = x - vel.x*3;
+            y = y - vel.y*3;
             if(health <= 0){
                 Random rand = new Random();
                 mainParticles.add(new Particle(pos.x, pos.y, rand.nextInt(3)-1.5f, rand.nextInt(3)-1.5f, 6 , 12, 12, "tentacle",1));
                 mainParticles.add(new Particle(pos.x, pos.y, rand.nextInt(3)-1.5f, rand.nextInt(3)-1.5f, 6 , 12, 12, "tentacle",1));
                 mainParticles.add(new Particle(pos.x, pos.y, rand.nextInt(3)-1.5f, rand.nextInt(3)-1.5f, 6 , 12, 12, "tentacle",1));
-
+                tentacle1.particle();
+                tentacle2.particle();
                 remove = true;
             }
             else if(!entity.isRemove()) {

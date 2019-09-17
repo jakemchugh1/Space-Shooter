@@ -1,5 +1,6 @@
 package manager;
 
+import game.CustomGameMaker;
 import game.Game;
 import ui.Ui;
 
