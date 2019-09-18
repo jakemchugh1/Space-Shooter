@@ -1,3 +1,7 @@
 Manifest-Version: 1.0
+Class-Path: slick.jar lwjgl.jar jinput.jar ibxm.jar jnlp.jar lwjgl.jar
+  slick.jar jinput.jar jogg-0.0.7.jar lwjgl_util.jar slick-util.jar jo
+ rbis-0.0.15.jar natives-windows.jar ibxm.jar jorbis-0.0.15.jar slick-
+ util.jar jogg-0.0.7.jar natives-windows.jar jnlp.jar lwjgl_util.jar
 Main-Class: engine.SpaceEngine
 

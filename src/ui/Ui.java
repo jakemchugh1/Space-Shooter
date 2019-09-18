@@ -1,8 +1,10 @@
 package ui;
 
+import entities.Turret;
 import game.CustomGameMaker;
 import game.Game;
 import org.lwjgl.input.Mouse;
+import org.lwjgl.opengl.Display;
 import org.newdawn.slick.TrueTypeFont;
 import particles.Particle;
 import scene.Background;
@@ -64,8 +66,11 @@ public class Ui {
 
     private int frame;
 
+    private Turret cursor;
+
 
     public Ui(){
+        cursor = new Turret();
         awtFont = new Font("times new roman", Font.BOLD, 24);
         font = new TrueTypeFont(awtFont, true);
         resetGame = false;
@@ -109,7 +114,6 @@ public class Ui {
 
     }
     public void run(Game game){
-
         if(menuSelect == 0){
             menuBackground.draw();
             mainMenu();
@@ -123,6 +127,11 @@ public class Ui {
             menuBackground.draw();
             mods();
         }
+        drawSideBars();
+        cursor.Draw();
+        cursor.setPos();
+
+
     }
 
     public void mods(){
@@ -381,6 +390,10 @@ public class Ui {
 
 
         }
+    }
+    private void drawSideBars(){
+        DrawQuadTex(getTexture("background_tile"), 1280,0, Display.getDesktopDisplayMode().getWidth()/2, 960);
+        DrawQuadTex(getTexture("background_tile"), 0, 0, -Display.getDesktopDisplayMode().getWidth()/2, 960);
     }
     public boolean getReset(){
         return resetGame;

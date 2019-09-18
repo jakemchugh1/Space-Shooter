@@ -2,6 +2,7 @@ package utilities;
 
 import org.lwjgl.LWJGLException;
 import org.lwjgl.Sys;
+import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.GL11;
@@ -33,7 +34,7 @@ public class Artist {
 
         Display.setTitle("Project Banana Boat");
         try {
-            Display.setDisplayMode(new DisplayMode(WIDTH, HEIGHT));
+            Display.setDisplayModeAndFullscreen(Display.getDesktopDisplayMode());
             Display.create();
         }catch(LWJGLException e){
             e.printStackTrace();
@@ -41,7 +42,7 @@ public class Artist {
 
         glMatrixMode(GL_PROJECTION);
         glLoadIdentity();
-        glOrtho(0,WIDTH,HEIGHT,0,1,-1);//camera
+        glOrtho(-(Display.getDesktopDisplayMode().getWidth()-WIDTH)/2,WIDTH+(Display.getDesktopDisplayMode().getWidth()-WIDTH)/2,HEIGHT,0,1,-1);//camera
         glMatrixMode(GL_MODELVIEW);
         glEnable(GL_TEXTURE_2D);
         glEnable(GL_BLEND);

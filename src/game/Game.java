@@ -244,8 +244,7 @@ public class Game {
         if (!gameOver) {
             player.Draw();
             player.setPos();
-            turret.Draw();
-            turret.setPos();
+
         }
 
         if (gameOver){
@@ -297,7 +296,6 @@ public class Game {
 
 
         player = new Player();
-        turret = new Turret();
 
         rand = new Random();
 
