@@ -1,0 +1,22 @@
+<component name="ArtifactManager">
+  <artifact name="PBB:jar">
+    <output-path>$PROJECT_DIR$/../ProjectBananaBoat/out/artifacts/PBB_jar</output-path>
+    <root id="root">
+      <element id="archive" name="PBB.jar">
+        <element id="module-output" name="PBB" />
+      </element>
+      <element id="file-copy" path="$PROJECT_DIR$/lib/jars/slick.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/lib/jars/lwjgl.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/lib/jars/jinput.jar" />
+      <element id="library" level="project" name="lib" />
+      <element id="file-copy" path="$PROJECT_DIR$/lib/jars/ibxm.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/lib/jars/jorbis-0.0.15.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/lib/jars/slick-util.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/lib/jars/jogg-0.0.7.jar" />
+      <element id="library" level="project" name="natives" />
+      <element id="file-copy" path="$PROJECT_DIR$/lib/jars/natives-windows.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/lib/jars/jnlp.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/lib/jars/lwjgl_util.jar" />
+    </root>
+  </artifact>
+</component>

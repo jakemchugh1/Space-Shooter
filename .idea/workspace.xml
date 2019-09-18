@@ -7,187 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="294656b5-026c-4493-a5c7-16f1b48e148e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitattributes" beforeDir="false" afterPath="$PROJECT_DIR$/.gitattributes" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/Space_Shooter_jar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/jars.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/natives.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectBanannaBoat.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hs_err_pid18440.log" beforeDir="false" afterPath="$PROJECT_DIR$/hs_err_pid18440.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/jars/slick-util.jar" beforeDir="false" afterPath="$PROJECT_DIR$/lib/jars/slick-util.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Space_Shooter_jar/Space Shooter.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Space_Shooter_jar/SpaceShooter.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/META-INF/MANIFEST.MF" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/audio/AudioManager.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/audio/Source.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/audio/splash.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/engine/SpaceEngine.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/engine/resources/META-INF/MANIFEST.MF" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/entities/BigJelly.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/entities/Bullet.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/entities/Cuddle.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/entities/Enemy.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/entities/Enemy2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/entities/Entity.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/entities/EntityManager.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/entities/Player.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/entities/Tentacle.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/entities/Turret.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/game/Game.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/manager/GameManager.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/particles/Particle.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/physics/CollisionVector.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/physics/Gravity.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/audio/bubbles_blown.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/audio/electric_sizzle.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/audio/music1.ogg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/audio/music1.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/audio/music2.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/audio/pop.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/audio/shotA.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/audio/splash.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/audio/underwater_ambience.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/audio/underwater_ambience_flowing.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/audio/zap.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/background.pdn" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/background.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/ball.pdn" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/ball.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/big_jelly_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/big_jelly_10.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/big_jelly_11.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/big_jelly_12.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/big_jelly_2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/big_jelly_3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/big_jelly_4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/big_jelly_5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/big_jelly_6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/big_jelly_7.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/big_jelly_8.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/big_jelly_9.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/bubble.pdn" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/bubble.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/bubble_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/bullet.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/chest1.pdn" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/chest1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/chest2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/clam1.pdn" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/clam1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/clam2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/fill_blue.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/fill_green.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/fill_red.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/fill_teal.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/fill_yellow.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/hill_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/hill_2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/ink_squid_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/ink_squid_2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/ink_squid_3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/ink_squid_4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/ink_squid_5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/ink_squid_6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/ink_squid_7.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/ink_squid_8.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/jellyfish_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/jellyfish_2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/jellyfish_3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/music1.flp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/null.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/octagon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/outline_blue.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/outline_green.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/outline_red.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/outline_teal.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/outline_yellow.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/red_star_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/red_star_2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/red_star_3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/reticle_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/reticle_2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/reticle_3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/sand_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/sand_2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/seaweed_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/seaweed_2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/seaweed_3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/square.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/squid_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/squid_2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/squid_3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/squid_4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/squid_5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/sub_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/sub_2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/sub_3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/tentacle.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/triangle.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/variant1/enemy1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/variant1/enemy10.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/variant1/enemy11.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/variant1/enemy12.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/variant1/enemy13.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/variant1/enemy2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/variant1/enemy3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/variant1/enemy4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/variant1/enemy5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/variant1/enemy6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/variant1/enemy7.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/variant1/enemy8.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/variant1/enemy9.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/res/water.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/scene/Background$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/scene/Background.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/scenery/Chest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/scenery/Clam.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/scenery/DancingStarfish.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/scenery/Scenery.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/scenery/ShortSeaweed.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/ui/Button.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/ui/Ui.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/utilities/Artist.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Space Shooter/utilities/Clock.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/audio/AudioManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/audio/AudioManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/audio/Source.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/audio/Source.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/engine/resources/META-INF/MANIFEST.MF" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entities/BigJelly.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/BigJelly.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entities/Bullet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/Bullet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entities/Crew.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/Crew.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entities/Cuddle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/Cuddle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entities/CustomEnemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/CustomEnemy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entities/CustomPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/CustomPlayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entities/Enemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/Enemy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entities/Enemy2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/Enemy2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entities/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/Entity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entities/EntityManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/EntityManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entities/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entities/Tentacle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/Tentacle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entities/Turret.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/Turret.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/CustomGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/CustomGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/CustomGameMaker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/CustomGameMaker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/SpaceEngine.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/manager/GameManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/GameManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/particles/Particle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/particles/Particle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/physics/CollisionVector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/physics/CollisionVector.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/physics/Gravity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/physics/Gravity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/res/background_tile2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/background_tile2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scene/Background.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/scene/Background.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scene/MenuBackground.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/scene/MenuBackground.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scenery/Chest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenery/Chest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scenery/Clam.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenery/Clam.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scenery/DancingStarfish.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenery/DancingStarfish.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scenery/Scenery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenery/Scenery.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scenery/ShortSeaweed.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenery/ShortSeaweed.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/Button.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/Button.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/Ui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/Ui.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utilities/Artist.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utilities/Artist.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utilities/Clock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utilities/Clock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Space Shooter.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/SpaceEngine.java" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -204,11 +25,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ui/Ui.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="129" column="23" selection-start-line="129" selection-start-column="23" selection-end-line="129" selection-end-column="23" />
+            <state relative-caret-position="408">
+              <caret line="132" selection-start-line="132" selection-end-line="132" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -249,11 +70,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/utilities/Artist.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="45" column="70" lean-forward="true" selection-start-line="45" selection-start-column="70" selection-end-line="45" selection-end-column="76" />
+            <state relative-caret-position="153">
+              <caret line="37" column="29" selection-start-line="37" selection-start-column="29" selection-end-line="37" selection-end-column="29" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -264,8 +85,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/engine/SpaceEngine.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="99">
-              <caret line="18" selection-start-line="18" selection-end-line="18" />
+            <state relative-caret-position="337">
+              <caret line="32" column="31" selection-start-line="32" selection-start-column="31" selection-end-line="32" selection-end-column="31" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -391,9 +212,9 @@
         <option value="$PROJECT_DIR$/src/entities/EntityManager.java" />
         <option value="$PROJECT_DIR$/src/entities/Bullet.java" />
         <option value="$PROJECT_DIR$/src/game/Game.java" />
+        <option value="$PROJECT_DIR$/src/ui/Ui.java" />
         <option value="$PROJECT_DIR$/src/engine/SpaceEngine.java" />
         <option value="$PROJECT_DIR$/src/utilities/Artist.java" />
-        <option value="$PROJECT_DIR$/src/ui/Ui.java" />
       </list>
     </option>
   </component>
@@ -574,7 +395,7 @@
       <workItem from="1567367121213" duration="1650000" />
       <workItem from="1568584723287" duration="1360000" />
       <workItem from="1568683295779" duration="253000" />
-      <workItem from="1568787120970" duration="4459000" />
+      <workItem from="1568787120970" duration="4729000" />
     </task>
     <task id="LOCAL-00001" summary="Included an update to the backgrounds as well as the credit page">
       <created>1568683482928</created>
@@ -583,17 +404,23 @@
       <option name="project" value="LOCAL" />
       <updated>1568683482928</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Made it full screen, fixed the jars used. They had duplicate classes that wouldn't allow an artifact to generate properly.">
+      <created>1568836361589</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1568836361589</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="292597000" />
+    <option name="totallyTimeSpent" value="292867000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="878" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.11208054" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.11208054" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -602,12 +429,12 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.18766756" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.18766756" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3994638" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.3297587" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Terminal" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
@@ -661,7 +488,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Included an update to the backgrounds as well as the credit page" />
-    <option name="LAST_COMMIT_MESSAGE" value="Included an update to the backgrounds as well as the credit page" />
+    <MESSAGE value="Made it full screen, fixed the jars used. They had duplicate classes that wouldn't allow an artifact to generate properly." />
+    <option name="LAST_COMMIT_MESSAGE" value="Made it full screen, fixed the jars used. They had duplicate classes that wouldn't allow an artifact to generate properly." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Space_Shooter$SpaceEngine.ic" NAME="SpaceEngine Coverage Results" MODIFIED="1563577401564" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
@@ -946,10 +774,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/ui/Ui.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="132" selection-start-line="132" selection-end-line="132" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/engine/SpaceEngine.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="99">
-          <caret line="18" selection-start-line="18" selection-end-line="18" />
+        <state relative-caret-position="337">
+          <caret line="32" column="31" selection-start-line="32" selection-start-column="31" selection-end-line="32" selection-end-column="31" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -958,18 +796,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/utilities/Artist.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="45" column="70" lean-forward="true" selection-start-line="45" selection-start-column="70" selection-end-line="45" selection-end-column="76" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ui/Ui.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="129" column="23" selection-start-line="129" selection-start-column="23" selection-end-line="129" selection-end-column="23" />
+        <state relative-caret-position="153">
+          <caret line="37" column="29" selection-start-line="37" selection-start-column="29" selection-end-line="37" selection-end-column="29" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
