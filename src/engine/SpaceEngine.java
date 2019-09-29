@@ -31,6 +31,7 @@ public class SpaceEngine {
             updateDisplay();
             }
         AudioManager.cleanUp();
+        Mouse.destroy();
 
     }
 

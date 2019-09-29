@@ -392,8 +392,8 @@ public class Ui {
         }
     }
     private void drawSideBars(){
-        DrawQuadTex(getTexture("background_tile"), 1280,0, Display.getDesktopDisplayMode().getWidth()/2, 960);
-        DrawQuadTex(getTexture("background_tile"), 0, 0, -Display.getDesktopDisplayMode().getWidth()/2, 960);
+        DrawQuad( 1280,0, Display.getDesktopDisplayMode().getWidth()/2, 960);
+        DrawQuad(0, 0, -Display.getDesktopDisplayMode().getWidth()/2, 960);
     }
     public boolean getReset(){
         return resetGame;

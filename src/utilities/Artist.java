@@ -36,13 +36,15 @@ public class Artist {
         try {
             Display.setDisplayModeAndFullscreen(Display.getDesktopDisplayMode());
             Display.create();
+            Mouse.create();
+            Mouse.setGrabbed(true);
         }catch(LWJGLException e){
             e.printStackTrace();
         }
 
         glMatrixMode(GL_PROJECTION);
         glLoadIdentity();
-        glOrtho(-(Display.getDesktopDisplayMode().getWidth()-WIDTH)/2,WIDTH+(Display.getDesktopDisplayMode().getWidth()-WIDTH)/2,HEIGHT,0,1,-1);//camera
+        glOrtho(0,WIDTH,HEIGHT,0,1,-1);//camera
         glMatrixMode(GL_MODELVIEW);
         glEnable(GL_TEXTURE_2D);
         glEnable(GL_BLEND);

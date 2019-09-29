@@ -7,8 +7,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="294656b5-026c-4493-a5c7-16f1b48e148e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Space Shooter.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/engine/SpaceEngine.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/SpaceEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/SpaceEngine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/Ui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/Ui.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utilities/Artist.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utilities/Artist.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -28,8 +29,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ui/Ui.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="132" selection-start-line="132" selection-end-line="132" />
+            <state relative-caret-position="507">
+              <caret line="395" column="75" selection-start-line="395" selection-start-column="75" selection-end-line="395" selection-end-column="75" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -73,8 +74,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/utilities/Artist.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="37" column="29" selection-start-line="37" selection-start-column="29" selection-end-line="37" selection-end-column="29" />
+            <state relative-caret-position="306">
+              <caret line="46" column="17" selection-start-line="46" selection-start-column="17" selection-end-line="46" selection-end-column="17" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -85,8 +86,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/engine/SpaceEngine.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="337">
-              <caret line="32" column="31" selection-start-line="32" selection-start-column="31" selection-end-line="32" selection-end-column="31" />
+            <state relative-caret-position="460">
+              <caret line="33" column="24" selection-start-line="33" selection-start-column="24" selection-end-line="33" selection-end-column="24" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -212,13 +213,13 @@
         <option value="$PROJECT_DIR$/src/entities/EntityManager.java" />
         <option value="$PROJECT_DIR$/src/entities/Bullet.java" />
         <option value="$PROJECT_DIR$/src/game/Game.java" />
-        <option value="$PROJECT_DIR$/src/ui/Ui.java" />
         <option value="$PROJECT_DIR$/src/engine/SpaceEngine.java" />
+        <option value="$PROJECT_DIR$/src/ui/Ui.java" />
         <option value="$PROJECT_DIR$/src/utilities/Artist.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="952" />
     <option name="width" value="977" />
     <option name="height" value="1088" />
@@ -395,7 +396,7 @@
       <workItem from="1567367121213" duration="1650000" />
       <workItem from="1568584723287" duration="1360000" />
       <workItem from="1568683295779" duration="253000" />
-      <workItem from="1568787120970" duration="4729000" />
+      <workItem from="1568787120970" duration="6008000" />
     </task>
     <task id="LOCAL-00001" summary="Included an update to the backgrounds as well as the credit page">
       <created>1568683482928</created>
@@ -415,12 +416,13 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="292867000" />
+    <option name="totallyTimeSpent" value="294146000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="878" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.11208054" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.11208054" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -429,7 +431,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.18766756" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.18766756" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3994638" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -774,20 +776,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ui/Ui.java">
+    <entry file="file://$PROJECT_DIR$/src/engine/SpaceEngine.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="132" selection-start-line="132" selection-end-line="132" />
+        <state relative-caret-position="460">
+          <caret line="33" column="24" selection-start-line="33" selection-start-column="24" selection-end-line="33" selection-end-column="24" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/engine/SpaceEngine.java">
+    <entry file="file://$PROJECT_DIR$/src/ui/Ui.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="337">
-          <caret line="32" column="31" selection-start-line="32" selection-start-column="31" selection-end-line="32" selection-end-column="31" />
+        <state relative-caret-position="507">
+          <caret line="395" column="75" selection-start-line="395" selection-start-column="75" selection-end-line="395" selection-end-column="75" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -796,8 +798,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/utilities/Artist.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="37" column="29" selection-start-line="37" selection-start-column="29" selection-end-line="37" selection-end-column="29" />
+        <state relative-caret-position="306">
+          <caret line="46" column="17" selection-start-line="46" selection-start-column="17" selection-end-line="46" selection-end-column="17" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
